@@ -1,0 +1,309 @@
+% DEFINITIONS =========================================================================================================
+% Paths
+\addbibresource{\basepath/bibliography.bib} %Imports bibliography file
+\graphicspath{{images/}}
+
+% lstlistings setup ---------------------------------------------------------------------------------------------------
+\definecolor{commentsColor}{gray}{0.6}
+\definecolor{keywordsColor}{RGB}{249,38,114}
+\definecolor{stringColor}{RGB}{230, 219, 116}
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+\lstset{ 
+  backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}; should come as last argument
+  basicstyle=\footnotesize,        % the size of the fonts that are used for the code
+  breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+  breaklines=true,                 % sets automatic line breaking
+  captionpos=b,                    % sets the caption-position to bottom
+  commentstyle=\color{mygreen},    % comment style
+  deletekeywords={},            % if you want to delete keywords from the given language
+  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+  firstnumber=0,                % start line enumeration with line 0
+  frame=single,	                   % adds a frame around the code
+  keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+  keywordstyle=\color{blue},       % keyword style
+  language=Octave,                 % the language of the code
+  morekeywords={*},            % if you want to add more keywords to the set
+  numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+  numbersep=5pt,                   % how far the line-numbers are from the code
+  numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+  rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+  showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+  showstringspaces=false,          % underline spaces within strings only
+  showtabs=false,                  % show tabs within strings adding particular underscores
+  stepnumber=2,                    % the step between two line-numbers. If it's 1, each line will be numbered
+  stringstyle=\color{mymauve},     % string literal style
+  tabsize=4,	                   % sets default tabsize to 2 spaces
+  title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+}
+
+% Sections alignment --------------------------------------------------------------------------------------------------
+% Gets label of current section
+\makeatletter\newcommand{\currentlabel}{\@currentlabelname}\makeatother
+% Sets alignment of sections
+\newcommand{\formatsection}[1]{
+    \ifthenelse{\equal{#1}{center}}{
+		%Makes sections centered
+		\titleformat{\section}{\normalfont\Large\bfseries\centering}{\thesection}{1em}{}
+    }{
+        \ifthenelse{\equal{#1}{right}}{
+			%Makes sections right-aligned
+			\titleformat{\section}{\normalfont\Large\bfseries\raggedleft}{\thesection}{1em}{}
+        }{
+			\ifthenelse{\equal{#1}{left}}{
+				%Makes sections left-aligned
+				\titleformat{\section}{\normalfont\Large\bfseries\raggedright}{\thesection}{1em}{}
+        	}{
+        	}
+        }
+    }
+}
+
+% tabularx
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
+
+% Caption/Ref settings ----------------------------------------------------------------------------------------------------
+\captionsetup{
+    format = hang,
+    labelfont = sc,
+	skip = 6pt,
+	hypcapspace = 96pt
+}
+
+% TOC -----------------------------------------------------------------------------------------------------------------
+% Sets TOC depth and change changes its display name
+\setcounter{secnumdepth}{0}
+\addto\captionsenglish{
+  \renewcommand{\contentsname}{Table of Contents}
+}
+
+% SIunitx -------------------------------------------------------------------------------------------------------------
+% Sets \per to display as frac
+\sisetup{per-mode=symbol-or-fraction}
+\DeclareSIUnit\Molar{\mole\per\liter}
+\DeclareSIUnit\molar{\textsc{M}}
+\DeclareSIUnit\clight{\text{\ensuremath{c}}_{0}}
+
+% listings code highlighting ------------------------------------------------------------------------------------------
+\lstset{ %
+  backgroundcolor=\color{white},				% choose the background color; you must add \usepackage{color} or \usepackage{xcolor}
+  basicstyle=\footnotesize,						% the size of the fonts that are used for the code
+  breakatwhitespace=false,						% sets if automatic breaks should only happen at whitespace
+  breaklines=true,								% sets automatic line breaking
+  captionpos=b,									% sets the caption-position to bottom
+  commentstyle=\color{commentsColor}\textit,	% comment style
+  deletekeywords={...},							% if you want to delete keywords from the given language
+  escapeinside={\%*}{*)},						% if you want to add LaTeX within your code
+  extendedchars=true,							% lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+  frame=tb,										% adds a frame around the code
+  keepspaces=true,								% keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+  keywordstyle=\color{keywordsColor}\bfseries,	% keyword style
+  language=Python,								% the language of the code (can be overdid per snippet)
+  otherkeywords={*,...},						% if you want to add more keywords to the set
+  numbers=left,									% where to put the line-numbers; possible values are (none, left, right)
+  numbersep=5pt,								% how far the line-numbers are from the code
+  numberstyle=\tiny\color{commentsColor},		% the style that is used for the line-numbers
+  rulecolor=\color{black},						% if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+  showspaces=false,								% show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+  showstringspaces=false,						% underline spaces within strings only
+  showtabs=false,								% show tabs within strings adding particular underscores
+  stepnumber=1,									% the step between two line-numbers. If it's 1, each line will be numbered
+  stringstyle=\color{stringColor},				% string literal style
+  tabsize=2,									% sets default tabsize to 2 spaces
+  title=\lstname,								% show the filename of files included with \lstinputlisting; also try caption instead of title
+  columns=fixed									% Using fixed column width (for e.g. nice alignment)
+}
+
+% BibLaTex ------------------------------------------------------------------------------------------------------------
+% BibLaTex definitions
+\let\oldcite\cite
+\renewcommand{\cite}{\autocite}
+\let\oldsupercite\supercite
+\renewcommand{\supercite}[1]{\textsuperscript{[}\oldsupercite{#1}\textsuperscript{]}}
+% Makes number created by \supercite to be between brackets.
+\DeclareCiteCommand{\supercite}[\mkbibsuperscript]{%
+	\iffieldundef{prenote}{}{\BibliographyWarning{Ignoring prenote argument}}%
+	\iffieldundef{postnote}{}{\BibliographyWarning{Ignoring postnote argument}}%
+}
+{\usebibmacro{citeindex}\,\bibopenbracket\usebibmacro{cite}\bibclosebracket}
+{\supercitedelim}{}
+
+% BASIC DOCUMENT SETTINGS AND TITLE PAGE ==============================================================================
+% PDF export settings
+\hypersetup{
+	pdftex,
+	pdfauthor = {Etienne Collin},
+	bookmarksnumbered = true,
+	bookmarksopen = true,
+	bookmarksopenlevel = 1,
+	pdfstartview = Fit,
+	pdfpagemode = UseOutlines,
+	pdfpagelayout = TwoPageRight,
+	colorlinks = true,		% Colors links instead of ugly boxes
+	urlcolor = DarkBlue,	% Color for external hyperlinks
+	linkcolor = black,		% Color of internal links
+	citecolor = black,		% Color of citations
+	filecolor = black,		% Color of file links
+}
+
+% ENVIRONMENTS ========================================================================================================
+% hmwkProblem ---------------------------------------------------------------------------------------------------------
+\newcounter{partCounter}
+\renewcommand{\part}[1]{\noindent\textbf{\large Part (\alph{partCounter})}\stepcounter{partCounter}\\}
+\newcounter{hmwkProblemCounter}
+\setcounter{hmwkProblemCounter}{1}
+
+% Continued Header Changer
+\newcommand{\enterProblemHeader}[1]{
+	\nobreak\extramarks{}{}\nobreak{}
+	\nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+}
+\newcommand{\exitProblemHeader}[1]{
+	\nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+	\stepcounter{#1}
+	\nobreak\extramarks{}{}\nobreak{}
+}
+
+% Environment. Optional argument will adjust the problem counter.
+\newenvironment{hmwkProblem}[1][-1]{
+	\ifnum#1>0
+		\setcounter{hmwkProblemCounter}{#1}
+	\fi
+	\pagebreak
+	\section{Problem \arabic{hmwkProblemCounter}}
+	\stepcounter{section}
+	\setcounter{partCounter}{1}
+	\enterProblemHeader{hmwkProblemCounter}
+}{
+	\exitProblemHeader{hmwkProblemCounter}
+}
+
+% sect ----------------------------------------------------------------------------------------------------------------
+% Will write "continued" when content spans >1 page. Argument adjusts the name of the section.
+\newenvironment{sect}[1]{
+	\pagebreak
+	\section{#1}
+	\stepcounter{section}
+	\setcounter{partCounter}{1}
+	\nobreak\extramarks{}{}\nobreak{}
+	\nobreak\extramarks{\currentlabel\ (continued)}{\currentlabel\ continued on next page\ldots}\nobreak{}
+}{
+	\nobreak\extramarks{\currentlabel\ (continued)}{\currentlabel\ continued on next page\ldots}\nobreak{}
+	\nobreak\extramarks{}{}\nobreak{}
+}
+
+% SETUP/ALIASES =======================================================================================================
+\newcommand{\imagecenter}[2][1]{
+	\begin{center}
+		\includegraphics[width=\textwidth*{#1}]{#2}
+	\end{center}
+}
+\newcommand{\imageleft}[2][1]{
+	\begin{flushleft}
+		\includegraphics[width=\textwidth*{#1}]{#2}
+	\end{flushleft}
+}
+\newcommand{\imageright}[2][1]{
+	\begin{flushright}
+		\includegraphics[width=\textwidth*{#1}]{#2}
+	\end{flushright}
+}
+\newcommand{\figurecenter}[4]{
+	\begin{figure}[H]
+		\centering
+		\begin{minipage}[H]{#1\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{#2}
+			\caption{#3}
+			\label{#4}
+		\end{minipage}
+	\end{figure}
+}
+\newcommand{\figuredual}[6]{
+	\begin{figure}[H]
+		\begin{minipage}[H]{0.48\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{#1}
+			\raggedleft
+			\caption{#2}
+			\label{#3}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[H]{0.48\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{#4}
+			\caption{#5}
+			\label{#6}
+		\end{minipage}
+	\end{figure}
+}
+\newcommand{\figuredualsingle}[6]{
+	\begin{figure}[H]
+		\begin{minipage}[H]{0.48\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{#1}
+			\subcaption{#2}\label{#6-a}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[H]{0.48\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{#3}
+			\subcaption{#4}\label{#6-b}
+		\end{minipage}
+		\caption{#5}\label{#6}
+	\end{figure}
+}
+
+% Theorems
+\theoremstyle{plain}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{example}{Example}[theorem]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}{Lemma}[theorem]
+\newtheorem{proposition}{Proposition}[theorem]
+% Unnumbered version
+\newtheorem*{definition*}{Definition}
+\newtheorem*{theorem*}{Theorem}
+\newtheorem*{example*}{Example}
+\newtheorem*{corollary*}{Corollary}
+\newtheorem*{lemma*}{Lemma}
+\newtheorem*{proposition*}{Proposition}
+
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}[section]
+% Unnumbered version
+\newtheorem*{exercise*}{Exercise}
+
+
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+\newtheorem{case}{Case}
+\newtheorem{claim}{Claim}[section]
+% Unnumbered version
+\newtheorem*{remark*}{Remark}
+\newtheorem*{case*}{Case}
+\newtheorem*{claim*}{Claim}
+
+\renewcommand\qedsymbol{QED}
+
+% Useful shortcuts
+\newcommand{\alg}[1]{\textsc{\bfseries\footnotesize #1}}
+\newcommand{\deriv}[2][]{\mathop{}\!\frac{\mathrm{d}^{#1}}{\mathrm{d}#2^{#1}}}	% For derivatives
+\newcommand{\pderiv}[2][]{\frac{\partial^{#1}}{\partial#2^{#1}}}				% For partial derivatives
+\newcommand{\diff}[2][]{\mathop{}\!\mathrm{d^{#1}}#2}							% Integral dx
+
+% Enables new list environment that supports nesting
+\newlist{legal}{enumerate}{10}
+\setlist[legal]{label*=.\arabic*}
+\setlist[legal,1]{label=\arabic*}
+
+% Temporary text markers
+\newcommand{\solution}{\noindent\textbf{\large Solution}}				% Alias for the Solution section header
+\newcommand{\missing}{\textcolor{red}{\textbf{VALUE MISSING}}}	% Creates a big red "Missing Value" string.
+\newcommand{\inprogress}{\textcolor{red}{\textbf{IN PROGRESS}}}	% Creates a big red "In Progress" string.
+\newcommand{\incomplete}{\textcolor{red}{\textbf{INCOMPLETE}}}	% Creates a big red "Incompletes" string.
+
+% END OF SETUP DOCUMENT ===============================================================================================

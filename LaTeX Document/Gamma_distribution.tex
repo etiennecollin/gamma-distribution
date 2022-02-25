@@ -1,0 +1,50 @@
+\input{/Users/etiennecollin/Programming/LaTex/Paths}
+\path{macOS}
+
+\documentclass[12pt]{article}
+\usepackage[english]{babel}																												% Selects language of document
+\usepackage{./_assets/Packages}																											% Imports custom packages selection
+\usepackage[style=numeric,autocite=superscript,sorting=none,backref=false,backend=biber,date=iso,datezeros=true,seconds=true]{biblatex}	% Bibliography options. autocite=<inline, footnote, superscript, plain>
+%\usepackage{indentfirst}																												% Used to indent first paragraph of section
+
+% DOCUMENT USER SETTINGS ==============================================================================================
+\newcommand{\docAuthorName}{Etienne Collin, Marie Ouellette \& Rania Yahyaoui}
+\newcommand{\docAuthorStudentNumber}{}
+\newcommand{\docAuthorTitlePage}{\docAuthorName}
+\newcommand{\docClass}{Probability and Statistics}
+\newcommand{\docClassInstructor}{Professor Vincent Carrier}
+\newcommand{\docClassNumber}{201-BNM-LW}
+\newcommand{\docClassTime}{Section 20108}
+\newcommand{\docClassSemester}{Winter 2022}
+\newcommand{\docDueDate}{May 25, 2022}
+\newcommand{\docDueTime}{23:59}
+\newcommand{\docSubTitle}{The Gamma Distribution}
+\newcommand{\docTitle}{Term Project}
+\input{./_assets/Page_settings.tex}											% Imports custom page settings
+\input{./_assets/Environment.tex}											% Imports custom environments and definitions
+
+% \formatsection{center}													% Sets alignment of section headers
+\fancyhf[HR]{\docClassTime}												% Removes student number from right header
+% \titlespacing\section{0pt}{0pt}{-6pt}											% Spacing before and after sections
+% \titlespacing\subsection{0pt}{0pt}{-3pt}											% Spacing before and after subsections
+
+% SOURCE ==============================================================================================================
+\begin{document}
+\singlespacing
+\input{_assets/Title_page.tex}
+\phantomsection\tableofcontents\pagebreak
+\doublespacing
+% START OF DOCUMENT ===================================================================================================
+
+\lipsum[1]
+
+% END OF DOCUMENT =====================================================================================================
+\pagebreak
+
+\begin{appendix}
+	\phantomsection\listoffigures
+	\phantomsection\listoftables
+\end{appendix}
+
+\pagebreak\phantomsection\printbibliography[heading=bibintoc,title={References}]
+\end{document}

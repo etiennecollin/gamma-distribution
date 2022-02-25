@@ -1,0 +1,7 @@
+.DS_Store
+
+#Exclude everyting in LaTeX Document except a few files.
+/LaTeX Document/*
+!/LaTeX Document/Gamma_distribution.pdf
+!/LaTeX Document/Gamma_distribution.tex
+!/LaTeX Document/_assets
