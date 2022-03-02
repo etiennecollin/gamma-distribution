@@ -45,10 +45,10 @@ def histogram():
 
 
 def plot_gamma_k():
-	"""
-	k : the number of events for which you are waiting to occur.
-	λ : the rate of events happening following Poisson dist.
-	"""
+
+	# k : the number of events for which you are waiting to occur.
+	# λ : the rate of events happening following Poisson dist.
+
 	x = np.linspace(0, 50, 1000)
 	a = 1  # k = 1
 	mean, var, skew, kurt = gamma.stats(a, moments='mvsk')
@@ -73,10 +73,10 @@ def plot_gamma_k():
 
 
 def plot_gamma_lambda():
-	"""
-	k : the number of events for which you are waiting to occur.
-	λ : the rate of events happening following Poisson dist.
-	"""
+
+	# k : the number of events for which you are waiting to occur.
+	# λ : the rate of events happening following Poisson dist.
+
 	a = 10  # k = 10
 	x = np.linspace(0, 50, 1000)
 	lambda_ = 1
