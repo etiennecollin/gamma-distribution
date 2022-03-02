@@ -51,7 +51,7 @@ Probability density function:
 
 Cumulative distribution function:
 \begin{equation}\label{eq:gamma-cdf-1}
-	F(x) = \frac{1}{\Gamma(k)}\gamma (k,\,\frac{x}{\theta})
+	F(x) = \frac{1}{\Gamma(k)}\gamma \left(k,\,\frac{x}{\theta}\right)
 \end{equation}
 
 Expected value, also known as the theoretical mean:
@@ -88,7 +88,7 @@ Entropy:
 
 Moment generating function:
 \begin{equation}\label{eq:gamma-mgf-1}
-	M(t) = (1-\theta t)^{-k}\text{ for }t < \frac{1}{\theta} 
+	M(t) = (1-\theta t)^{-k}\text{ for }t < \frac{1}{\theta}
 \end{equation}
 
 Characteristic function:
@@ -159,19 +159,19 @@ Entropy:
 
 Moment generating function:
 \begin{equation}\label{eq:gamma-mgf-2}
-	M(t) = (1-\theta t)^{-k}\text{ for }t < \frac{1}{\theta} 
+	M(t) = \left(1-\frac{t}{\beta}\right)^{-\alpha}\text{ for }t < \beta
 \end{equation}
 
 Characteristic function:
 \begin{equation}\label{eq:gamma-cf-2}
-	\text{CF} = (1-\theta it)^{-k}
+	\text{CF} = \left(1-\frac{it}{\beta}\right)^{-\alpha}
 \end{equation}
 
 Methods of moments:
 \begin{equation}\label{eq:gamma-mom-2}
 	\begin{split}
-		k		&=	\frac{E(X)^2}{\text{Var}(X)}\\
-		\theta	&=	\frac{\text{Var}(X)}{E(X)}
+		\alpha	&=	\frac{E(X)^2}{\text{Var}(X)}\\
+		\beta	&=	\frac{\text{Var}(X)}{E(X)}
 	\end{split}
 \end{equation}
 
