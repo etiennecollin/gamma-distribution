@@ -16,18 +16,18 @@ def plot_gamma_k():
     a = 10  # k = 15
     mean, var, skew, kurt = gamma.stats(a, moments='mvsk')
     y3 = gamma.pdf(x, a)
-plt.title("PDF of Gamma Distribution")
+    plt.title("PDF of Gamma Distribution")
     plt.xlabel("T")
     plt.ylabel("Probability Density")
     plt.plot(x, y1, label="k = 1", color='palegreen')
     plt.plot(x, y2, label="k = 5", color='yellowgreen')
     plt.plot(x, y3, label="k = 10", color='olivedrab')
-    plt.legend(bbox_to_anchor=(1, 1), loc='upper right',
-               borderaxespad=1, fontsize=12)
+    plt.legend(bbox_to_anchor=(1, 1), loc='upper right', borderaxespad=1, fontsize=12)
     plt.ylim([0, 0.40])
     plt.xlim([0, 20])
-    plt.savefig('gamma_k.png')
-    plt.clf()
+    plt.show()
+    # plt.savefig('gamma_k.png')
+    # plt.clf()
 def plot_gamma_lambda():
     """
     k : the number of events for which you are waiting to occur.
@@ -44,7 +44,7 @@ def plot_gamma_lambda():
     lambda_ = 3
     mean, var, skew, kurt = gamma.stats(a, scale=1/lambda_, moments='mvsk')
     y3 = gamma.pdf(x, a, scale=1/lambda_)
-plt.title("PDF of Gamma Distribution (k = 10)")
+    plt.title("PDF of Gamma Distribution (k = 10)")
     plt.xlabel("T")
     plt.ylabel("Probability Density")
     plt.plot(x, y1, label="λ = 1", color='gold')
@@ -54,5 +54,9 @@ plt.title("PDF of Gamma Distribution (k = 10)")
                borderaxespad=1, fontsize=12)
     plt.ylim([0, 0.40])
     plt.xlim([0, 20])
-    plt.savefig('gamma_lambda.png')
-    plt.clf()
+    plt.show()
+    # plt.savefig('gamma_lambda.png')
+    # plt.clf()
+
+plot_gamma_lambda()
+plot_gamma_k()
