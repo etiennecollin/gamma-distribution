@@ -1,0 +1,61 @@
+Support: $x\in (0,\,\infty)$
+
+Probability density function:
+\begin{equation}\label{eq:gamma-pdf-1}
+	f(x) = \frac{1}{\Gamma(k)\theta^k}x^{k-1}e^{-\frac{x}{\theta}}
+\end{equation}
+
+Cumulative distribution function:
+\begin{equation}\label{eq:gamma-cdf-1}
+	F(x) = \frac{1}{\Gamma(k)}\gamma \left(k,\,\frac{x}{\theta}\right)
+\end{equation}
+
+Expected value, also known as the theoretical mean:
+\begin{equation}\label{eq:gamma-expected-value-1}
+	\mu = E(x) = k\theta
+\end{equation}
+
+There is no simple closed form equation for the median of a gamma distribution.
+
+Mode:
+\begin{equation}\label{eq:gamma-mode-1}
+	\text{Mode} = (k-1)\theta\text{ for }k \geq 1
+\end{equation}
+
+Variance:
+\begin{equation}\label{eq:gamma-variance-1}
+	\text{Var}(x) = k\theta^2
+\end{equation}
+
+Skewness:
+\begin{equation}\label{eq:gamma-skewness-1}
+	\text{Skewness} = \frac{2}{\sqrt{k}}
+\end{equation}
+
+Excess kurtosis:
+\begin{equation}\label{eq:gamma-kurtosis-1}
+	\text{Kurtosis} = \frac{6}{k}
+\end{equation}
+
+Entropy:
+\begin{equation}\label{eq:gamma-entropy-1}
+	\text{Entropy} = k + \ln{\theta} + \ln{\Gamma(k)} + (1-k)\psi(k)
+\end{equation}
+
+Moment generating function:
+\begin{equation}\label{eq:gamma-mgf-1}
+	M(t) = (1-\theta t)^{-k}\text{ for }t < \frac{1}{\theta}
+\end{equation}
+
+Characteristic function:
+\begin{equation}\label{eq:gamma-cf-1}
+	\text{CF} = (1-\theta it)^{-k}
+\end{equation}
+
+Methods of moments:
+\begin{equation}\label{eq:gamma-mom-1}
+	\begin{split}
+		k		&=	\frac{E(X)^2}{\text{Var}(X)}\\
+		\theta	&=	\frac{\text{Var}(X)}{E(X)}
+	\end{split}
+\end{equation}
