@@ -77,7 +77,7 @@ that, more broadly, the erlang distribution can be used to model cell cycle time
 	Y = A\cdot x^{k-1}\frac{e^{\frac{-x}{b}}}{b^k}\cdot\Gamma(k)
 \end{equation}
 
-In this case, the shape parameter k predicts the number of carcinogenic driver events, whereas the scale parameter b
+In this case, the shape parameter \alpha predicts the number of carcinogenic driver events, whereas the shape parameter \lambda 
 predicts the average time between those events for each cancer type. Using an additional amplitude parameter A, the
 maximal population susceptibility to a given type of cancer can even be predicted. Given that experimental research on
 cancer development is crucial for the lives of many people, numerical references such as that provided by the gamma
@@ -100,7 +100,8 @@ Parameterization 2:
 \begin{align}\label{eq:gamma:parameterization2}
 	\text{Shape: } k>0			&&	\text{Scale: }\theta>0
 \end{align}
-\bigred{Explain why there are two parameterizations and why the $\lambda$ is sometimes replaced with a $\beta$.}
+
+In the second parameterization, the scale parameter \theta corresponds to the inverse of the rate parameter \lambda, allowing flexibility in the modelization of the distribution. Indeed, the application of the scale parameter is pertinent when one wants to use the value of the mean time between events in the probability density function, as opposed to the total time until a given number of events occurs. 
 
 That being said, in this document, as the two parameterizations only exist for the sake of convenience and are identical
 in their results, only the parameterization 1 presented in \autoref{eq:gamma:parameterization1} will be considered and
