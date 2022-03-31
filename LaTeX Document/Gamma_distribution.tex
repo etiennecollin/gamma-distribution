@@ -7,7 +7,9 @@
 \usepackage[style=numeric,autocite=superscript,sorting=none,backref=false,backend=biber,date=iso,datezeros=true,seconds=true]{biblatex}	% Bibliography options. autocite=<inline, footnote, superscript, plain>
 % \usepackage{indentfirst}																												% Used to indent first paragraph of section
 
+%======================================================================================================================
 % DOCUMENT USER SETTINGS ==============================================================================================
+%======================================================================================================================
 \newcommand{\docAuthorName}{Etienne Collin, Marie Ouellet \& Rania Yahyaoui}
 \newcommand{\docAuthorStudentNumber}{}
 \newcommand{\docAuthorTitlePage}{\docAuthorName}
@@ -26,55 +28,64 @@
 \newcommand{\G}{\mathcal{G}}
 \newcommand{\E}{\mathcal{E}}
 \newcommand{\N}{\mathcal{N}}
-
+%======================================================================================================================
 % SOURCE ==============================================================================================================
+%======================================================================================================================
 \begin{document}
 \singlespacing
 \input{_assets/Title_page.tex}
 \phantomsection\tableofcontents\pagebreak
 \doublespacing
+%======================================================================================================================
 % START OF DOCUMENT ===================================================================================================
-\section{General Applications and Family}
+%======================================================================================================================
+\section{General Applications and Family}\label{section:cancer}
 
-The gamma distribution is used in many fields, since it is directly related to the erlang, normal and exponential
+The gamma distribution is used in many fields, since it is directly related to the Erlang, normal and exponential
 distributions whose contributions extend to several disciplines. Here, we will present some of those applications.
 
+\subsection{Insurance Companies}
 First, the gamma distribution is of great use in the field of insurance services, given its direct relation to the
 exponential distribution. For example, an analyst could use this distribution to specify the amount of time a product
 lasts if one uses it at a constant average rate, thus modeling how reliable it is (and how much insurance should be
 charged for it). Then, the size of loan defaults and the cost of insurance claims are also often modeled according to a
 gamma distribution.
 
+\subsection{Natural Events Prediction}
 Then, the gamma distribution can also be used to model the amount of rainfall accumulated in a given reservoir. Indeed,
 this distribution fits positive data, represents rainfall distribution well and its two parameters -shape and scale-
-give it sufficient flexibility to fit various climates.
+give it sufficient flexibility to fit various climates\cite{husakUseGammaDistribution2007a}.
 
+\subsection{Customer Satisfaction}
 Service time can also be modeled using the gamma distribution. For example, if one is waiting in line for a meal, the
 waiting time until one receives the long-awaited food can be modelled using an exponential distribution. Using the same
-principle, the erlang distribution can allow one to determine the total length of a process, that is, the duration of a
+principle, the Erlang distribution can allow one to determine the total length of a process, that is, the duration of a
 sequence of independent events. For instance, if a large number of people are waiting in line to be served, the
 distribution of each of their individual waiting times (the sum of several independent exponentially distributed
 variables) will correspond to the time it takes for the employee to serve everyone in it. Therefore, the gamma
 distribution lies at the heart of what is called queuing theory: the mathematical study of the congestion of waiting
 lines. Since waiting lines are found in countless places such as banks, restaurants and hospitals, as well as on web
-servers or multi-step manufacturing and distribution processes, the gamma distribution provides very useful applications
+servers or multistep manufacturing and distribution processes, the gamma distribution provides very useful applications
 in everyday life.
 
+\subsection{Call Centers}
 One of the most famous of those applications concerns phone queuing, on which A. K. Erlang famously worked. The Erlang
 distribution has indeed been developed in the goal to model the time in between incoming calls at a call center, along
 with the expected number of calls, thus allowing call centers to know what their staffing capacity should be depending
 on the time of day.
 
-Beyond waiting lines, the erlang distribution is often used by retailers to model the frequency of interpurchase times
+Beyond waiting lines, the Erlang distribution is often used by retailers to model the frequency of interpurchase times
 by consumers, which gives them an idea of how often a given consumer is expected to purchase a product from them and
 helps them control inventory and staffing.
 
+\subsection{Oncology}
 Finally, in the field of oncology, the age distribution of cancer incidence also follows a gamma distribution. Although
 the factors underlying cancer development are not yet fully understood, it has been hypothesized that cancers arise
 after several successive “driver events”, that is, after some number of mutations occurs in a cell. Analyses of cancer
 statistics suggest that the incidence of the most prevalent cancer types with respect to the patients' age closely
-follows the gamma probability distribution or, more specifically, the erlang distribution. This may be due to the fact
-that, more broadly, the erlang distribution can be used to model cell cycle time distribution.
+follows the gamma probability distribution or, more specifically, the Erlang distribution. This may be due to the fact
+that, more broadly, the Erlang distribution can be used to model cell cycle time
+distribution\cite{belikovNumberKeyCarcinogenic2017} .
 
 \begin{equation}
 	Y = A\cdot x^{k-1}\frac{e^{\frac{-x}{b}}}{b^k}\cdot\Gamma(k)
@@ -82,14 +93,173 @@ that, more broadly, the erlang distribution can be used to model cell cycle time
 
 In this case, the shape parameter $\alpha$ predicts the number of carcinogenic driver events, whereas the shape
 parameter $\lambda$ predicts the average time between those events for each cancer type. Using an additional amplitude
-parameter A, the maximal population susceptibility to a given type of cancer can even be predicted. Given that
-experimental research on cancer development is crucial for the lives of many people, numerical references such as that
-provided by the gamma distribution are of paramount importance in our society. The gamma distribution can save lives, if
-it is used wisely!
+parameter A, the maximal population susceptibility to a given type of cancer can even be
+predicted\cite{belikovNumberKeyCarcinogenic2017}. Given that experimental research on cancer development is crucial for
+the lives of many people, numerical references such as that provided by the gamma distribution are of paramount
+importance in our society. The gamma distribution can save lives, if it is used wisely!
 
 \figurecenter{1}{Cancer_probability}{"The Erlang distribution approximates cancer incidence by age for 20 most prevalent cancer types. Dots indicate actual data for 5-year age intervals, curves indicate the PDF of the Erlang distribution fitted to the data [...]. The middle age of each age group is plotted. Cancer types are arranged in the order of decreasing incidence"\cite{belikovNumberKeyCarcinogenic2017} .}{fig:cancerProbability}
-\pagebreak
 
+%======================================================================================================================
+%======================================================================================================================
+%======================================================================================================================
+
+\pagebreak
+\section{Special Cases of the Gamma Distribution}
+The gamma distribution has many common parameterizations. Hence, in order to make working with them easier, they were
+given a specific name such as the chi-square distribution, the exponential distribution and more. In this section, we
+will present some of these special cases and prove their relationship.
+
+\subsection{The Erlang Distribution}
+In real world applications, it is often useful to limit the number of occurrences to a positive integer (it may not be
+pertinent to determine, for example, the waiting time until 2.665 events take place). In this context, the special name
+“Erlang distribution” has been attributed to the specific gamma distribution in which the shape parameter $\alpha$ only
+takes positive integer values and where the rate parameter $\lambda$ is a positive real number.
+\begin{equation*}
+	f_{X_\alpha}(x)	= 	\begin{cases}
+							\dfrac{\lambda^\alpha}{\Gamma(\alpha)}x^{\alpha-1}e^{-\lambda x}  & \alpha\in\mathbb{Z}^+; x\geq0\\
+							0  & x<0
+  						\end{cases}
+\end{equation*}
+
+This distribution takes its name from A. K. Erlang, the man who initially popularized its use in order to examine the
+number of telephone calls which can be made at the same time to the operators of the switching stations, in the field of
+phone traffic engineering. Indeed, the Erlang distribution's original purpose was to measure the time between incoming
+calls, a statistic which can be used along with the expected duration of incoming calls to analyze phone traffic loads.
+His work has since been expanded to consider queuing systems in general, as well as the load on web servers,
+interpurchase times and cancer incidence (see \autoref{section:cancer})\cite{zachWhatErlangDistribution2020}.
+
+%======================================================================================================================
+%======================================================================================================================
+%======================================================================================================================
+
+\pagebreak
+\subsection{The Exponential Distribution}
+The gamma distribution can model the elapsed time between random and independent events. However, what should one do
+when they want to strictly model the time to wait before a new event?
+
+If a unique event is modeled, it follows that the shape parameter is limited to $\alpha = 1$. In such a case, the gamma
+distribution is said to follow an exponential distribution: more specifically, if $X\sim\G\text{amma}(1, \lambda)$, then
+it can also be said that $X\sim\E\text{xp}(\lambda)$. $X$ thus follows an exponential distribution with rate parameter
+$\lambda$, where the rate parameter represents how quickly events occur. More concretely:
+\begin{equation*}
+	X\sim\G\text{amma}(1, \lambda)\equiv\E\text{xp}(\lambda)
+\end{equation*}
+\bigred{MAYBE HERE INCLUDE GRAPH OF GAMMA DISTRIBUTION WITH SHAPE PARAMETER 1  COMPARED TO OTHER SHAPE PARAMETERS ?}
+Indeed, using a simple substitution of the variables, one gets that:
+\begin{equation}\label{eq:relation:exp}
+	\begin{split}
+		f(x)	&=	\frac{\lambda^\alpha x^{\alpha-1}}{\Gamma(\alpha)}e^{-\lambda x}\\
+				&=	\frac{\lambda^1 x^{0}}{\Gamma(1)}e^{-\lambda x}\\
+				&=	\lambda e^{-\lambda x}
+	\end{split}
+\end{equation}
+\begin{equation*}
+	\therefore X\sim\G\text{amma}(1, \lambda)\equiv X\sim\E\text{xp}(\lambda)
+\end{equation*}
+Accordingly, it can be demonstrated that the sum of exponential random variables is a gamma random variable. That is:
+\begin{equation*}
+	\forall^k_{i=1}\left[X_i\sim\E\text{xp}(\lambda)\right]\text{ and are i.i.d. random variables, then }Y=\sum^k_{i=1}\left[X_i\right]\sim\G\text{amma}(k, \lambda)
+\end{equation*}
+\begin{proof}
+	\bigred{ADD HERE PROOF FOR THE DENSITY FUNCTION OF THE SUM OF EXPONENTIAL RANDOM VARIABLES (ETIENNE'S PART)}
+	\begin{equation*}
+		XYZ
+	\end{equation*}
+\end{proof}
+
+%======================================================================================================================
+%======================================================================================================================
+%======================================================================================================================
+
+\pagebreak
+\subsection{The Chi-Squared Distribution}
+Then, the gamma distribution with parameters $\alpha=\sfrac{n}{2}$ and $\lambda=\sfrac{1}{2}$ is called the
+chi-squared distribution with $n$ degrees of freedom such that
+\begin{equation*}
+	X\sim\G\text{ammma}(\sfrac{n}{2}, \sfrac{1}{2})\equiv\chi^2_n
+\end{equation*}
+\begin{proof}
+	First, to show that $\G\text{ammma}(\sfrac{n}{2},\sfrac{1}{2})\equiv\chi^2_n$, let's prove that
+	$\G\text{ammma}(\sfrac{1}{2},\sfrac{1}{2})\equiv\chi^2_1$, a chi-squared distribution with one (1) degree of
+	freedom, using a change of variables with $Y=Z^2$ for $Y\sim\chi^2_1$.
+	\begin{equation}\label{eq:relation:chisquared:1}
+		\begin{split}
+			G(y)	&=	P(Y\leq y)\\
+					&=	P(Z^2\leq y)\\
+					&=	P(-\sqrt{y}\leq z \leq \sqrt{y})\\
+					&=	\Phi(\sqrt{y})-\Phi(-\sqrt{y})\\[12pt]
+			g(y)	&=	\frac{f(\sqrt{y})}{2\sqrt{y}}+\frac{f(-\sqrt{y})}{2\sqrt{y}}\\
+					&=	\frac{e^{-\sfrac{y}{2}}}{2\sqrt{2\pi y}} + \frac{e^{-\sfrac{y}{2}}}{2\sqrt{2\pi y}}\\
+					&=	\frac{\cancel{2}e^{-\sfrac{y}{2}}}{\cancel{2}\sqrt{2\pi y}}\\
+					&=	\frac{1}{\sqrt{2}\Gamma(\frac{1}{2})}y^{-\sfrac{1}{2}}e^{-y\sfrac{1}{2}}\\
+					&=	\frac{(\frac{1}{2})^{\sfrac{1}{2}}}{\Gamma(\frac{1}{2})}y^{\sfrac{1}{2}-1}e^{-(\sfrac{1}{2})y}
+			\end{split}
+	\end{equation}
+	\begin{equation*}
+		\therefore Y\sim\G\text{ammma}(\sfrac{1}{2}, \sfrac{1}{2})\equiv\chi^2_1
+	\end{equation*}
+	\bigred{This does not prove the link with chi-squared distribution... as Z follows N(0,1)... right?}
+	One may generalize this result by using that $\forall^n_{i=1}\left[Z_i\sim\N(0, 1)\right]$ and are i.i.d. to
+	find the distribution of
+	\begin{equation*}
+		Y = \sum^n_{i=1}\left[Z^2_i\right]
+	\end{equation*}
+	Hence, using the moment generating function,
+	\begin{equation}\label{eq:relation:chisquared:n}
+		\begin{split}
+			M_{\sum^n_{i=1}\left[Z^2_i\right]}(t)	&=	\Pi^n_{i=1}\left[M_{Z^2_i}(t)\right]\\
+													&=	M(t)^n\\
+													&=	\left(\frac{\sfrac{1}{2}}{\sfrac{1}{2}-t}\right)^{\displaystyle\sfrac{n}{2}}
+		\end{split}
+	\end{equation}
+	This last line is equal to the moment generating function of a random variable following the distribution
+	$\G\text{amma}(\sfrac{n}{2}, \sfrac{1}{2})$. Hence,
+	\begin{equation*}
+		\therefore Y\sim\G\text{amma}(\sfrac{n}{2}, \sfrac{1}{2})\equiv \chi^2_n
+	\end{equation*}
+\end{proof}
+
+Using the result proved previously, the density function of the chi-squared distribution may be determined by
+substituting the parameters $\alpha = \sfrac{n}{2}$ and $\lambda = \sfrac{1}{2}$ into the density function of the gamma
+distribution:
+\begin{equation}\label{eq:chisquared-density}
+	\begin{split}
+		f(x)	&=	\frac{\lambda^\alpha}{\Gamma(\alpha)}x^{\alpha-1}e^{-\lambda x}\\
+				&=	\frac{(\frac{1}{2})^{\sfrac{n}{2}}}{\Gamma(\frac{n}{2})}x^{\frac{n}{2}-1}e^{-\frac{1}{2}x}\\
+				&=	\frac{1}{2^{\sfrac{n}{2}}\Gamma(\frac{n}{2})}x^{\frac{n}{2}-1}e^{-\sfrac{x}{2}}
+	\end{split}
+\end{equation}
+
+\bigred{HERE INCLUDE GRAPH OF CHI SQUARE DISTRIBUTIONS}
+
+The chi square distribution is often used to describe the distribution of a sum of squared random variables, to test the
+fit of a distribution of data or to determine whether data series are independent or dependent.
+
+\subsection{The Normal Distribution}
+Text on the normal distribution
+
+%======================================================================================================================
+%======================================================================================================================
+%======================================================================================================================
+
+\pagebreak
+\subsection{The Beta Distribution}
+Text on the Beta distribution
+
+%======================================================================================================================
+%======================================================================================================================
+%======================================================================================================================
+
+\pagebreak
+\subsection{The Wishart Distribution}
+Text on the Wishart distribution
+
+%======================================================================================================================
+%======================================================================================================================
+%======================================================================================================================
+
+\pagebreak
 \section{Introduction}
 The gamma distribution is part of the two-parameters family of continuous probability distributions. Indeed, it may be
 parameterized with two different parameterizations\cite{wikipediaGammaDistribution2022} :
@@ -99,7 +269,8 @@ parameterized with two different parameterizations\cite{wikipediaGammaDistributi
 \begin{align}\label{eq:gamma:parameterization1}
 	\text{Shape: } \alpha>0		&&	\text{Rate: }\lambda>0
 \end{align}
-Parameterization 2:
+
+\noindent Parameterization 2:
 \vspace*{-24pt}
 \begin{align}\label{eq:gamma:parameterization2}
 	\text{Shape: } k>0			&&	\text{Scale: }\theta>0
@@ -110,83 +281,6 @@ That being said, in this document, as the two parameterizations only exist for t
 in their results, only the parameterization 1 presented in \autoref{eq:gamma:parameterization1} will be considered and
 used for proofs.
 
-\pagebreak
-\section{Relation to other distributions}
-	The gamma distribution has many common parameterizations. Hence, in order to make working with them easier, they were
-	given a specific name such as the chi-square distribution, the exponential distribution and more. Let us prove their
-	relationship
-
-\subsection{Exponential Distribution}
-	First, the exponential distribution is known to be a special case with parameters $\alpha=1$ and $\lambda$ such that:
-	\begin{equation*}
-		X\sim\G\text{amma}(1, \lambda)\equiv\E\text{xp}(\lambda)
-	\end{equation*}
-	Indeed, using a simple substitution of the variables, one gets that:
-	\begin{equation}\label{eq:relation:exp}
-		\begin{split}
-			f(x)	&=	\frac{\lambda^\alpha x^{\alpha-1}}{\Gamma(\alpha)}e^{-\lambda x}\\
-					&=	\frac{\lambda^1 x^{0}}{\Gamma(1)}e^{-\lambda x}\\
-					&=	\lambda e^{-\lambda x}
-		\end{split}
-	\end{equation}
-	\begin{equation*}
-		\therefore X\sim\G\text{amma}(1, \lambda)\equiv X\sim\E\text{xp}(\lambda)
-	\end{equation*}
-
-\pagebreak
-\subsection{Chi-Squared Distribution}
-	Then, the gamma distribution with parameters $\alpha=\sfrac{n}{2}$ and $\lambda=\sfrac{1}{2}$ is called the
-	chi-squared distribution with $n$ degrees of freedom such that
-	\begin{equation*}
-		\G\text{ammma}(\sfrac{n}{2}, \sfrac{1}{2})\equiv\chi^2_n
-	\end{equation*}
-	\begin{proof}
-		First, to prove that $\G\text{ammma}(\sfrac{n}{2},\sfrac{1}{2})\equiv\chi^2_n$, let's prove that
-		$\G\text{ammma}(\sfrac{1}{2},\sfrac{1}{2})\equiv\chi^2_1$, a chi-squared distribution with one (1) degree of
-		freedom, using a change of variables with $Y=Z^2$ for $Y\sim\chi^2_1$.
-		\begin{equation}\label{eq:relation:chisquared:1}
-			\begin{split}
-				G(y)	&=	P(Y\leq y)\\
-						&=	P(Z^2\leq y)\\
-						&=	P(-\sqrt{y}\leq z \leq \sqrt{y})\\
-						&=	\Phi(\sqrt{y})-\Phi(-\sqrt{y})\\[12pt]
-				g(y)	&=	\frac{f(\sqrt{y})}{2\sqrt{y}}+\frac{f(-\sqrt{y})}{2\sqrt{y}}\\
-						&=	\frac{e^{-\sfrac{y}{2}}}{2\sqrt{2\pi y}} + \frac{e^{-\sfrac{y}{2}}}{2\sqrt{2\pi y}}\\
-						&=	\frac{\cancel{2}e^{-\sfrac{y}{2}}}{\cancel{2}\sqrt{2\pi y}}\\
-						&=	\frac{}{\sqrt{2}\Gamma(\frac{1}{2})}y^{-\sfrac{1}{2}}e^{-y\sfrac{1}{2}}\\
-						&=	\frac{(\frac{1}{2})^{\sfrac{1}{2}}}{\Gamma(\frac{1}{2})}y^{\sfrac{1}{2}-1}e^{-(\sfrac{1}{2})y}
-				\end{split}
-		\end{equation}
-		\begin{equation*}
-			\therefore Y\sim\G\text{ammma}(\sfrac{1}{2}, \sfrac{1}{2})\equiv\chi^2_1
-		\end{equation*}
-		One may generalize this result by using $Z_i$ are i.i.d. $\N(0, 1)$ to find the distribution of
-		\begin{equation*}
-			Y = \sum^n_{i=1}(Z^2_i)
-		\end{equation*}
-		Hence, using the moment generating function,
-		\begin{equation}\label{eq:relation:chisquared:n}
-			\begin{split}
-				M_{\sum^n_{i=1}(Z^2_i)}(t)	&=	\Pi^n_{i=1}(M_{Z^2_i}(t))\\
-											&=	M(t)^n\\
-											&=	\left(\frac{\sfrac{1}{2}}{\sfrac{1}{2}-t}\right)^{\displaystyle\sfrac{n}{2}}\\
-											&\sim \G\text{amma}(\sfrac{n}{2}, \sfrac{1}{2})
-			\end{split}
-		\end{equation}
-		\begin{equation*}
-			\therefore Y\sim\G\text{amma}(\sfrac{n}{2}, \sfrac{1}{2})\equiv \chi^2_n
-		\end{equation*}
-	\end{proof}
-
-
-\subsection{Beta Distribution}
-\subsection{Normal Distribution}
-\subsection{Wishart Distribution}
-
-
-
-
-\pagebreak
 \subsection{Properties to prove}
 \noindent Support: $x\in (0,\,\infty)$
 
@@ -249,8 +343,9 @@ used for proofs.
 		\lambda	&=	\frac{E(X)}{\text{Var}(X)}
 	\end{split}
 \end{equation}
-
+%======================================================================================================================
 % END OF DOCUMENT =====================================================================================================
+%======================================================================================================================
 \pagebreak
 
 \begin{appendix}
