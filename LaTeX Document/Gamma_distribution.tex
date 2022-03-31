@@ -129,15 +129,22 @@ used for proofs.
 					&=	\lambda e^{-\lambda x}
 		\end{split}
 	\end{equation}
-	$\therefore X\sim\G\text{amma}(1, \lambda)\equiv X\sim\E\text{xp}(\lambda)$
-
+	\begin{equation*}
+		\therefore X\sim\G\text{amma}(1, \lambda)\equiv X\sim\E\text{xp}(\lambda)
+	\end{equation*}
 
 \pagebreak
 \subsection{Chi-Squared Distribution}
-	Then, the chi-squared distribution is a gamma distribution with parameters $\alpha=\sfrac{1}{2}$ and $\lambda=\sfrac{1}{2}$. This
-	relationship may be proved using a change of variables with $Y=Z^2$ for $Y\sim\chi^2_1$.
+	Then, the gamma distribution with parameters $\alpha=\sfrac{n}{2}$ and $\lambda=\sfrac{1}{2}$ is called the
+	chi-squared distribution with $n$ degrees of freedom such that
+	\begin{equation*}
+		\G\text{ammma}(\sfrac{n}{2}, \sfrac{1}{2})\equiv\chi^2_n
+	\end{equation*}
 	\begin{proof}
-		\begin{equation}\label{eq:relation:chisquared}
+		First, to prove that $\G\text{ammma}(\sfrac{n}{2},\sfrac{1}{2})\equiv\chi^2_n$, let's prove that
+		$\G\text{ammma}(\sfrac{1}{2},\sfrac{1}{2})\equiv\chi^2_1$, a chi-squared distribution with one (1) degree of
+		freedom, using a change of variables with $Y=Z^2$ for $Y\sim\chi^2_1$.
+		\begin{equation}\label{eq:relation:chisquared:1}
 			\begin{split}
 				G(y)	&=	P(Y\leq y)\\
 						&=	P(Z^2\leq y)\\
@@ -147,10 +154,28 @@ used for proofs.
 						&=	\frac{e^{-\sfrac{y}{2}}}{2\sqrt{2\pi y}} + \frac{e^{-\sfrac{y}{2}}}{2\sqrt{2\pi y}}\\
 						&=	\frac{\cancel{2}e^{-\sfrac{y}{2}}}{\cancel{2}\sqrt{2\pi y}}\\
 						&=	\frac{}{\sqrt{2}\Gamma(\frac{1}{2})}y^{-\sfrac{1}{2}}e^{-y\sfrac{1}{2}}\\
-						&=	\frac{(\frac{1}{2})^{\sfrac{1}{2}}}{\Gamma(\frac{1}{2})}y^{\sfrac{1}{2}-1}e^{-(\sfrac{1}{2})y}\\
-						&\equiv \G\text{ammma}(\sfrac{1}{2}, \sfrac{1}{2})
+						&=	\frac{(\frac{1}{2})^{\sfrac{1}{2}}}{\Gamma(\frac{1}{2})}y^{\sfrac{1}{2}-1}e^{-(\sfrac{1}{2})y}
+				\end{split}
+		\end{equation}
+		\begin{equation*}
+			\therefore Y\sim\G\text{ammma}(\sfrac{1}{2}, \sfrac{1}{2})\equiv\chi^2_1
+		\end{equation*}
+		One may generalize this result by using $Z_i$ are i.i.d. $\N(0, 1)$ to find the distribution of
+		\begin{equation*}
+			Y = \sum^n_{i=1}(Z^2_i)
+		\end{equation*}
+		Hence, using the moment generating function,
+		\begin{equation}\label{eq:relation:chisquared:n}
+			\begin{split}
+				M_{\sum^n_{i=1}(Z^2_i)}(t)	&=	\Pi^n_{i=1}(M_{Z^2_i}(t))\\
+											&=	M(t)^n\\
+											&=	\left(\frac{\sfrac{1}{2}}{\sfrac{1}{2}-t}\right)^{\displaystyle\sfrac{n}{2}}\\
+											&\sim \G\text{amma}(\sfrac{n}{2}, \sfrac{1}{2})
 			\end{split}
 		\end{equation}
+		\begin{equation*}
+			\therefore Y\sim\G\text{amma}(\sfrac{n}{2}, \sfrac{1}{2})\equiv \chi^2_n
+		\end{equation*}
 	\end{proof}
 
 
