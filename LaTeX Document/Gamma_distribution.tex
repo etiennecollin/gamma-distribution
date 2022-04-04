@@ -199,18 +199,17 @@ chi-squared distribution with $n$ degrees of freedom such that
 	\begin{equation*}
 		\therefore Y\sim\G\text{ammma}(\sfrac{1}{2}, \sfrac{1}{2})\equiv\chi^2_1
 	\end{equation*}
-	\bigred{This does not prove the link with chi-squared distribution... as Z follows N(0,1)... right?}
 	One may generalize this result by using that $\forall^n_{i=1}\left[Z_i\sim\N(0, 1)\right]$ and are i.i.d. to
 	find the distribution of
 	\begin{equation*}
-		Y = \sum^n_{i=1}\left[Z^2_i\right]
+		Y = \sum^n_{i=1}Z^2_i
 	\end{equation*}
 	Hence, using the moment generating function,
 	\begin{equation}\label{eq:relation:chisquared:n}
 		\begin{split}
-			M_{\sum^n_{i=1}\left[Z^2_i\right]}(t)	&=	\Pi^n_{i=1}\left[M_{Z^2_i}(t)\right]\\
-													&=	M(t)^n\\
-													&=	\left(\frac{\sfrac{1}{2}}{\sfrac{1}{2}-t}\right)^{\displaystyle\sfrac{n}{2}}
+			M_{\sum^n_{i=1}Z^2_i}(t)	&=	\prod^n_{i=1}M_{Z^2_i}(t)\\
+										&=	M(t)^n\\
+										&=	\left(\frac{\sfrac{1}{2}}{\sfrac{1}{2}-t}\right)^{\displaystyle\sfrac{n}{2}}
 		\end{split}
 	\end{equation}
 	This last line is equal to the moment generating function of a random variable following the distribution
