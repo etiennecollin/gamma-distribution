@@ -291,6 +291,46 @@ used for proofs.
 \begin{equation}\label{eq:gamma-pdf-2}
 	f(x) = \frac{\lambda^\alpha}{\Gamma(\alpha)}x^{\alpha-1}e^{-\lambda x}
 \end{equation}
+\begin{proof}
+	The probability density function of the gamma distribution will be proved using induction. First, take
+	\begin{equation*}
+		W=\sum^n_{i=1}X_i
+	\end{equation*}
+	where $W$ is a sum of $n$ $X$ i.i.d. random variables following the exponential distribution $\E\text{xp}(\lambda)$.
+
+	\noindent For $n=1$:
+	\begin{equation*}
+		\begin{split}
+			W		&=	X_1\\
+			f(x)	&=	\lambda e^{\lambda x}\\
+			M(t)	&=	\frac{\lambda}{\lambda - t}
+		\end{split}
+	\end{equation*}
+	Then, with the induction that $n=k$ works such that:
+	\begin{equation*}
+		\begin{split}
+			W						&=	\sum^k_{i=1}X_i\\
+			M_{\sum^n_{i=1}X_i}(t)	&=	E(e^{t\sum^k_{i=1}X_i})\\
+									&=	E(\prod^k_{i=1}e^{tX_i})\\
+									&=	\prod^k_{i=1}E(e^{tX_i})\\
+									&=	\prod^k_{i=1}M_{X_i}(t)\\
+									&=	\left(\frac{\lambda}{\lambda - t}\right)^k
+		\end{split}
+	\end{equation*}
+	Here is the proof that $n=k+1$ works such that:
+	\begin{equation*}
+		\begin{split}
+W													&=	\sum^{k+1}_{i=1}X_i\\
+													&=	\sum^{k}_{i=1}\left[X_i\right] + X_{k+1}\\
+M_{\sum^{k}_{i=1}\left[X_i\right] + X_{k+1}}(t)		&=	E\left(e^{t\left(\sum^{k}_{i=1}\left[X_i\right] + X_{k+1}\right)}\right)\\
+													&=	E\left(e^{t\left(\sum^{k}_{i=1}X_i\right)}e^{tX_{k+1}}\right)\\
+													&=	E\left(e^{t\left(\sum^{k}_{i=1}X_i\right)}\right)E\left(e^{tX_{k+1}}\right)\\
+													&=	M_{\sum^n_{i=1}X_i}(t)M(t)\\
+													&=	\left(\frac{\lambda}{\lambda - t}\right)^k\left(\frac{\lambda}{\lambda - t}\right)\\
+													&=	\left(\frac{\lambda}{\lambda - t}\right)^{k+1}
+		\end{split}
+	\end{equation*}
+\end{proof}
 
 \noindent Cumulative distribution function:
 \begin{equation}\label{eq:gamma-cdf-2}
