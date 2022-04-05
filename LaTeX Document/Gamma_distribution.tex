@@ -299,7 +299,7 @@ used for proofs.
 \begin{proof}
 	The probability density function of the gamma distribution will be proved using induction. First, take
 	\begin{equation*}
-		W=\sum^n{i=1}X_i
+		W=\sum^n_{i=1}X_i
 	\end{equation*}
 	where $W$ is a sum of $n$ i.i.d. random variables following the exponential distribution $\E\text{xp}(\lambda)$.
 
@@ -311,7 +311,7 @@ used for proofs.
 			M(t)	&=	\frac{\lambda}{\lambda - t}
 		\end{split}
 	\end{equation*}
-	Then, with the induction that $n=k$ works such that:
+	Then, with the induction that $n=\alpha$ works such that:
 	\begin{equation*}
 		\begin{split}
 			W							&=	\sum^\alpha_{i=1}X_i\\
@@ -322,7 +322,7 @@ used for proofs.
 										&=	\left(\frac{\lambda}{\lambda - t}\right)^\alpha
 		\end{split}
 	\end{equation*}
-	Here is the proof that $n=k+1$ works such that:
+	Here is the proof that $n=\alpha+1$ works such that:
 	\begin{equation*}
 		\begin{split}
 			W	&=	\sum^{\alpha+1}_{i=1}X_i\\
