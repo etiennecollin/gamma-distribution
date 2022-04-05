@@ -87,9 +87,9 @@ follows the gamma probability distribution or, more specifically, the Erlang dis
 that, more broadly, the Erlang distribution can be used to model cell cycle time
 distribution\cite{belikovNumberKeyCarcinogenic2017} .
 
-\begin{equation}
+\begin{equation*}
 	Y = A\cdot x^{k-1}\frac{e^{\frac{-x}{b}}}{b^k}\cdot\Gamma(k)
-\end{equation}
+\end{equation*}
 
 In this case, the shape parameter $\alpha$ predicts the number of carcinogenic driver events, whereas the shape
 parameter $\lambda$ predicts the average time between those events for each cancer type. Using an additional amplitude
@@ -147,13 +147,13 @@ $\lambda$, where the rate parameter represents how quickly events occur. More co
 \end{equation*}
 \bigred{MAYBE HERE INCLUDE GRAPH OF GAMMA DISTRIBUTION WITH SHAPE PARAMETER 1  COMPARED TO OTHER SHAPE PARAMETERS ?}
 Indeed, using a simple substitution of the variables, one gets that:
-\begin{equation}\label{eq:relation:exp}
+\begin{equation*}\label{eq:relation:exp}
 	\begin{split}
 		f(x)	&=	\frac{\lambda^\alpha x^{\alpha-1}}{\Gamma(\alpha)}e^{-\lambda x}\\
 				&=	\frac{\lambda^1 x^{0}}{\Gamma(1)}e^{-\lambda x}\\
 				&=	\lambda e^{-\lambda x}
 	\end{split}
-\end{equation}
+\end{equation*}
 \begin{equation*}
 	\therefore X\sim\G\text{amma}(1, \lambda)\equiv X\sim\E\text{xp}(\lambda)
 \end{equation*}
@@ -183,7 +183,7 @@ chi-squared distribution with $n$ degrees of freedom such that
 	First, to show that $\G\text{ammma}(\sfrac{n}{2},\sfrac{1}{2})\equiv\chi^2_n$, let's prove that
 	$\G\text{ammma}(\sfrac{1}{2},\sfrac{1}{2})\equiv\chi^2_1$, a chi-squared distribution with one (1) degree of
 	freedom, using a change of variables with $Y=Z^2$ for $Y\sim\chi^2_1$.
-	\begin{equation}\label{eq:relation:chisquared:1}
+	\begin{equation*}\label{eq:relation:chisquared:1}
 		\begin{split}
 			G(y)	&=	P(Y\leq y)\\
 					&=	P(Z^2\leq y)\\
@@ -195,7 +195,7 @@ chi-squared distribution with $n$ degrees of freedom such that
 					&=	\frac{1}{\sqrt{2}\Gamma(\frac{1}{2})}y^{-\sfrac{1}{2}}e^{-y\sfrac{1}{2}}\\
 					&=	\frac{(\frac{1}{2})^{\sfrac{1}{2}}}{\Gamma(\frac{1}{2})}y^{\sfrac{1}{2}-1}e^{-(\sfrac{1}{2})y}
 			\end{split}
-	\end{equation}
+	\end{equation*}
 	\begin{equation*}
 		\therefore Y\sim\G\text{ammma}(\sfrac{1}{2}, \sfrac{1}{2})\equiv\chi^2_1
 	\end{equation*}
@@ -205,13 +205,13 @@ chi-squared distribution with $n$ degrees of freedom such that
 		Y = \sum^n_{i=1}Z^2_i
 	\end{equation*}
 	Hence, using the moment generating function,
-	\begin{equation}\label{eq:relation:chisquared:n}
+	\begin{equation*}\label{eq:relation:chisquared:n}
 		\begin{split}
 			M_{\sum^n_{i=1}Z^2_i}(t)	&=	\prod^n_{i=1}M_{Z^2_i}(t)\\
 										&=	M(t)^n\\
 										&=	\left(\frac{\sfrac{1}{2}}{\sfrac{1}{2}-t}\right)^{\displaystyle\sfrac{n}{2}}
 		\end{split}
-	\end{equation}
+	\end{equation*}
 	This last line is equal to the moment generating function of a random variable following the distribution
 	$\G\text{amma}(\sfrac{n}{2}, \sfrac{1}{2})$. Hence,
 	\begin{equation*}
@@ -222,13 +222,13 @@ chi-squared distribution with $n$ degrees of freedom such that
 Using the result proved previously, the density function of the chi-squared distribution may be determined by
 substituting the parameters $\alpha = \sfrac{n}{2}$ and $\lambda = \sfrac{1}{2}$ into the density function of the gamma
 distribution:
-\begin{equation}\label{eq:chisquared-density}
+\begin{equation*}\label{eq:chisquared-density}
 	\begin{split}
 		f(x)	&=	\frac{\lambda^\alpha}{\Gamma(\alpha)}x^{\alpha-1}e^{-\lambda x}\\
 				&=	\frac{(\frac{1}{2})^{\sfrac{n}{2}}}{\Gamma(\frac{n}{2})}x^{\frac{n}{2}-1}e^{-\frac{1}{2}x}\\
 				&=	\frac{1}{2^{\sfrac{n}{2}}\Gamma(\frac{n}{2})}x^{\frac{n}{2}-1}e^{-\sfrac{x}{2}}
 	\end{split}
-\end{equation}
+\end{equation*}
 
 \bigred{HERE INCLUDE GRAPH OF CHI SQUARE DISTRIBUTIONS}
 
@@ -265,13 +265,13 @@ parameterized with two different parameterizations\cite{wikipediaGammaDistributi
 
 \noindent Parameterization 1:
 \vspace*{-24pt}
-\begin{align}\label{eq:gamma:parameterization1}
+\begin{align}\label{eq:gamma:parameterization:1}
 	\text{Shape: } \alpha>0		&&	\text{Rate: }\lambda>0
 \end{align}
 
 \noindent Parameterization 2:
 \vspace*{-24pt}
-\begin{align}\label{eq:gamma:parameterization2}
+\begin{align}\label{eq:gamma:parameterization:2}
 	\text{Shape: } k>0			&&	\text{Scale: }\theta>0
 \end{align}
 
@@ -281,21 +281,25 @@ pertinent when one wants to use the value of the mean time between events in the
 opposed to the total time until a given number of events occurs.
 
 That being said, in this document, as the two parameterizations only exist for the sake of convenience and are identical
-in their results, only the parameterization 1 presented in \autoref{eq:gamma:parameterization1} will be considered and
+in their results, only the parameterization 1 presented in \autoref{eq:gamma:parameterization:1} will be considered and
 used for proofs.
 
 \pagebreak
-\subsection{Properties to prove}
-\noindent Support: $x\in (0,\,\infty)$
+\section{Properties to prove}
 
-\noindent Probability density function:
-\begin{equation}\label{eq:gamma-pdf-2}
+\subsection{Support}
+\begin{equation*}
+	x\in (0,\,\infty)
+\end{equation*}
+
+\subsection{Probability density function}\label{section:gamma:pdf}
+\begin{equation*}\label{eq:gamma:pdf:2}
 	f(x) = \frac{\lambda^\alpha}{\Gamma(\alpha)}x^{\alpha-1}e^{-\lambda x}
-\end{equation}
+\end{equation*}
 \begin{proof}
 	The probability density function of the gamma distribution will be proved using induction. First, take
 	\begin{equation*}
-		W=\sum^n_{i=1}X_i
+		W=\sum^n{i=1}X_i
 	\end{equation*}
 	where $W$ is a sum of $n$ i.i.d. random variables following the exponential distribution $\E\text{xp}(\lambda)$.
 
@@ -310,84 +314,114 @@ used for proofs.
 	Then, with the induction that $n=k$ works such that:
 	\begin{equation*}
 		\begin{split}
-			W						&=	\sum^k_{i=1}X_i\\
-			M_{\sum^n_{i=1}X_i}(t)	&=	E(e^{t\sum^k_{i=1}X_i})\\
-									&=	E(\prod^k_{i=1}e^{tX_i})\\
-									&=	\prod^k_{i=1}E(e^{tX_i})\\
-									&=	\prod^k_{i=1}M_{X_i}(t)\\
-									&=	\left(\frac{\lambda}{\lambda - t}\right)^k
+			W							&=	\sum^\alpha_{i=1}X_i\\
+			M_{\sum^\alpha_{i=1}X_i}(t)	&=	E(e^{t\sum^\alpha_{i=1}X_i})\\
+										&=	E(\prod^\alpha_{i=1}e^{tX_i})\\
+										&=	\prod^\alpha_{i=1}E(e^{tX_i})\\
+										&=	\prod^\alpha_{i=1}M_{X_i}(t)\\
+										&=	\left(\frac{\lambda}{\lambda - t}\right)^\alpha
 		\end{split}
 	\end{equation*}
 	Here is the proof that $n=k+1$ works such that:
 	\begin{equation*}
 		\begin{split}
-W													&=	\sum^{k+1}_{i=1}X_i\\
-													&=	\sum^{k}_{i=1}\left[X_i\right] + X_{k+1}\\
-M_{\sum^{k}_{i=1}\left[X_i\right] + X_{k+1}}(t)		&=	E\left(e^{t\left(\sum^{k}_{i=1}\left[X_i\right] + X_{k+1}\right)}\right)\\
-													&=	E\left(e^{t\left(\sum^{k}_{i=1}X_i\right)}e^{tX_{k+1}}\right)\\
-													&=	E\left(e^{t\left(\sum^{k}_{i=1}X_i\right)}\right)E\left(e^{tX_{k+1}}\right)\\
-													&=	M_{\sum^n_{i=1}X_i}(t)M(t)\\
-													&=	\left(\frac{\lambda}{\lambda - t}\right)^k\left(\frac{\lambda}{\lambda - t}\right)\\
-													&=	\left(\frac{\lambda}{\lambda - t}\right)^{k+1}
+			W	&=	\sum^{\alpha+1}_{i=1}X_i\\
+				&=	\sum^{\alpha}_{i=1}\left[X_i\right] + X_{\alpha+1}
 		\end{split}
 	\end{equation*}
-	\bigred{DOES NOT WORK - NOT DONE}
+	\begin{equation*}
+		\begin{split}
+			M_{\sum^\alpha_{i=1}\left[X_i\right] + X_{\alpha+1}}(t)		&=	E\left(e^{t\left(\sum^\alpha_{i=1}\left[X_i\right] + X_{\alpha+1}\right)}\right)\\
+																		&=	E\left(e^{t\left(\sum^\alpha_{i=1}X_i\right)}e^{tX_{\alpha+1}}\right)\\
+																		&=	E\left(e^{t\left(\sum^\alpha_{i=1}X_i\right)}\right)E\left(e^{tX_{\alpha+1}}\right)\\
+																		&=	M_{\sum^\alpha_{i=1}X_i}(t)M(t)\\
+																		&=	\left(\frac{\lambda}{\lambda - t}\right)^\alpha\left(\frac{\lambda}{\lambda - t}\right)\\
+																		&=	\left(\frac{\lambda}{\lambda - t}\right)^{\alpha+1}
+		\end{split}
+	\end{equation*}
+	\bigred{What to do next? I'm not yet finding f(x)}
 \end{proof}
 
-\noindent Cumulative distribution function:
-\begin{equation}\label{eq:gamma-cdf-2}
+\subsection{Cumulative distribution function}
+\begin{equation*}\label{eq:gamma-cdf-2}
 	F(x) = \frac{1}{\Gamma(\alpha)}\gamma(\alpha,\, \lambda x)
-\end{equation}
+\end{equation*}
 
-\noindent Expected value, also known as the theoretical mean:
-\begin{equation}\label{eq:gamma-expected-value-2}
+\subsection{Expected Value}
+The expected value is also known as the theoretical mean:
+\begin{equation*}\label{eq:gamma-expected-value-2}
 	\mu = E(x) = \frac{\alpha}{\lambda}
-\end{equation}
+\end{equation*}
+\begin{proof}
+	Using the moment generating function obtained in \autoref{section:gamma:pdf}, the expected value of a gamma
+	distribution may be found.
+	\begin{equation*}
+		\begin{split}
+			E(x)		&=	M^\prime(0)\\
+			M^\prime(t)	&=	\deriv{t}\left(\frac{\lambda}{\lambda - t}\right)^\alpha\\
+						&=	\lambda\alpha\left(\frac{\lambda}{\lambda - t}\right)^{\alpha-1}\deriv{t}\left(\frac{1}{\lambda - t}\right)\\
+						&=	\frac{\lambda\alpha}{(\lambda - t)^2}\left(\frac{\lambda}{\lambda - t}\right)^{\alpha-1}\\
+			M^\prime(0)	&=	\frac{\lambda\alpha}{\lambda^2}\left(\frac{\lambda}{\lambda}\right)^{\alpha-1}\\
+						&=	\frac{\alpha}{\lambda}\\
+		\end{split}
+	\end{equation*}
+\end{proof}
 
+\subsection{Median}
 \noindent There is no simple closed form equation for the median of a gamma distribution.
+\bigred{EXPLAIN WHY}
 
-\noindent Mode:
-\begin{equation}\label{eq:gamma-mode-2}
+\subsection{Mode}
+\begin{equation*}\label{eq:gamma-mode-2}
 	\text{Mode} = \frac{(\alpha-1)}{\lambda}\text{ for }\alpha \geq 1
-\end{equation}
+\end{equation*}
 
-\noindent Variance:
-\begin{equation}\label{eq:gamma-variance-2}
+\subsection{Variance}
+\begin{equation*}\label{eq:gamma-variance-2}
 	\text{Var}(x) = \frac{\alpha}{\lambda^2}
-\end{equation}
+\end{equation*}
+\begin{proof}
+	Using the moment generating function obtained in \autoref{section:gamma:pdf}, the variance value of a gamma
+	distribution may be found.
+	\begin{equation*}
+		\begin{split}
+			E(x)	&=	M^{\prime\prime}(0)\\
+		\end{split}
+	\end{equation*}
+\end{proof}
 
-\noindent Skewness:
-\begin{equation}\label{eq:gamma-skewness-2}
+\subsection{Skewness}
+\begin{equation*}\label{eq:gamma-skewness-2}
 	\text{Skewness} = \frac{2}{\sqrt{\alpha}}
-\end{equation}
+\end{equation*}
 
-\noindent Excess kurtosis:
-\begin{equation}\label{eq:gamma-kurtosis-2}
+\subsection{Excess kurtosis}
+\begin{equation*}\label{eq:gamma-kurtosis-2}
 	\text{Kurtosis} = \frac{6}{\alpha}
-\end{equation}
+\end{equation*}
 
-\noindent Entropy:
-\begin{equation}\label{eq:gamma-entropy-2}
+\subsection{Entropy}
+\begin{equation*}\label{eq:gamma-entropy-2}
 	\text{Entropy} = \alpha + \ln{\lambda} + \ln{\Gamma(\alpha)} + (1-\alpha)\psi(\alpha)
-\end{equation}
+\end{equation*}
 
-\noindent Moment generating function:
-\begin{equation}\label{eq:gamma-mgf-2}
+\subsection{Moment generating function}
+\begin{equation*}\label{eq:gamma-mgf-2}
 	M(t) = \left(1-\frac{t}{\lambda}\right)^{-\alpha}\text{ for }t < \lambda
-\end{equation}
+\end{equation*}
 
-\noindent Characteristic function:
-\begin{equation}\label{eq:gamma-cf-2}
+\subsection{Characteristic function}
+\begin{equation*}\label{eq:gamma-cf-2}
 	\text{CF} = \left(1-\frac{it}{\lambda}\right)^{-\alpha}
-\end{equation}
+\end{equation*}
 
-\noindent Methods of moments:
-\begin{equation}\label{eq:gamma-mom-2}
+\subsection{Methods of moments}
+\begin{equation*}\label{eq:gamma-mom-2}
 	\begin{split}
 		\alpha	&=	\frac{E(X)^2}{\text{Var}(X)}\\
 		\lambda	&=	\frac{E(X)}{\text{Var}(X)}
 	\end{split}
-\end{equation}
+\end{equation*}
 %======================================================================================================================
 % END OF DOCUMENT =====================================================================================================
 %======================================================================================================================
