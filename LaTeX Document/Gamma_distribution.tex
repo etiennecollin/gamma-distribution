@@ -188,6 +188,146 @@ The expected value is also known as the theoretical mean:
 %======================================================================================================================
 
 \pagebreak
+\section{The Gamma Function}
+\vspace*{-6pt}
+Studied by Leonhard Euler (1707-1783), the gamma function is related to the gamma distribution. This extremely handy
+function allows the generalization of the factorial notation. As a matter of fact, whereas the factorial $\alpha!$ is
+restricted to $\alpha\in\mathbb{N}$, the gamma function $\Gamma(\alpha)$ allows the computation of fractional and
+negative numbers such that $\alpha\in\mathbb{Q}$. By abusing the notation, the gamma function may even be used to
+compute $\Gamma(\alpha)$ such that $\alpha\in\mathbb{R}$. The relationship between the gamma function and the factorial
+notation is as follows:
+\vspace*{-18pt}
+\begin{equation}\label{eq:gammafunction:factorial}
+	\Gamma(\alpha)=(\alpha-1)!
+\end{equation}
+\vspace*{-60pt}
+
+\subsection{Definition}\label{sect:gammafunction:definition}
+\vspace*{-6pt}
+First of all, the gamma function is defined as:
+\vspace*{-12pt}
+\begin{equation*}
+	\Gamma(\alpha)=\int^\infty_0 x^{\alpha-1}e^{-x}\diff{x} \textnormal{ for }\alpha\in\mathbb{R}^+
+\end{equation*}\\[-36pt]
+Assuming that $\alpha > 1$, the closed form of the Gamma function may be found with integration by parts:\\[-12pt]
+\begin{empheq}[box=\widefbox]{align*}
+	u=x^{\alpha-1};						&&\,	\diff{v}=e^{-x}\\
+	\diff{u}=(\alpha-1)x^{\alpha-2};	&&\,	v=-e^{-x}
+\end{empheq}
+\begin{equation*}
+	\begin{split}
+		\Gamma(\alpha)	&=	\int^\infty_0 x^{\alpha-1}e^{-x}\diff{x}\\
+						&=	-\left[x^{\alpha-1}e^{-x}\right]^\infty_0 + (\alpha-1)\int^\infty_0 x^{\alpha-2}e^{-x}\diff{x}\\
+						&=	0+(\alpha-1)\Gamma(\alpha-1)\\
+						&=	(\alpha-1)\Gamma(\alpha-1)
+	\end{split}
+\end{equation*}
+Therefore,
+\begin{equation}\label{eq:gammafunction:closedform}
+	\Gamma(\alpha)	=	(\alpha-1)\Gamma(\alpha-1)\textnormal{ for }\alpha\in(1,\infty)
+\end{equation}
+Furthermore, $\Gamma(1)$ is defined separately as being:
+\vspace*{-12pt}
+\begin{equation*}
+	\Gamma(1) = \int^\infty_0 e^{-x}\diff{x} = \left[-e^{-x}\right]^\infty_0 = 1
+\end{equation*}
+
+%======================================================================================================================
+%======================================================================================================================
+%=================================================================================================================
+
+\pagebreak
+\subsubsection{Special case of $\Gamma(\sfrac{1}{2})$ \bigred{Add proof}}
+An extremely case of the gamma function is $\Gamma(\sfrac{1}{2})$. In fact, this result allows the computation of
+fractional values of $\alpha$ such that $\alpha\in\mathbb{Q}$. This special case is as follows:
+\begin{equation}\label{eq:gammafunction:onehalf}
+	\Gamma(\sfrac{1}{2})=\sqrt{\pi}
+\end{equation}
+\begin{proof}
+	Here is a proof for \autoref{eq:gammafunction:onehalf}.
+	\begin{equation*}
+		x
+	\end{equation*}
+\end{proof}
+
+%======================================================================================================================
+%======================================================================================================================
+%======================================================================================================================
+
+\pagebreak
+\subsubsection{Negative values of $\alpha$}
+As was mentioned earlier, by abusing this identity shown in \autoref{eq:gammafunction:closedform}, one may extend the
+gamma function to negative non-integer values of $\alpha$ such that $\alpha\in\mathbb{R}\,\backslash\mathbb{Z}^-$. For example, to find $\Gamma(-\sfrac{9}{2})$, one may compute:
+\vspace*{-12pt}
+\begin{equation*}
+	\begin{split}
+		\Gamma(\sfrac{1}{2})	&=	(-\sfrac{1}{2})\Gamma(-\sfrac{1}{2})\\
+								&=	(-\sfrac{1}{2})(-\sfrac{3}{2})\Gamma(-\sfrac{3}{2})\\
+								&=	(\sfrac{3}{4})(-\sfrac{5}{2})\Gamma(-\sfrac{5}{2})\\
+								&=	(-\sfrac{15}{8})(-\sfrac{7}{2})\Gamma(-\sfrac{7}{2})\\
+								&=	(\sfrac{105}{16})(-\sfrac{9}{2})\Gamma(-\sfrac{9}{2})\\
+								&=	(-\sfrac{945}{32})\Gamma(-\sfrac{9}{2})\\
+	\end{split}
+\end{equation*}
+\begin{equation*}
+	\therefore\Gamma(-\sfrac{9}{2})=-\frac{32}{945}\Gamma(\sfrac{1}{2})=-\frac{32}{945}\sqrt{\pi}
+\end{equation*}
+Hence, to calculate the value of a gamma function with a negative argument, one might modify a bit the result obtained in \autoref{eq:gammafunction:closedform} such that:
+\vspace*{-12pt}
+\begin{equation*}
+	\Gamma(\alpha)=\frac{\Gamma(\alpha+1)}{\alpha}\text{ for }\alpha\in\mathbb{R}^-\,\backslash\mathbb{Z}
+\end{equation*}\\[-36pt]
+for example, take the same example of $\Gamma(-\sfrac{9}{2})$\\[-12pt]
+\begin{equation*}
+	\begin{split}
+		\Gamma(-\sfrac{9}{2})	&=	\frac{\Gamma(-\sfrac{7}{2})}{(-\sfrac{9}{2})}\\
+								&=	\frac{\Gamma(-\sfrac{5}{2})}{(-\sfrac{9}{2})(-\sfrac{7}{2})}\\
+								&=	\frac{\Gamma(-\sfrac{3}{2})}{(\sfrac{63}{4})(-\sfrac{5}{2})}\\
+								&=	\frac{\Gamma(-\sfrac{1}{2})}{(-\sfrac{315}{8})(-\sfrac{3}{2})}\\
+								&=	\frac{\Gamma(\sfrac{1}{2})}{(\sfrac{945}{16})(-\sfrac{1}{2})}\\
+								&=	\frac{\Gamma(\sfrac{1}{2})}{(-\sfrac{945}{32})}
+		\end{split}
+\end{equation*}
+\begin{equation*}
+	\therefore\Gamma(-\sfrac{9}{2})=-\frac{32}{945}\Gamma(\sfrac{1}{2})=-\frac{32}{945}\sqrt{\pi}
+\end{equation*}
+
+%======================================================================================================================
+%======================================================================================================================
+%======================================================================================================================
+
+\pagebreak
+\subsection{Relationship to Factorial Notation}
+Using the equations found in \autoref{sect:gammafunction:definition}, the value of other gamma functions may be calculated to prove \autoref{eq:gammafunction:factorial}:
+\begin{equation*}
+	\begin{split}
+		\Gamma(2)	&=	1\cdot\Gamma(1)	=	1	=	1!\\
+		\Gamma(3)	&=	2\cdot\Gamma(2)	=	2	=	2!\\
+		\Gamma(4)	&=	3\cdot\Gamma(3)	=	6	=	3!\\
+		\Gamma(5)	&=	4\cdot\Gamma(4)	=	24	=	4!\\
+		\Gamma(6)	&=	5\cdot\Gamma(5)	=	120	=	5!
+	\end{split}
+\end{equation*}
+Indeed, these results show that:
+\begin{equation*}
+	\Gamma(\alpha)=(\alpha-1)!\text{ for }\alpha\in\mathbb{N}
+\end{equation*}
+
+%======================================================================================================================
+%======================================================================================================================
+%======================================================================================================================
+
+\pagebreak
+\subsection{Conclusion}
+Using everything that was computed previously, the graph of $\Gamma(\alpha)$ may be plotted. It includes both positive,
+negative and fractional values of $\alpha$. Notice how the asymptotes of the graph are every negative integer; the function, as was mentioned previously, is not defined for negative integers.
+\figurecenter{1}{gamma_function.png}{Graph featuring the plot of the function $\Gamma(\alpha)$ in red and the asymptotes of the function in dotted blue lines.}{fig:graph:gammafunction}
+
+%======================================================================================================================
+%======================================================================================================================
+%======================================================================================================================
+
+\pagebreak
 \section{General Applications and Family}\label{section:generalApplications}
 
 The gamma distribution is used in many fields, since it is directly related to the Erlang, normal and exponential
@@ -247,7 +387,7 @@ predicted\cite{belikovNumberKeyCarcinogenic2017}. Given that experimental resear
 the lives of many people, numerical references such as that provided by the gamma distribution are of paramount
 importance in our society. The gamma distribution can save lives, if it is used wisely!
 
-\figurecenter{1}{Cancer_probability}{"The Erlang distribution approximates cancer incidence by age for 20 most prevalent cancer types. Dots indicate actual data for 5-year age intervals, curves indicate the PDF of the Erlang distribution fitted to the data [...]. The middle age of each age group is plotted. Cancer types are arranged in the order of decreasing incidence"\cite{belikovNumberKeyCarcinogenic2017} .}{fig:cancerProbability}
+\figurecenter{1}{Cancer_probability}{"The Erlang distribution approximates cancer incidence by age for 20 most prevalentcancer types. Dots indicate actual data for 5-year age intervals, curves indicate the PDF of the Erlang distribution fitted to the data [...]. The middle age of each age group is plotted. Cancer types are arranged in the order of decreasing incidence"\cite{belikovNumberKeyCarcinogenic2017} .}{fig:cancerProbability}
 
 %======================================================================================================================
 %======================================================================================================================
@@ -266,7 +406,7 @@ pertinent to determine, for example, the waiting time until 2.665 events take pl
 takes positive integer values and where the rate parameter $\lambda$ is a positive real number.
 \begin{equation*}
 	f_{X_\alpha}(x)	= 	\begin{cases}
-							\dfrac{\lambda^\alpha}{\Gamma(\alpha)}x^{\alpha-1}e^{-\lambda x}  & \alpha\in\mathbb{Z}^+; x\geq0\\
+							\dfrac{\lambda^\alpha}{\Gamma(\alpha)}x^{\alpha-1}e^{-\lambda x}  & \alpha\in\mathbb{N}; x\geq0\\
 							0  & x<0
   						\end{cases}
 \end{equation*}
@@ -409,11 +549,6 @@ Text on the Wishart distribution
 \pagebreak
 
 \begin{appendix}
-\section{Proof that $\Gamma(\sfrac{1}{2})=\sqrt{\pi}$}
-\begin{proof}
-	x
-\end{proof}
-
 \phantomsection\listoffigures
 \phantomsection\listoftables
 \end{appendix}
