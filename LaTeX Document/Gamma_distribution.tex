@@ -147,21 +147,31 @@ The expected value is also known as the theoretical mean:
 \end{equation*}
 
 \subsection{Median}
-\noindent The median of a probability distribution is the value that separates the area under the curve of its distribution function in two equal parts. It follows that in the case of the gamma distribution, the median is defined as the value m for which 
-\begin{equation*} 
-	\frac{1}{2} = \frac{lambda^alpha}{\Gamma(\alpha)} \(integral from zero to m of){x^(\alpha-1)}{e^(-\lambda(x))}dx  
+The median of a probability distribution is the value that separates the area under the curve of its distribution
+function in two equal parts. It follows that, in the case of the gamma distribution, the median is defined as the value
+$m$ for which:
+\begin{equation*}
+	\frac{1}{2} = \frac{lambda^alpha}{\Gamma(\alpha)} \int^m_0 x^{\alpha-1} e^{-\lambda(x)}\diff{x}
 \end{equation*}
 
-However, it is interesting to note that the median of the gamma distribution has no simple closed form : due to its highly varying shape, it cannot be represented in an equation as a function of its parameters. Although approximations of the median can be performed for certain ranges of the shape parameter, this topic will not be explored in depth by this paper. 
-Still, there is comfort in the fact that some special cases of the gamma distribution do have a median, such as the exponential distribution. Indeed, the median of continuous random variable following the distribution x - Gamma (1, \lambda).
-\begin{equation*} 
-	\frac{1}{2} = \frac{\lambda^1}{\Gamma(\1)} \(integral from zero to m of){x^(\1-1)}{e^(-\lambda(x))}dx 
-	\frac{1}{2}= -e^(-\lambda(m)) + 1
-	\ln(\frac{1}{2})= -\lambda(m)
-	-\ln(2)= -\lambda(m)
-	m = \frac{\ln(2)}{\lambda}
+However, it is interesting to note that the median of the gamma distribution has no simple closed form : due to its
+highly varying shape, it cannot be represented in an equation as a function of its parameters. Although approximations
+of the median can be performed for certain ranges of the shape parameter, this topic will not be explored in depth by
+this paper. Still, there is comfort in the fact that some special cases of the gamma distribution do have a median, such
+as the exponential distribution. Indeed, the median of a continuous random variable following the gamma distribution
+such that $X\sim\G\text{amma}(1, \lambda)\equiv\E\text{xp}(\lambda)$ may be obtained through a simple integration
+process:
+\begin{equation*}
+	\begin{split}
+		\frac{1}{2}					&=	\frac{\lambda^\alpha}{\Gamma(\alpha)} \int^m_0 x^{\alpha-1} e^{-\lambda x}\diff{x}\\
+		\Rightarrow\frac{1}{2}		&=	-e^{-\lambda m} + 1\\
+		\Rightarrow\frac{1}{2}		&=	e^{-\lambda m}\\
+		\Rightarrow\ln(\frac{1}{2})	&=	-\lambda m\\
+		\Rightarrow-\ln(2)			&=	-\lambda m\\
+		\Rightarrow m				&=	\frac{\ln(2)}{\lambda}
+	\end{split}
 \end{equation*}
-
+Hence, the median of an exponential distribution is defined as $\frac{\ln(2)}{\lambda}$.
 
 \subsection{Mode}
 \begin{equation*}\label{eq:gamma-mode-2}
@@ -270,7 +280,8 @@ fractional values of $\alpha$ such that $\alpha\in\mathbb{Q}$. This special case
 \pagebreak
 \subsubsection{Negative values of $\alpha$}
 As was mentioned earlier, by abusing this identity shown in \autoref{eq:gammafunction:closedform}, one may extend the
-gamma function to negative non-integer values of $\alpha$ such that $\alpha\in\mathbb{R}\,\backslash\mathbb{Z}^-$. For example, to find $\Gamma(-\sfrac{9}{2})$, one may compute:
+gamma function to negative non-integer values of $\alpha$ such that $\alpha\in\mathbb{R}\,\backslash\mathbb{Z}^-$. For
+example, to find $\Gamma(-\sfrac{9}{2})$, one may compute:
 \vspace*{-12pt}
 \begin{equation*}
 	\begin{split}
@@ -285,7 +296,8 @@ gamma function to negative non-integer values of $\alpha$ such that $\alpha\in\m
 \begin{equation*}
 	\therefore\Gamma(-\sfrac{9}{2})=-\frac{32}{945}\Gamma(\sfrac{1}{2})=-\frac{32}{945}\sqrt{\pi}
 \end{equation*}
-Hence, to calculate the value of a gamma function with a negative argument, one might modify a bit the result obtained in \autoref{eq:gammafunction:closedform} such that:
+Hence, to calculate the value of a gamma function with a negative argument, one might modify a bit the result obtained
+in \autoref{eq:gammafunction:closedform} such that:
 \vspace*{-12pt}
 \begin{equation*}
 	\Gamma(\alpha)=\frac{\Gamma(\alpha+1)}{\alpha}\text{ for }\alpha\in\mathbb{R}^-\,\backslash\mathbb{Z}
@@ -311,7 +323,8 @@ for example, take the same example of $\Gamma(-\sfrac{9}{2})$\\[-12pt]
 
 \pagebreak
 \subsection{Relationship to Factorial Notation}
-Using the equations found in \autoref{sect:gammafunction:definition}, the value of other gamma functions may be calculated to prove \autoref{eq:gammafunction:factorial}:
+Using the equations found in \autoref{sect:gammafunction:definition}, the value of other gamma functions may be
+calculated to prove \autoref{eq:gammafunction:factorial}:
 \begin{equation*}
 	\begin{split}
 		\Gamma(2)	&=	1\cdot\Gamma(1)	=	1	=	1!\\
@@ -333,7 +346,8 @@ Indeed, these results show that:
 \pagebreak
 \subsection{Conclusion}
 Using everything that was computed previously, the graph of $\Gamma(\alpha)$ may be plotted. It includes both positive,
-negative and fractional values of $\alpha$. Notice how the asymptotes of the graph are every negative integer; the function, as was mentioned previously, is not defined for negative integers.
+negative and fractional values of $\alpha$. Notice how the asymptotes of the graph are every negative integer; the
+function, as was mentioned previously, is not defined for negative integers.
 \figurecenter{1}{gamma_function.png}{Graph featuring the plot of the function $\Gamma(\alpha)$ in red and the asymptotes of the function in dotted blue lines.}{fig:graph:gammafunction}
 
 %======================================================================================================================
