@@ -1,6 +1,6 @@
 % DEFINITIONS =========================================================================================================
 % Paths
-\addbibresource{\basepath/bibliography.bib} %Imports bibliography file
+\addbibresource{\basepath/bibliography.bib}	% Imports bibliography file
 \graphicspath{{images/}}
 
 % lstlistings setup ---------------------------------------------------------------------------------------------------
@@ -74,7 +74,7 @@
 
 % TOC -----------------------------------------------------------------------------------------------------------------
 % Sets TOC depth and change changes its display name
-\setcounter{secnumdepth}{3}
+\setcounter{secnumdepth}{3} % Change to 0 for unnumbered sections
 \addto\captionsenglish{
   \renewcommand{\contentsname}{Table of Contents}
 }
@@ -116,6 +116,17 @@
 	linkcolor = black,		% Color of internal links
 	citecolor = black,		% Color of citations
 	filecolor = black,		% Color of file links
+}
+
+% Custom font
+\newcommand{\customfont}[1]{
+	\setallmainfonts(Digits,Latin,Greek)[Numbers={Lining,Proportional}]{#1}
+	\setallmonofonts[Numbers={Lining,Proportional}]{#1}
+	\setallsansfonts[Numbers={Lining,Proportional}]{#1}
+	\setmathsfont(Digits,Latin,Greek)[Numbers={Lining,Proportional}]{#1}
+	\setmathsf[Numbers={Lining,Proportional}]{#1}
+	\setmathbb[Numbers={Lining,Proportional}]{#1}
+	\setmathcal[Numbers={Lining,Proportional}]{#1}
 }
 
 % ENVIRONMENTS ========================================================================================================
@@ -276,6 +287,6 @@
 \newcommand{\missing}{\textcolor{red}{\textbf{VALUE MISSING}}}	% Creates a big red "Missing Value" string.
 \newcommand{\inprogress}{\textcolor{red}{\textbf{IN PROGRESS}}}	% Creates a big red "In Progress" string.
 \newcommand{\incomplete}{\textcolor{red}{\textbf{INCOMPLETE}}}	% Creates a big red "Incompletes" string.
-\newcommand{\bigred}[1]{\textcolor{red}{\textbf{#1}}}	% Creates a big red "Incompletes" string.
+\newcommand{\bigred}[1]{\textcolor{red}{\textbf{#1}}}	% Creates a big red string.
 
 % END OF SETUP DOCUMENT ===============================================================================================
