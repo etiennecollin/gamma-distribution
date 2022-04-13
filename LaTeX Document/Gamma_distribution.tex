@@ -19,7 +19,7 @@
 \newcommand{\docClassNumber}{201-BNM-LW}
 \newcommand{\docClassTime}{Section 20108}
 \newcommand{\docClassSemester}{Winter 2022}
-\newcommand{\docDueDate}{May 25, 2022}
+\newcommand{\docDueDate}{May 9, 2022}
 \newcommand{\docDueTime}{23:59}
 \newcommand{\docSubTitle}{Properties, Proofs and Applications}
 \newcommand{\docTitle}{The Gamma Distribution}
@@ -31,6 +31,8 @@
 \newcommand{\G}{\mathcal{G}}
 \newcommand{\E}{\mathcal{E}}
 \newcommand{\N}{\mathcal{N}}
+\newcommand{\J}{\mathcal{J}}
+
 %======================================================================================================================
 % SOURCE ==============================================================================================================
 %======================================================================================================================
@@ -44,7 +46,7 @@
 %======================================================================================================================
 \section{Historical Context}
 The Gamma Distribution is a distribution containing continuous random variables $X$ with two non-negative parameters
-$\alpha$ and $\beta$. It is written as
+$\alpha$ and $\lambda$. It is written as
 \begin{equation*}
 	X\sim\G\text{amma}(\alpha, \lambda)
 \end{equation*}
@@ -55,7 +57,7 @@ and its density function is
 A gamma distributed
 random variable $X$ is represented by
 \begin{equation*}
-	X\sim\Gamma(\alpha,\beta)\equiv\Gamma(\alpha,\beta)
+	X\sim\Gamma(\alpha,\lambda)
 \end{equation*}
 This distribution gave rise to many other functions and distributions such as the Gamma Function, the Exponential
 Distribution, Erlang Distribution, Chi-Square Distribution. This Distribution was firstly presented by Leon Hard Euler,
@@ -237,8 +239,8 @@ First of all, the gamma function is defined as:
 \end{equation*}\\[-36pt]
 Assuming that $\alpha > 1$, the closed form of the Gamma function may be found with integration by parts:\\[-12pt]
 \begin{empheq}[box=\widefbox]{align*}
-	u=x^{\alpha-1};						&&\,	\diff{v}=e^{-x}\\
-	\diff{u}=(\alpha-1)x^{\alpha-2};	&&\,	v=-e^{-x}
+	u=x^{\alpha-1}							&&\,	\diff{v}=e^{-x}\diff{x}\\
+	\diff{u}=(\alpha-1)x^{\alpha-2}\diff{x}	&&\,	v=-e^{-x}
 \end{empheq}
 \begin{equation*}
 	\begin{split}
@@ -263,12 +265,41 @@ Furthermore, $\Gamma(1)$ is defined separately as being:
 %=================================================================================================================
 
 \pagebreak
-\subsubsection{Special case of $\Gamma(\sfrac{1}{2})$ \bigred{Add proof}}
-An extremely case of the gamma function is $\Gamma(\sfrac{1}{2})$. In fact, this result allows the computation of
-fractional values of $\alpha$ such that $\alpha\in\mathbb{Q}$. This special case is as follows:
+\subsubsection{Special case of $\Gamma(\sfrac{1}{2})$ \bigred{Gamma12\_BNM\_VC.pdf}}
+An extremely interesting case of the gamma function is $\Gamma(\sfrac{1}{2})$. In fact, this result allows the
+computation of fractional values of $\alpha$ such that $\alpha\in\mathbb{Q}$. This special case is as follows:
 \begin{equation}\label{eq:gammafunction:onehalf}
 	\Gamma(\sfrac{1}{2})=\sqrt{\pi}
 \end{equation}
+First, to prove this result, let
+\begin{equation*}
+	I = \int^\infty_0 e^{-x^2}\diff{x}
+\end{equation*}
+Then
+\begin{equation*}
+	\begin{split}
+		I^2	&=	\left(\int^\infty_0 e^{-x^2}\diff{x}\right)\left(\int^\infty_0 e^{-y^2}\diff{y}\right)\\
+			&=	\int^\infty_0\int^\infty_0 e^{-(x^2+y^2)}\diff{x}\diff{y}
+	\end{split}
+\end{equation*}
+Let
+\begin{align}
+	x=r\cos\theta	&&	y=r\sin\theta
+\end{align}
+Then the Jacobian is
+\begin{equation*}
+	\J = \det\begin{bmatrix}
+		\pderiv{x}{r}	&	\pderiv{x}{\theta}\\[6pt]
+		\pderiv{y}{r}	&	\pderiv{y}{\theta}
+		\end{bmatrix} = \det\begin{bmatrix}
+			\cos\theta	&	-r\sin\theta\\
+			\sin\theta	&	r\cos\theta
+		\end{bmatrix} = r(\cos^2\theta + \sin^2\theta) = r
+\end{equation*}
+This means that
+\begin{equation*}
+	x
+\end{equation*}
 \begin{proof}
 	Here is a proof for \autoref{eq:gammafunction:onehalf}.
 	\begin{equation*}
@@ -325,22 +356,43 @@ for example, take the same example of $\Gamma(-\sfrac{9}{2})$\\[-12pt]
 %======================================================================================================================
 
 \pagebreak
-\subsection{Relationship to Factorial Notation \bigred{Redo by induction}}
-Using the equations found in \autoref{sect:gammafunction:definition}, the value of other gamma functions may be
-calculated to prove \autoref{eq:gammafunction:factorial}:
-\begin{equation*}
-	\begin{split}
-		\Gamma(2)	&=	1\cdot\Gamma(1)	=	1	=	1!\\
-		\Gamma(3)	&=	2\cdot\Gamma(2)	=	2	=	2!\\
-		\Gamma(4)	&=	3\cdot\Gamma(3)	=	6	=	3!\\
-		\Gamma(5)	&=	4\cdot\Gamma(4)	=	24	=	4!\\
-		\Gamma(6)	&=	5\cdot\Gamma(5)	=	120	=	5!
-	\end{split}
-\end{equation*}
-Indeed, these results show that:
-\begin{equation*}
-	\Gamma(\alpha)=(\alpha-1)!\text{ for }\alpha\in\mathbb{N}
-\end{equation*}
+\subsection{Relationship to Factorial Notation}
+Using a proof by induction, gamma functions may shown to be related to the factorial notation.
+\begin{proof}
+	Let us prove \autoref{eq:gammafunction:factorial}, that is, that:\\[-12pt]
+	\begin{equation*}
+		\Gamma(n) = \int^\infty_0 x^{n-1}e^{-x}\diff{x} = (n-1)!\text{ for }n\in\mathbb{N}
+	\end{equation*}\\[-24pt]
+	For $n=1$:\\[-12pt]
+	\begin{equation*}
+		\begin{split}
+			\Gamma(1)	&=	\int^\infty_0 x^{1-1}e^{-x}\diff{x}\\
+						&=	\int^\infty_0 e^{-x}\diff{x}\\
+						&=	1\\
+						&=	(1-1)!\\
+						&=	0!
+		\end{split}
+	\end{equation*}\\[-24pt]
+	Assume that the equation holds for $n=k$ such that:\\[-12pt]
+	\begin{equation*}
+		\Gamma(k) = (k-1)!
+	\end{equation*}\\[-24pt]
+	Then, let us prove that the equation is valid for $n=k+1$ using integration by parts:\\[-12pt]
+	\begin{empheq}[box=\widefbox]{align*}
+		u=x^{k}						&&\,	\diff{v}=e^{-x}\diff{x}\\
+		\diff{u}=kx^{k-1}\diff{x}	&&\,	v=-e^{-x}
+	\end{empheq}
+	\begin{equation*}
+		\begin{split}
+			\Gamma(k+1)	&=	\int^\infty_0 x^{(k+1)-1}e^{-x}\diff{x}\\
+						&=	\left[-x^k e^{-x}\right]^\infty_0 + k\int^\infty_0 x^{k-1}e^{-x}\diff{x}\\
+						&=	0 +k\Gamma(k)\\
+						&=	k(k-1)!\\
+						&=	((k+1)-1)!
+		\end{split}
+	\end{equation*}
+	Therefore, \autoref{eq:gammafunction:factorial} is proven by mathematical induction.
+\end{proof}
 
 %======================================================================================================================
 %======================================================================================================================
