@@ -64,7 +64,7 @@
 % tabularx
 \newcolumntype{Y}{>{\centering\arraybackslash}X}
 
-% Caption/Ref settings ----------------------------------------------------------------------------------------------------
+% Caption/Ref settings -------------------------------------------------------------------------------------------------
 \captionsetup{
     format = hang,
     labelfont = sc,
@@ -72,12 +72,15 @@
 	hypcapspace = 96pt
 }
 
-% TOC -----------------------------------------------------------------------------------------------------------------
+% TOC & Sections -------------------------------------------------------------------------------------------------------
 % Sets TOC depth and change changes its display name
 \setcounter{secnumdepth}{3} % Change to 0 for unnumbered sections
 \addto\captionsenglish{
   \renewcommand{\contentsname}{Table of Contents}
 }
+% Makes the paragraph command appear like a subsubsubsection
+\titleformat{\paragraph}{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
 
 % SIunitx -------------------------------------------------------------------------------------------------------------
 % Sets \per to display as frac
@@ -241,10 +244,10 @@
 
 % Theorems
 \theoremstyle{plain}
-\newtheorem{definition}{Definition}[section]
-\newtheorem{theorem}{Theorem}[section]
+\newtheorem{definition}{Definition}[subsection]
+\newtheorem{theorem}{Theorem}[subsection]
 \newtheorem{example}{Example}[theorem]
-\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{corollary}{Corollary}[subsection]
 \newtheorem{lemma}{Lemma}[theorem]
 \newtheorem{proposition}{Proposition}[theorem]
 % Unnumbered version
@@ -256,7 +259,7 @@
 \newtheorem*{proposition*}{Proposition}
 
 \theoremstyle{definition}
-\newtheorem{exercise}{Exercise}[section]
+\newtheorem{exercise}{Exercise}[subsection]
 % Unnumbered version
 \newtheorem*{exercise*}{Exercise}
 
@@ -264,7 +267,7 @@
 \theoremstyle{remark}
 \newtheorem{remark}{Remark}
 \newtheorem{case}{Case}
-\newtheorem{claim}{Claim}[section]
+\newtheorem{claim}{Claim}[subsection]
 % Unnumbered version
 \newtheorem*{remark*}{Remark}
 \newtheorem*{case*}{Case}
