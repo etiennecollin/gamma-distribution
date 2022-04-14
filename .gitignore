@@ -1,4 +1,5 @@
 .DS_Store
+.python-version
 
 #Exclude everyting in LaTeX Document except a few files.
 /LaTeX Document/*
