@@ -91,7 +91,7 @@ That being said, in this document, as the two parameterizations only exist for t
 in their results, only the parameterization 1 presented in \autoref{eq:gamma:parameterization:1} will be considered and
 used for proofs.
 
-\subsection{Probability density function}\label{section:gamma:pdf}
+\subsection{Probability density function}\label{subsec:gamma:pdf}
 \begin{equation}\label{eq:gamma:pdf:2}
 	f(x) = \frac{\lambda^\alpha}{\Gamma(\alpha)}x^{\alpha-1}e^{-\lambda x}\text{ for }x\in (0,\,\infty)
 \end{equation}
@@ -118,7 +118,7 @@ The expected value is also known as the theoretical mean:
 	\mu = E(x) = \frac{\alpha}{\lambda}
 \end{equation}
 \begin{proof}
-	Using the moment generating function obtained in \autoref{section:gamma:pdf}, the expected value of a gamma
+	Using the moment generating function obtained in \autoref{subsec:gamma:pdf}, the expected value of a gamma
 	distribution may be found.
 	\begin{equation}
 		\begin{split}
@@ -137,7 +137,7 @@ The expected value is also known as the theoretical mean:
 	\text{Var}(x) = \frac{\alpha}{\lambda^2}
 \end{equation}
 \begin{proof}
-	Using the moment generating function obtained in \autoref{section:gamma:pdf}, the variance value of a gamma
+	Using the moment generating function obtained in \autoref{subsec:gamma:pdf}, the variance value of a gamma
 	distribution may be found.
 	\begin{equation}
 		\begin{split}
@@ -230,7 +230,7 @@ notation is as follows:
 \end{equation}
 \vspace*{-60pt}
 
-\subsection{Definition}\label{sect:gammafunction:definition}
+\subsection{Definition}\label{subsec:gammafunction:definition}
 \vspace*{-6pt}
 First of all, the gamma function is defined as:
 \vspace*{-12pt}
@@ -469,7 +469,7 @@ function, as was mentioned previously, is not defined for negative integers.
 %======================================================================================================================
 
 \pagebreak
-\section{General Applications and Family}\label{section:generalApplications}
+\section{General Applications and Family}\label{sec:generalApplications}
 
 The gamma distribution is used in many fields, since it is directly related to the Erlang, normal and exponential
 distributions whose contributions extend to several disciplines. Here, we will present some of those applications.
@@ -557,7 +557,7 @@ number of telephone calls which can be made at the same time to the operators of
 phone traffic engineering. Indeed, the Erlang distribution's original purpose was to measure the time between incoming
 calls, a statistic which can be used along with the expected duration of incoming calls to analyze phone traffic loads.
 His work has since been expanded to consider queuing systems in general, as well as the load on web servers,
-interpurchase times and cancer incidence (see \autoref{section:generalApplications})\cite{zachWhatErlangDistribution2020}.
+interpurchase times and cancer incidence (see \autoref{sec:generalApplications})\cite{zachWhatErlangDistribution2020}.
 
 %======================================================================================================================
 %======================================================================================================================
@@ -603,7 +603,7 @@ Accordingly, it can be demonstrated that the sum of exponential random variables
 %======================================================================================================================
 
 \pagebreak
-\subsection{The Chi-Squared Distribution}
+\subsection{The Chi-Squared Distribution}\label{subsec:specialcase:chisquared}
 Then, the gamma distribution with parameters $\alpha=\sfrac{n}{2}$ and $\lambda=\sfrac{1}{2}$ is called the
 chi-squared distribution with $n$ degrees of freedom such that
 \begin{equation}
@@ -612,7 +612,7 @@ chi-squared distribution with $n$ degrees of freedom such that
 \begin{proof}
 	First, to show that $\G\text{ammma}(\sfrac{n}{2},\sfrac{1}{2})\equiv\chi^2_n$, let's prove that
 	$\G\text{ammma}(\sfrac{1}{2},\sfrac{1}{2})\equiv\chi^2_1$, a chi-squared distribution with one (1) degree of
-	freedom, using a change of variables with $Y=Z^2$ for $Y\sim\chi^2_1$.
+	freedom, using a change of variables $Y=Z^2$ with $Z\sim\N(0, 1)$.
 	\begin{equation}\label{eq:relation:chisquared:1}
 		\begin{split}
 			G(y)	&=	P(Y\leq y)\\
@@ -629,8 +629,8 @@ chi-squared distribution with $n$ degrees of freedom such that
 	\begin{equation}
 		\therefore Y\sim\G\text{ammma}(\sfrac{1}{2}, \sfrac{1}{2})\equiv\chi^2_1
 	\end{equation}
-	One may generalize this result by using that $Z_1,\,Z_2,\,\ldots,\,Z_n$ are i.i.d. random variables following $\N(0,
-	1)$ to find the distribution of
+	One may generalize this result by using $Z_1,\,Z_2,\,\ldots,\,Z_n$ as i.i.d. random variables following $\N(0, 1)$
+	to find the distribution of
 	\begin{equation}
 		Y = \sum^n_{i=1}Z^2_i
 	\end{equation}
@@ -665,9 +665,19 @@ distribution:
 The chi square distribution is often used to describe the distribution of a sum of squared random variables, to test the
 fit of a distribution of data or to determine whether data series are independent or dependent.
 
-\subsection{The Normal Distribution}
-Text on the normal distribution
+\subsection{The Normal Distribution \bigred{proof of CTL?}}
+As was shown previously in \autoref{subsec:specialcase:chisquared}, the normal distribution is related to the gamma
+distribution as it may be used to prove that the latter is related to the chi-squared distribution. That is:
+\begin{equation}
+	Z\sim\N\text{ormal}(0, 1)\Rightarrow Z^2\sim\G\text{amma}(\sfrac{1}{2}, \sfrac{1}{2})\equiv\chi^2_1
+\end{equation}
 
+Furthermore, as the gamma distribution $\G\text{amma}(\alpha, \lambda)$ may be viewed as a sum of $\alpha$ exponential
+distributions, then by the CTL, the density function of the gamma distribution will be extremely similar to that of a
+normal distribution when $\alpha$ approaches $\infty$:
+\begin{equation}
+	\G\text{amma}(\alpha, \lambda) \approxequiv \N(\sfrac{\alpha}{\lambda}, \sfrac{\alpha}{\lambda^2})\text{ for }\alpha\to\infty
+\end{equation}
 %======================================================================================================================
 %======================================================================================================================
 %======================================================================================================================
