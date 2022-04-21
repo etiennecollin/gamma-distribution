@@ -19,7 +19,7 @@ def gamma_distribution_pdf(alpha_=4, lambda_=3):
     plt.annotate(f"Gamma({alpha_}, {lambda_})", xy=(15, 0.0012), size=14, ha="center", va="center", color="firebrick")
     plt.xlabel("T", fontsize=16)
     plt.ylabel("Density", fontsize=16)
-    plt.plot(x, fx, color="firebrick")
+    plt.plot(x, fx, linewidth=3, color="firebrick")
     plt.show()
 
 

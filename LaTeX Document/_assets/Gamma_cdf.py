@@ -24,7 +24,7 @@ def gamma_distribution_cdf(alpha_=4, lambda_=3):
     plt.annotate(f"Gamma({alpha_}, {lambda_})", xy=(2.5, 0.028), size=14, ha="center", va="center", color="firebrick")
     plt.xlabel("T", fontsize=16)
     plt.ylabel("Probability", fontsize=16)
-    plt.plot(x, Fx, color="firebrick")
+    plt.plot(x, Fx, linewidth=3, color="firebrick")
     plt.show()
 
 
