@@ -28,10 +28,12 @@
 % \customfont{Comic Sans MS}													% Use a custom font
 
 \fancyhf[HR]{\docClassTime}													% Removes student number from right header
-\newcommand{\G}{\mathcal{G}}
+\newcommand{\B}{\mathcal{B}}
 \newcommand{\E}{\mathcal{E}}
-\newcommand{\N}{\mathcal{N}}
+\newcommand{\G}{\mathcal{G}}
 \newcommand{\J}{\mathcal{J}}
+\newcommand{\N}{\mathcal{N}}
+
 
 %======================================================================================================================
 % SOURCE ==============================================================================================================
@@ -91,7 +93,7 @@ That being said, in this document, as the two parameterizations only exist for t
 in their results, only the parameterization 1 presented in \autoref{eq:gamma:parameterization:1} will be considered and
 used for proofs.
 
-\subsection{Probability density function}\label{subsec:gamma:pdf}
+\subsection{Probability density function \bigred{Add graph}}\label{subsec:gamma:pdf}
 \begin{equation}\label{eq:gamma:pdf:2}
 	f(x) = \frac{\lambda^\alpha}{\Gamma(\alpha)}x^{\alpha-1}e^{-\lambda x}\text{ for }x\in (0,\,\infty)
 \end{equation}
@@ -146,7 +148,7 @@ The expected value is also known as the theoretical mean:
 	\end{equation}
 \end{proof}
 
-\subsection{Cumulative distribution function}
+\subsection{Cumulative distribution function \bigred{Add graph}}\label{subsec:gamma:cdf}
 \begin{equation}\label{eq:gamma-cdf-2}
 	F(x) = \frac{1}{\Gamma(\alpha)}\gamma(\alpha,\, \lambda x)
 \end{equation}
@@ -700,11 +702,34 @@ Text on the Wishart distribution
 \pagebreak
 
 \begin{appendix}
+\section{Graphs - Python Code \incomplete}
+\subsection{Probability Density Function}
+Here is the code used to generate the \nameref{subsec:gamma:pdf} graph of the gamma distribution:
+\lstinputlisting[language=Python, caption={}, label=code:gamma:pdf]{_assets/Gamma_pdf.py}
+
+\pagebreak
+\subsection{Cumulative Distribution Function}
+Here is the code used to generate the \nameref{subsec:gamma:cdf} graph of the gamma distribution:
+\lstinputlisting[language=Python, caption={}, label=code:gamma:cdf]{_assets/Gamma_cdf.py}
+
+\pagebreak
+\section{Simulations - Python Code \incomplete}
+\subsection{Simulation 1}
+Comparison of the graph of $\G\text{amma}(\alpha+\beta, \lambda)$ and the histogram of a $X+Y$ of
+$X\sim\G\text{amma}(\alpha, \lambda)$ and $Y\sim\G\text{amma}(\beta, \lambda)$ random variables.
+\lstinputlisting[language=Python, caption={}, label=code:simulation:1]{_assets/Simulation_1.py}
+
+\pagebreak
+\subsection{Simulation 2}
+Comparison of the graph of $\B\text{eta}(\alpha, \beta)$ and the histogram of a $\frac{X}{X+Y}$ of
+$X\sim\G\text{amma}(\alpha, \lambda)$ and $Y\sim\G\text{amma}(\beta, \lambda)$ random variables.
+\lstinputlisting[language=Python, caption={}, label=code:simulation:2]{_assets/Simulation_2.py}
+
+\pagebreak
 \phantomsection\listoffigures
-\phantomsection\listoftables
 \end{appendix}
 
-\pagebreak\phantomsection\printbibliography[heading=bibintoc,title={References}]
+\pagebreak\phantomsection\printbibliography[heading=bibintoc, title={References}]
 \end{document}
 
 \begin{tabular}
