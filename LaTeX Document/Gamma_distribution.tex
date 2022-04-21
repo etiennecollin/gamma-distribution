@@ -486,7 +486,7 @@ gamma distribution.
 \subsection{Natural Events Prediction}
 Then, the gamma distribution can also be used to model the amount of rainfall accumulated in a given reservoir. Indeed,
 this distribution fits positive data, represents rainfall distribution well and its two parameters -shape and scale-
-give it sufficient flexibility to fit various climates\cite{husakUseGammaDistribution2007a}.
+give it sufficient flexibility to fit various climates\cite{husakUseGammaDistribution2007}.
 
 \subsection{Customer Satisfaction}
 Service time can also be modeled using the gamma distribution. For example, if one is waiting in line for a meal, the
@@ -667,7 +667,7 @@ distribution:
 The chi square distribution is often used to describe the distribution of a sum of squared random variables, to test the
 fit of a distribution of data or to determine whether data series are independent or dependent.
 
-\subsection{The Normal Distribution \bigred{proof of CTL?}}
+\subsection{The Normal Distribution}\label{subsec:specialcase:normal}
 As was shown previously in \autoref{subsec:specialcase:chisquared}, the normal distribution is related to the gamma
 distribution as it may be used to prove that the latter is related to the chi-squared distribution. That is:
 \begin{equation}
@@ -680,6 +680,14 @@ normal distribution when $\alpha$ approaches $\infty$:
 \begin{equation}
 	\G\text{amma}(\alpha, \lambda) \approxequiv \N(\sfrac{\alpha}{\lambda}, \sfrac{\alpha}{\lambda^2})\text{ for }\alpha\to\infty
 \end{equation}
+The central limit theorem will not be proved as it is quite intuitive; the more data samples you have, the more
+centered around the expected value the probability density function graph will be. That being mentioned, here is a graph
+representing this concept by comparing the probability density function graph of a $\G\text{amma}(60, 1)$ to that of a
+$\N(60, 60)$. Because $\G\text{amma}(\alpha, \lambda)$ is in essence a sum of $\alpha$ i.i.d. random variables following
+a distribution $\E\text{xp}(\lambda)$, then it makes sense that having a distribution $\G\text{amma}(60, 1)$ is like
+having $60$ data samples following a $\E\text{xp}(1)$ distribution which fits the central limit theorem. Here is the graph:
+\figurecenter{1}{Central_limit_theorem.png}{Graph showcasing the central limit theorem by comparing the probability density function graph of $\G\text{amma}(60, 1)$ to that of $\N(60, 60)$.}{fig:graph:ctl}
+
 %======================================================================================================================
 %======================================================================================================================
 %======================================================================================================================
@@ -704,13 +712,20 @@ Text on the Wishart distribution
 \begin{appendix}
 \section{Graphs - Python Code \incomplete}
 \subsection{Probability Density Function}
-Here is the code used to generate the \nameref{subsec:gamma:pdf} graph of the gamma distribution:
+Here is the code used to generate the probability density function graph of the gamma distribution in
+\autoref{subsec:gamma:pdf}:
 \lstinputlisting[language=Python, caption={}, label=code:gamma:pdf]{_assets/Gamma_pdf.py}
 
 \pagebreak
 \subsection{Cumulative Distribution Function}
-Here is the code used to generate the \nameref{subsec:gamma:cdf} graph of the gamma distribution:
+Here is the code used to generate the cumulative distribution function graph of the gamma distribution in
+\autoref{subsec:gamma:cdf}:
 \lstinputlisting[language=Python, caption={}, label=code:gamma:cdf]{_assets/Gamma_cdf.py}
+
+\pagebreak
+\subsection{Central Limit Theorem}
+Here is the code used to generate the central limit theorem graph in \autoref{subsec:specialcase:normal}:
+\lstinputlisting[language=Python, caption={}, label=code:gamma:ctl]{_assets/Central_limit_theorem.py}
 
 \pagebreak
 \section{Simulations - Python Code \incomplete}
