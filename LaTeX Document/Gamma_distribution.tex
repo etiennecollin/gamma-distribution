@@ -675,8 +675,8 @@ distribution as it may be used to prove that the latter is related to the chi-sq
 \end{equation}
 
 Furthermore, as the gamma distribution $\G\text{amma}(\alpha, \lambda)$ may be viewed as a sum of $\alpha$ exponential
-distributions, then by the CTL, the density function of the gamma distribution will be extremely similar to that of a
-normal distribution when $\alpha$ approaches $\infty$:
+distributions, then by the central limit theorem, the density function of the gamma distribution will be extremely similar
+to that of a normal distribution when $\alpha$ approaches $\infty$:
 \begin{equation}
 	\G\text{amma}(\alpha, \lambda) \approxequiv \N(\sfrac{\alpha}{\lambda}, \sfrac{\alpha}{\lambda^2})\text{ for }\alpha\to\infty
 \end{equation}
@@ -686,7 +686,7 @@ representing this concept by comparing the probability density function graph of
 $\N(60, 60)$. Because $\G\text{amma}(\alpha, \lambda)$ is in essence a sum of $\alpha$ i.i.d. random variables following
 a distribution $\E\text{xp}(\lambda)$, then it makes sense that having a distribution $\G\text{amma}(60, 1)$ is like
 having $60$ data samples following a $\E\text{xp}(1)$ distribution which fits the central limit theorem. Here is the graph:
-\figurecenter{1}{Central_limit_theorem.png}{Graph showcasing the central limit theorem by comparing the probability density function graph of $\G\text{amma}(60, 1)$ to that of $\N(60, 60)$.}{fig:graph:ctl}
+\figurecenter{1}{Central_limit_theorem.png}{Graph showcasing the central limit theorem by comparing the probability density function graph of $\G\text{amma}(60, 1)$ to that of $\N(60, 60)$.}{fig:graph:clt}
 
 %======================================================================================================================
 %======================================================================================================================
@@ -725,7 +725,7 @@ Here is the code used to generate the cumulative distribution function graph of 
 \pagebreak
 \subsection{Central Limit Theorem}
 Here is the code used to generate the central limit theorem graph in \autoref{subsec:specialcase:normal}:
-\lstinputlisting[language=Python, caption={}, label=code:gamma:ctl]{_assets/Central_limit_theorem.py}
+\lstinputlisting[language=Python, caption={}, label=code:gamma:clt]{_assets/Central_limit_theorem.py}
 
 \pagebreak
 \section{Simulations - Python Code}
