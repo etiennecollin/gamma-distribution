@@ -2,3 +2,5 @@ modelization
 parameterizations
 Leonhard
 Jacobian
+integrand
+Wishart
