@@ -4,3 +4,6 @@ Leonhard
 Jacobian
 integrand
 Wishart
+kurtosis
+tailedness
+Kurtosis
