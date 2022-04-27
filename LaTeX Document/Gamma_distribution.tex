@@ -65,7 +65,7 @@ This distribution gave rise to many other functions and distributions such as th
 Distribution, Erlang Distribution, Chi-Square Distribution. This Distribution was firstly presented by Leon Hard Euler,
 a Swiss mathematician and physician. As Euler gained popularity, the Gamma Distribution was further researched by
 important figures in the domain of mathematics such as Karl Weierstrass, Carl Friedrich Gauss, Charles Hermite, and many
-more\cite{hoschGammaDistribution2017, wikipediaGammaDistribution2022, sebahIntroductionGammaFunction2002} .
+more\cite{hoschGammaDistribution2017, wikipediaGammaDistribution2022, sebahIntroductionGammaFunction2002}.
 
 %======================================================================================================================
 %======================================================================================================================
@@ -74,7 +74,7 @@ more\cite{hoschGammaDistribution2017, wikipediaGammaDistribution2022, sebahIntro
 \pagebreak
 \section{Distribution, Variables Defined}
 The gamma distribution is part of the two-parameters family of continuous probability distributions. Indeed, it may be
-parameterized with two different parameterizations\cite{wikipediaGammaDistribution2022} :
+parameterized with two different parameterizations\cite{wikipediaGammaDistribution2022}:
 
 \noindent Parameterization 1:
 \vspace*{-24pt}
@@ -130,7 +130,7 @@ function (CDF) $F(x)$ of the gamma distribution is defined as:
 	\int^x_0\frac{\lambda^\alpha}{\Gamma(\alpha)}u^{\alpha-1}e^{-\lambda u}\diff{u}
 \end{equation}
 but this integral has no definite form, that is, the integrand has no antiderivative. Hence, this CDF is often
-represented in its simplified form using the lower incomplete gamma function\cite{weissteinIncompleteGammaFunction} :
+represented in its simplified form using the lower incomplete gamma function\cite{weissteinIncompleteGammaFunction}:
 \begin{equation}
 	\gamma(\alpha, \lambda x)\equiv\int^x_0u^{\alpha-1}e^{-u}\diff{u}
 \end{equation}
@@ -140,7 +140,7 @@ such that:
 \end{equation}
 Interestingly, there is a special case to the CDF; when $\alpha$ is a positive integer, that is, when the distribution
 is an Erlang distribution (see \autoref{subsec:specialcases:erlang}), the CDF follows the following series expansion
-\cite{wikipediaGammaDistribution2022} :
+\cite{wikipediaGammaDistribution2022}:
 \begin{equation}
 	F(x) = 1-\sum^{\alpha-1}_{i=0}\frac{(\lambda x)^i}{i!}e^{-\lambda x} = e^{-\lambda x}\sum^\infty_{i=\alpha}\frac{(\lambda x)^i}{i!}
 \end{equation}
@@ -162,7 +162,7 @@ with being extremely intriguing, are essential to multiple computations and stat
 The moment generating function (MGF) of a real number, vector or matrix random variable $X$ is used to compute a
 distribution's moment. It provides an extremely useful tool for distribution analysis and proofs related to many other
 properties. Unlike the characteristic function, which will be briefly explored in \autoref{subec:advancedproperties:cf},
-the MGF does not always exist for real values of a distribution \cite{wikipediaMomentgeneratingFunction2022} . Here is
+the MGF does not always exist for real values of a distribution \cite{wikipediaMomentgeneratingFunction2022}. Here is
 the MGF of the gamma distribution:
 \begin{equation}
 	M(t)=\left(\frac{\lambda}{\lambda-t}\right)^\alpha\text{ for }t<\lambda
@@ -263,7 +263,7 @@ Then:
 The variance is a measure of how "spread out" the data is. Indeed, the lower the variance is, the sharper the
 probability density function graph will be. More specifically, the variance is the expected value of the square standard
 deviation of the random variable examined from the expected value described in
-\autoref{subsec:gamma:expected}\cite{wikipediaVariance2022} .
+\autoref{subsec:gamma:expected}\cite{wikipediaVariance2022}.
 
 This property may be calculated using the following equation:
 \begin{equation}\label{eq:gamma:var}
@@ -440,7 +440,7 @@ In statistics, the skewness of a distribution is defined as the degree of asymme
 distribution with respect to the normal distribution. Distributions can exhibit right (positive) or left (negative)
 skewness; the normal distribution is qualified as exhibiting zero skewness. In the case of the gamma distribution, the
 skewness is only dependent upon the shape parameter $\alpha$ and corresponds to\cite{chenLearnSkewness2021,
-wikipediaGammaDistribution2022} :
+wikipediaGammaDistribution2022}:
 \begin{equation}
 	\text{Skewness} = \frac{2}{\sqrt{\alpha}}
 \end{equation}
@@ -449,7 +449,7 @@ wikipediaGammaDistribution2022} :
 The entropy of a random variable is defined as the average level of uncertainty associated with the possible outcomes
 associated with its probability distribution. In the case of continuous probability distributions such as the gamma
 distribution, one usually refers to differential entropy (also called continuous entropy), defined
-as\cite{wikipediaDifferentialEntropy2022, wikipediaGammaDistribution2022} :
+as\cite{wikipediaDifferentialEntropy2022, wikipediaGammaDistribution2022}:
 \begin{equation}
 	h(X) = E[-\log(f(X))]
 \end{equation}
@@ -489,11 +489,11 @@ The $n$th raw moment is given by:
 \subsection{Excess kurtosis}
 Kurtosis, the fourth standardized moment, is a characteristic used to describe the shape, or the “tailedness” of a
 probability distribution. The normal distribution is used as the standard, displaying an excess kurtosis of zero with
-which one can compare the excess kurtosis of other distributions\cite{wikipediaKurtosis2022} .
+which one can compare the excess kurtosis of other distributions\cite{wikipediaKurtosis2022}.
 
 The exponential distribution, as a special case of the gamma distribution, has a positive excess kurtosis and is hence
 called leptokurtic. This, in short, indicates that it exhibits fatter tails than the normal distribution. Following is
-the equation characterizing the excess kurtosis of the gamma distribution\cite{wikipediaKurtosis2022} :
+the equation characterizing the excess kurtosis of the gamma distribution\cite{wikipediaKurtosis2022}:
 \begin{equation}
 	\text{Kurtosis} = \frac{6}{\alpha}
 \end{equation}
@@ -802,7 +802,7 @@ after several successive “driver events”, that is, after some number of muta
 statistics suggest that the incidence of the most prevalent cancer types with respect to the patients' age closely
 follows the gamma probability distribution or, more specifically, the Erlang distribution. This may be due to the fact
 that, more broadly, the Erlang distribution can be used to model cell cycle time
-distribution\cite{belikovNumberKeyCarcinogenic2017} .
+distribution\cite{belikovNumberKeyCarcinogenic2017}.
 
 \begin{equation}
 	Y = A\cdot x^{k-1}\frac{e^{\frac{-x}{b}}}{b^k}\cdot\Gamma(k)
@@ -815,7 +815,7 @@ predicted\cite{belikovNumberKeyCarcinogenic2017}. Given that experimental resear
 the lives of many people, numerical references such as that provided by the gamma distribution are of paramount
 importance in our society. The gamma distribution can save lives, if it is used wisely!
 
-\figurecenter{1}{Cancer_probability}{"The Erlang distribution approximates cancer incidence by age for 20 most prevalentcancer types. Dots indicate actual data for 5-year age intervals, curves indicate the PDF of the Erlang distribution fitted to the data [...]. The middle age of each age group is plotted. Cancer types are arranged in the order of decreasing incidence"\cite{belikovNumberKeyCarcinogenic2017} .}{fig:cancerProbability}
+\figurecenter{1}{Cancer_probability}{"The Erlang distribution approximates cancer incidence by age for 20 most prevalentcancer types. Dots indicate actual data for 5-year age intervals, curves indicate the PDF of the Erlang distribution fitted to the data [...]. The middle age of each age group is plotted. Cancer types are arranged in the order of decreasing incidence"\cite{belikovNumberKeyCarcinogenic2017}.}{fig:cancerProbability}
 
 %======================================================================================================================
 %======================================================================================================================
