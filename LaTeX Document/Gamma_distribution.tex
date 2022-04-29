@@ -47,7 +47,7 @@
 % START OF DOCUMENT ===================================================================================================
 %======================================================================================================================
 \section{Historical Context}
-The Gamma Distribution is a distribution containing continuous random variables $X$ with two non-negative parameters
+The gamma distribution is a distribution containing continuous random variables $X$ with two non-negative parameters
 $\alpha$ and $\lambda$. It is written as
 \begin{equation}
 	X\sim\G\text{amma}(\alpha, \lambda)
@@ -61,9 +61,9 @@ random variable $X$ is represented by
 \begin{equation}
 	X\sim\Gamma(\alpha,\lambda)
 \end{equation}
-This distribution gave rise to many other functions and distributions such as the Gamma Function, the Exponential
-Distribution, Erlang Distribution, Chi-Square Distribution. This Distribution was firstly presented by Leon Hard Euler,
-a Swiss mathematician and physician. As Euler gained popularity, the Gamma Distribution was further researched by
+This distribution gave rise to many other functions and distributions such as the gamma function, the exponential
+distribution, Erlang distribution, chi-square distribution. This distribution was firstly presented by Leon Hard Euler,
+a Swiss mathematician and physician. As Euler gained popularity, the gamma distribution was further researched by
 important figures in the domain of mathematics such as Karl Weierstrass, Carl Friedrich Gauss, Charles Hermite, and many
 more\cite{hoschGammaDistribution2017, wikipediaGammaDistribution2022, sebahIntroductionGammaFunction2002}.
 
@@ -102,21 +102,109 @@ used for proofs.
 %======================================================================================================================
 
 \pagebreak
-\subsection{Probability density function \incomplete}\label{subsec:gamma:pdf}
-\bigred{graph, integral of pdf=1}
-\begin{equation}\label{eq:gamma:pdf:2}
+\subsection{Probability density function \bigred{INTRODUCE PDF}}\label{subsec:gamma:pdf}
+\bigred{INTRODUCE PDF}
+\begin{equation}\label{eq:gamma:pdf}
 	f(x) = \frac{\lambda^\alpha}{\Gamma(\alpha)}x^{\alpha-1}e^{-\lambda x}\text{ for }x\in (0,\,\infty)
 \end{equation}
-\begin{proof}
-	The probability density function of the gamma distribution will be proved using induction. First, take
-	\begin{equation}
-		W=\sum^n_{i=1}X_i
-	\end{equation}
-	where $W$ is a sum of $n$ i.i.d. random variables following the exponential distribution $\E\text{xp}(\lambda)$.
 
-	\noindent For $n=1$:
-	Then, with the induction that $n=\alpha$ works such that:
-	Here is the proof that $n=\alpha+1$ works such that:
+Here is a graph of the probability density function of a gamma distribution with parameters $\alpha=4$ and $\lambda=3$:
+\figurecenter{1}{Gamma_PDF.png}{Graph featuring the plot of the probability density function of a gamma distribution.}{fig:graph:gamma:pdf}
+
+Let's now prove that this equation is a probability density function. That is, let's show that:
+\begin{equation}
+	\int_{D_X} f(x)\diff{x} = 1
+\end{equation}
+\begin{proof}
+	Let's use the following substitution to solve the integral:
+	\begin{empheq}[box=\widefbox]{align*}
+		u=\lambda x	&&\,	\diff{u}=\lambda\diff{x}
+	\end{empheq}
+	\begin{equation}
+		\begin{split}
+			\int_{D_X} f(x)\diff{x}	&=	\int^\infty_0\frac{\lambda^\alpha}{\Gamma(\alpha)}x^{\alpha -1}e^{-\lambda x}\diff{x}\\
+									&=	\frac{1}{\lambda}\int^\infty_0\frac{\lambda^\alpha}{\Gamma(\alpha)}\left(\frac{u}{\lambda}\right)^{\alpha-1}e^{-u}\diff{u}\\
+									&=	\frac{1}{\Gamma(\alpha)}\int^\infty_0 u^{\alpha-1}e^{-u}\diff{u}\\
+									&=	1
+		\end{split}
+	\end{equation}
+\end{proof}
+It is therefore clear that \autoref{eq:gamma:pdf} is a probability density function.
+
+\subsubsection{Discovery \bigred{source}}
+A question that may now be formulated is: how could someone have come up with such an equation? Here, we propose that
+the PDF of the gamma distribution was found by adding multiple i.i.d random variables following an exponential
+distribution $\E\text{xp}(\lambda)$. Here is a proof by induction demonstrating this supposition:
+\begin{proof}
+	First, let us find the sum of two exponential random variables, which we will denote $S_2$:
+	\begin{equation}
+		\begin{split}
+			f_{S_2}	&=	f_{X_1 + X_2} (t)\\
+					&=	\int^t_0 \lambda e^{-\lambda(t-s)}\lambda e^{-\lambda s}\diff{s}\\
+					&=	\lambda^2 e^{-\lambda t}\int^t_0 1\diff{s}\\
+					&=	\lambda^2 te^{-\lambda t}\\
+					&=	\frac{\lambda^2 t^{2-1} e^{-\lambda t}}{(2-1)!}
+		\end{split}
+	\end{equation}
+	With this result, we can now determine the probability distribution function of the sum of three, as well as four
+	exponential random variables. Let's start with the sum of three variables:
+	\begin{equation}
+		\begin{split}
+			f_{X_1 + X_2 + X_3}(t)	&=	f_{S_2 + X_3}(t)\\
+			 						&=	\int^\infty_{-\infty} f_{S_2}(t-s)f_{X_3}(s)\diff{s}\\
+			 						&=	\int^\infty_{-\infty} f_{X_3}(t-s)f_{S_2}(s)\diff{s}\\
+			 						&=	\int^t_0 \lambda e^{-\lambda(t-s)}\lambda^2 s e^{-\lambda s}\diff{s}\\
+									&=	\lambda^3 e^{-\lambda t} \int^t_0 s\diff{s}\\
+									&=	\frac{\lambda^3 t^2 e^{-\lambda t}}{2!}\\
+									&=	\frac{\lambda^3 t^{3-1} e^{-\lambda t}}{(3-1)!}
+		\end{split}
+	\end{equation}
+	Then, let's sum four variables:
+	\begin{equation}
+		\begin{split}
+			f_{X_1+X_2+X_3+X_4}(t)	&=	f_{S_3+X_4}(t)\\
+									&=	\int^\infty_{-\infty} f_{S_3}(t-s)f_{X_4}(s)\diff{s}\\
+									&=	\int^\infty_{-\infty} f_{X_4}(t-s)f_{S_3}(s)\diff{s}\\
+									&=	\int^t_0 \lambda e^{-\lambda(t-s)}\frac{\lambda^3 s^2 e^{-\lambda s}}{2!}\diff{s}\\
+									&=	\frac{\lambda^4 e^{-\lambda t}}{2!}\int^t_0 s^2\diff{s}\\
+									&=	\frac{\lambda^4 t^3 e^{-\lambda t}}{3!}\\
+									&=	\frac{\lambda^4 t^{4-1} e^{-\lambda t}}{(4-1)!}\\
+		\end{split}
+	\end{equation}
+	A pattern can clearly be seen emerging from those results. Hence, we make the claim that:
+	\begin{equation}
+		\begin{split}
+			f_{S_n}(t) = f_{\sum^n_{i=1}X_i}(t) = \frac{\lambda^n t^{n-1} e^{-\lambda t}}{(n-1)!}\\
+		\end{split}
+	\end{equation}
+	To prove this claim, let us assume that:
+	\begin{equation}
+		\begin{split}
+			f_{S_{n-1}}(t)	&=	f_{\sum^{n-1}_{i=1}X_i} (t)\\
+							&=	\frac{\lambda^{n-1} t^{n-2} e^{-\lambda t}}{(n-2)!}
+		\end{split}
+	\end{equation}
+	By convolution, the probability distribution function of an infinite sum of exponential random variables can now be
+	found.
+	\begin{equation}
+		\begin{split}
+			f_{S_n}(t)	&=	f_{\sum^n_{i=1}X_i}(t)\\
+						&=	f_{\sum^{n-1}_{i=1}[X_i] + X_n }(t)\\
+						&=	f_{S_{n-1} + X_n }(t)\\
+						&=	\int^\infty_{-\infty} f_{S_{n-1}}(t-s)f_{X_n}(s)\diff{s}\\
+						&=	\int^\infty_{-\infty} f_{X_n}(t-s)f_{S_{n-1}}(s)\diff{s}\\
+						&=	\int^t_0 \lambda e^{-\lambda(t-s)}\frac{\lambda^{n-1} s^{n-2} e^{-\lambda s}}{(n-2)!}\diff{s}\\
+						&=	\frac{\lambda^n e^{-\lambda t}}{(n-2)!} \int^t_0 s^{n-2}\diff{s}\\
+						&=	\frac{\lambda^n t^{n-1} e^{-\lambda t}}{(n-1)!}\\
+						&=	\frac{\lambda^n t^{n-1} e^{-\lambda t}}{\Gamma(n)}\\
+		\end{split}
+	\end{equation}
+	This corresponds, obviously, to the probability distribution function of a gamma distribution. Therefore:
+	\begin{equation}
+		S_n \sim Gamma(n, \lambda)
+	\end{equation}
+	Hence, we get a density function whose parameter $n$ can correspond to all real values instead of being limited to
+	natural numbers.
 \end{proof}
 
 %======================================================================================================================
@@ -158,7 +246,47 @@ Now that the fundamentals of the gamma distribution are set, a few properties st
 function and the cumulative distribution function will be presented and proved. These properties, along
 with being extremely intriguing, are essential to multiple computations and statistical analyses.
 
-\subsection{Moment generating function}\label{subsec:gamma:mgf}
+\subsection{Memoryless Distribution}
+The memoryless property indicates that a given probability distribution is independent of its history: the likelihood of
+something happening in the future has no relation to past events. In statistics, a continuous random variable $X$
+satisfies the memoryless property if:
+ \begin{equation}
+	P(X>x+a\, |\, X>a) = P(X>x)\text{ for }a, x \geq 0
+ \end{equation}
+
+ It is easy to show that the exponential distribution displays the memoryless property.
+ \begin{equation}
+	 \begin{split}
+		 P(X>x+a \, |\, X>a)	&=	\frac{P(X>x+a, X>a)}{P(X>a)}\\
+		 						&=	\frac{P(X>x+a)}{P(X>a)}\\
+								&=	\frac{1-F_X(x+a)}{1-F_X(a)}\\
+								&=	\frac{e^{-\lambda(x+a)}}{e^{-\lambda a}}\\
+								&=	e^{-\lambda x}\\
+								&=	P(X>x)
+	 \end{split}
+ \end{equation}
+As a consequence, in a sequence of exponentially distributed events, the expected time until the next event always
+corresponds to $\frac{1}{\lambda}$, no matter how much time has passed since the last event.
+
+However, it is interesting to note that when $\alpha>1$, the future behavior of the probability distribution  is not
+independent of its past. Therefore, in general, the gamma distribution does not possess the memoryless property. This
+can be understood intuitively when looking at a case involving $\G\text{amma}(100, 1)$, which models the total time
+until 100 events separated by an average waiting time of 1 minute occur. It can be shown by brute force that if one has
+already waited $x=110$ minutes, the probability of having to wait at least another ten minutes for the hundredth event
+to occur is much lower than the probability of having to wait more than ten minutes in total\cite{myersCS547Lecture,
+probabilitycourseExponentialDistribution}.
+\begin{equation}
+	\begin{split}
+		P(X>110+10\, |\, X>110)	&=			\frac{P(X>110\, |\, X>120)\cdot P(X>120)}{P(X>110)}\\
+								&\approx	0.1760\\
+		P(X>10)					&\approx	1\\
+		P(X>110+10\, |\, X>110)	&\neq		P(X>10)
+	\end{split}
+\end{equation}
+Clearly, the memoryless property is not satisfied.
+
+
+\subsection{Moment Generating Function}\label{subsec:gamma:mgf}
 The moment generating function (MGF) of a real number, vector or matrix random variable $X$ is used to compute a
 distribution's moment. It provides an extremely useful tool for distribution analysis and proofs related to many other
 properties. Unlike the characteristic function, which will be briefly explored in \autoref{subec:advancedproperties:cf},
@@ -251,15 +379,49 @@ Then:
 	\begin{split}
 		E(X^\beta)	&=	\int^\infty_0 x^\beta f(x)\diff{x}\\
 					&=	\int^\infty_0 x^\beta \frac{\lambda^\alpha}{\Gamma(\alpha)}x^{\alpha-1}e^{-\lambda x}\diff{x}\\
+					&=	\frac{\lambda^\alpha}{\Gamma(\alpha)}\int^\infty_0 x^{(\alpha+\beta)-1}e^{-\lambda x}\diff{x}\\
+					&=	\frac{\lambda^\alpha}{\Gamma(\alpha)}\frac{\Gamma(\alpha+\beta)}{\lambda^{\alpha+\beta}}\int^\infty_0 \frac{\lambda^{\alpha+\beta}}{\Gamma(\alpha+\beta)}x^{(\alpha+\beta)}\diff{x}\\
+					&=	\frac{\Gamma(\alpha+\beta)}{\lambda^\beta \Gamma(\alpha)}\text{ for }\beta\in (-\alpha, \infty)
 	\end{split}
 \end{equation}
+The expected value and the variance can be determined using the provided formula above:
+\paragraph{Expected Value}
+If $E(X^\beta) = \frac{\Gamma(\alpha+\beta)}{\lambda^\beta \Gamma(\alpha)}$, then:
+\begin{equation}
+	\begin{split}
+		E(X^1)	&=	\frac{\Gamma(\alpha+1)}{\lambda^1 \Gamma(\alpha)}\\
+		E(X^1)	&=	\frac{\alpha\Gamma(\alpha)}{\lambda\Gamma(\alpha)}\\
+				&=	\frac{\alpha}{\lambda}
+	\end{split}
+\end{equation}
+
+\paragraph{Variance}
+In order to find the variance, $E(X^2)$ will need to be found using the same technique used to determine the formula for
+$E(X)$. If $E(X^\beta) = \frac{\Gamma(\alpha+\beta)}{\lambda^\beta \Gamma(\alpha)}$, then:
+\begin{equation}
+	\begin{split}
+		E(X^2)	&=	\frac{\Gamma(\alpha+2)}{\lambda^2 \Gamma(\alpha)}\\
+				&=	\frac{\alpha(\alpha+1)\Gamma(\alpha)}{\lambda^2 \Gamma(\alpha)}\\
+				&=	\frac{\alpha^2+\alpha}{\lambda^2}
+	\end{split}
+\end{equation}
+The variance can now be found with this technique:
+\begin{equation}
+	\begin{split}
+		\text{Var}(X)	&=	E(X^2) - [E(X)]^2\\
+						&=	\frac{\alpha^2+\alpha}{\lambda^2} - \left[\frac{\alpha}{\lambda}\right]^2\\
+						&=	\frac{\alpha^2+\alpha}{\lambda^2} - \frac{\alpha^2}{\lambda^2}\\
+						&=	\frac{\alpha}{\lambda^2}
+	\end{split}
+\end{equation}
+In the next section, let's examine other techniques that may be used to get the variance of the gamma distribution.
 
 %======================================================================================================================
 %======================================================================================================================
 %======================================================================================================================
 
 \pagebreak
-\subsection{Variance}
+\subsection{Variance}\label{subsec:gamma:variance}
 The variance is a measure of how "spread out" the data is. Indeed, the lower the variance is, the sharper the
 probability density function graph will be. More specifically, the variance is the expected value of the square standard
 deviation of the random variable examined from the expected value described in
@@ -352,40 +514,18 @@ Conclusively, \autoref{eq:gamma:var} is confirmed.
 %======================================================================================================================
 
 \pagebreak
-\subsection{Quantiles \incomplete}
-\bigred{Since we can generate the graph of the CDF, we should still explain what the quantiles are... at least visually using a graph}
-
+\subsection{Quantiles}
 Usually, the quantile function is defined as the inverse of the cumulative distribution function. Since the gamma
 distribution has no closed form for its CDF (see \autoref{subsec:gamma:cdf}) and, therefore, the latter cannot be
 inverted, it has no quantile function. In other words, there is no explicit form for the quantile function since
 $q(p)=F^{-1}(p)$ but $F^{-1}(x)$ is not defined as $F(x)$ is an integral with no antiderivative.
 
-\subsection{Median \bigred{proof}}
-The median of a probability distribution is the value that separates the area under the curve of its distribution
-function in two equal parts. It follows that, in the case of the gamma distribution, the median is defined as the value
-$m$ for which:
-\begin{equation}
-	\frac{1}{2} = \frac{\lambda^\alpha}{\Gamma(\alpha)} \int^m_0 x^{\alpha-1} e^{-\lambda x}\diff{x}
-\end{equation}
+Visually, quantiles may are represented as equal subdivisions of a probability density function graph starting from the
+median. That is, in the following figure, the first quantile is represented by the section weighing 34\% of the whole
+PDF, the second one represents the section weighing 13.5\% and the last one represents the section weighing 2\%. As may
+be noticed, these subdivisions are equally divided both sides of the median.
+\figurecenter{1}{Quantiles.png}{Visual representation of quantiles in a probability density distribution. Provided by GeeksforGeeks \cite{geeksforgeeksQuantileQuantilePlots2021}}{fig:graph:quantiles}
 
-However, it is interesting to note that the median of the gamma distribution has no simple closed form : due to its
-highly varying shape, it cannot be represented in an equation as a function of its parameters. Although approximations
-of the median can be performed for certain ranges of the shape parameter, this topic will not be explored in depth by
-this paper. Still, there is comfort in the fact that some special cases of the gamma distribution do have a median, such
-as the exponential distribution. Indeed, the median of a continuous random variable following the gamma distribution
-such that $X\sim\G\text{amma}(1, \lambda)\equiv\E\text{xp}(\lambda)$ may be obtained through a simple integration
-process:
-\begin{equation}
-	\begin{split}
-		\frac{1}{2}					&=	\frac{\lambda^\alpha}{\Gamma(\alpha)} \int^m_0 x^{\alpha-1} e^{-\lambda x}\diff{x}\\
-		\Rightarrow\frac{1}{2}		&=	-e^{-\lambda m} + 1\\
-		\Rightarrow\frac{1}{2}		&=	e^{-\lambda m}\\
-		\Rightarrow\ln(\frac{1}{2})	&=	-\lambda m\\
-		\Rightarrow-\ln(2)			&=	-\lambda m\\
-		\Rightarrow m				&=	\frac{\ln(2)}{\lambda}
-	\end{split}
-\end{equation}
-Hence, the median of an exponential distribution is defined as $\frac{\ln(2)}{\lambda}$.
 
 %======================================================================================================================
 %======================================================================================================================
@@ -434,69 +574,55 @@ of this latter parameterization of the gamma distribution is of $\lambda=0.3$ at
 %======================================================================================================================
 
 \pagebreak
-\section{Advanced Properties}
-\subsection{Skewness}
-In statistics, the skewness of a distribution is defined as the degree of asymmetry of the shape of the probability
-distribution with respect to the normal distribution. Distributions can exhibit right (positive) or left (negative)
-skewness; the normal distribution is qualified as exhibiting zero skewness. In the case of the gamma distribution, the
-skewness is only dependent upon the shape parameter $\alpha$ and corresponds to\cite{chenLearnSkewness2021,
-wikipediaGammaDistribution2022}:
+\subsection{Median}
+The median of a probability distribution is the value that separates the area under the curve of its distribution
+function in two equal parts. It follows that, in the case of the gamma distribution, the median is defined as the value
+$m$ for which:
 \begin{equation}
-	\text{Skewness} = \frac{2}{\sqrt{\alpha}}
+	\frac{1}{2} = \frac{\lambda^\alpha}{\Gamma(\alpha)} \int^m_0 x^{\alpha-1} e^{-\lambda x}\diff{x}
 \end{equation}
 
-\subsection{Information Entropy}
-The entropy of a random variable is defined as the average level of uncertainty associated with the possible outcomes
-associated with its probability distribution. In the case of continuous probability distributions such as the gamma
-distribution, one usually refers to differential entropy (also called continuous entropy), defined
-as\cite{wikipediaDifferentialEntropy2022, wikipediaGammaDistribution2022}:
-\begin{equation}
-	h(X) = E[-\log(f(X))]
-\end{equation}
-More specifically, the entropy of the gamma distribution corresponds to:
-\begin{equation}
-	H(X) = \alpha + \ln(\lambda) + \ln(\Gamma(\alpha)) + (1-\alpha)\psi(\alpha)
-\end{equation}
-Following is the proof of this preceding equation:
-\begin{proof}
-	\begin{equation}
-		\begin{split}
-			H(X)	&=	E[-\ln(p(X))]\\
-					&=	E[-\alpha\ln(\lambda) + \ln(\Gamma(\alpha)) - (\alpha-1)\ln(X) + \lambda X]\\
-					&=	\alpha + \ln(\lambda) + \ln(\Gamma(\alpha)) + (1-\alpha)\psi(\alpha)
-		\end{split}
-	\end{equation}
-\end{proof}
-
-\subsection{Characteristic function \incomplete}\label{subec:advancedproperties:cf}
-\begin{equation}
-	\text{CF} = \left(1-\frac{it}{\lambda}\right)^{-\alpha}
+However, it is interesting to note that the median of the gamma distribution has no simple closed form : due to its
+highly varying shape, it cannot be represented in an equation as a function of its parameters. Interestingly, some have
+noticed that an approximations of the median can be performed in cases where the parameter
+$\lambda=1$\cite{wikipediaGammaDistribution2022}:
+\begin{equation}\label{eq:gamma:median:approximation}
+	m = \alpha(1-\frac{1}{9\alpha})
 \end{equation}
 
-\subsection{Higher moments \incomplete}
-The $n$th raw moment is given by:
-\begin{equation}
-	E[X^n] = \frac{\Gamma(n+\alpha)}{\lambda^n\Gamma(\alpha)}
-\end{equation}
-\subsection{Methods of moments \incomplete}
+Let's take the case of a distribution $\G\text{amma}(5, 1)$ to examine this claim. The approximation of the median using
+\autoref{eq:gamma:median:approximation} is as follows:
 \begin{equation}
 	\begin{split}
-		\alpha	&=	\frac{E(X)^2}{\text{Var}(X)}\\
-		\lambda	&=	\frac{E(X)}{\text{Var}(X)}
+		m	&=	\alpha(1-\frac{1}{9\alpha})\\
+			&=	5(1-\frac{1}{9\cdot 5})\\
+			&=	\frac{44}{9}\\
+			&=	4.\bar{8}
 	\end{split}
 \end{equation}
 
-\subsection{Excess kurtosis}
-Kurtosis, the fourth standardized moment, is a characteristic used to describe the shape, or the “tailedness” of a
-probability distribution. The normal distribution is used as the standard, displaying an excess kurtosis of zero with
-which one can compare the excess kurtosis of other distributions\cite{wikipediaKurtosis2022}.
+Let's confirm the validity of the answer using the graph of the probability density function of the distribution
+$\G\text{amma}(5, 1)$.
+\figurecenter{1}{Gamma_median_approximation.png}{Graph featuring the probability density function of a gamma distribution with parameters $\alpha=5$ and $\lambda=1$.}{fig:graph:gamma:median:approximation}
+The approximation seems to, in fact, be valid as the PDF is "weighted" more towards the right and its median seems to be
+between 4.5 and 5.
 
-The exponential distribution, as a special case of the gamma distribution, has a positive excess kurtosis and is hence
-called leptokurtic. This, in short, indicates that it exhibits fatter tails than the normal distribution. Following is
-the equation characterizing the excess kurtosis of the gamma distribution\cite{wikipediaKurtosis2022}:
+Still, there is comfort in the fact that some special cases of the gamma distribution do have a
+median, such as the exponential distribution. Indeed, the median of a continuous random variable following the gamma
+distribution such that $X\sim\G\text{amma}(1, \lambda)\equiv\E\text{xp}(\lambda)$ may be obtained through a simple
+integration process:
 \begin{equation}
-	\text{Kurtosis} = \frac{6}{\alpha}
+	\begin{split}
+		\frac{1}{2}					&=	\frac{\lambda^\alpha}{\Gamma(\alpha)} \int^m_0 x^{\alpha-1} e^{-\lambda x}\diff{x}\\
+		\Rightarrow\frac{1}{2}		&=	-e^{-\lambda m} + 1\\
+		\Rightarrow\frac{1}{2}		&=	e^{-\lambda m}\\
+		\Rightarrow\ln(\frac{1}{2})	&=	-\lambda m\\
+		\Rightarrow-\ln(2)			&=	-\lambda m\\
+		\Rightarrow m				&=	\frac{\ln(2)}{\lambda}
+	\end{split}
 \end{equation}
+Hence, the median of an exponential distribution is defined as $\frac{\ln(2)}{\lambda}$.
+
 %======================================================================================================================
 %======================================================================================================================
 %======================================================================================================================
@@ -523,7 +649,7 @@ First of all, the gamma function is defined as:
 \begin{equation}
 	\Gamma(\alpha)=\int^\infty_0 x^{\alpha-1}e^{-x}\diff{x} \textnormal{ for }\alpha\in\mathbb{R}^+
 \end{equation}\\[-36pt]
-Assuming that $\alpha > 1$, the closed form of the Gamma function may be found with integration by parts:\\[-12pt]
+Assuming that $\alpha > 1$, the closed form of the gamma function may be found with integration by parts:\\[-12pt]
 \begin{empheq}[box=\widefbox]{align*}
 	u=x^{\alpha-1}							&&\,	\diff{v}=e^{-x}\diff{x}\\
 	\diff{u}=(\alpha-1)x^{\alpha-2}\diff{x}	&&\,	v=-e^{-x}
@@ -756,72 +882,6 @@ function, as was mentioned previously, is not defined for negative integers.
 %======================================================================================================================
 
 \pagebreak
-\section{General Applications and Family}\label{sec:generalApplications}
-
-The gamma distribution is used in many fields, since it is directly related to the Erlang, normal and exponential
-distributions whose contributions extend to several disciplines. Here, we will present some of those applications.
-
-\subsection{Insurance Companies}
-First, the gamma distribution is of great use in the field of insurance services, given its direct relation to the
-exponential distribution. For example, an analyst could use this distribution to specify the amount of time a product
-lasts if one uses it at a constant average rate, thus modeling how reliable it is (and how much insurance should be
-charged for it). Then, the size of loan defaults and the cost of insurance claims are also often modeled according to a
-gamma distribution.
-
-\subsection{Natural Events Prediction}
-Then, the gamma distribution can also be used to model the amount of rainfall accumulated in a given reservoir. Indeed,
-this distribution fits positive data, represents rainfall distribution well and its two parameters -shape and scale-
-give it sufficient flexibility to fit various climates\cite{husakUseGammaDistribution2007}.
-
-\subsection{Customer Satisfaction}
-Service time can also be modeled using the gamma distribution. For example, if one is waiting in line for a meal, the
-waiting time until one receives the long-awaited food can be modelled using an exponential distribution. Using the same
-principle, the Erlang distribution can allow one to determine the total length of a process, that is, the duration of a
-sequence of independent events. For instance, if a large number of people are waiting in line to be served, the
-distribution of each of their individual waiting times (the sum of several independent exponentially distributed
-variables) will correspond to the time it takes for the employee to serve everyone in it. Therefore, the gamma
-distribution lies at the heart of what is called queuing theory: the mathematical study of the congestion of waiting
-lines. Since waiting lines are found in countless places such as banks, restaurants and hospitals, as well as on web
-servers or multistep manufacturing and distribution processes, the gamma distribution provides very useful applications
-in everyday life.
-
-\subsection{Call Centers}
-One of the most famous of those applications concerns phone queuing, on which A. K. Erlang famously worked. The Erlang
-distribution has indeed been developed in the goal to model the time in between incoming calls at a call center, along
-with the expected number of calls, thus allowing call centers to know what their staffing capacity should be depending
-on the time of day.
-
-Beyond waiting lines, the Erlang distribution is often used by retailers to model the frequency of interpurchase times
-by consumers, which gives them an idea of how often a given consumer is expected to purchase a product from them and
-helps them control inventory and staffing.
-
-\subsection{Oncology}
-Finally, in the field of oncology, the age distribution of cancer incidence also follows a gamma distribution. Although
-the factors underlying cancer development are not yet fully understood, it has been hypothesized that cancers arise
-after several successive “driver events”, that is, after some number of mutations occurs in a cell. Analyses of cancer
-statistics suggest that the incidence of the most prevalent cancer types with respect to the patients' age closely
-follows the gamma probability distribution or, more specifically, the Erlang distribution. This may be due to the fact
-that, more broadly, the Erlang distribution can be used to model cell cycle time
-distribution\cite{belikovNumberKeyCarcinogenic2017}.
-
-\begin{equation}
-	Y = A\cdot x^{k-1}\frac{e^{\frac{-x}{b}}}{b^k}\cdot\Gamma(k)
-\end{equation}
-
-In this case, the shape parameter $\alpha$ predicts the number of carcinogenic driver events, whereas the shape
-parameter $\lambda$ predicts the average time between those events for each cancer type. Using an additional amplitude
-parameter A, the maximal population susceptibility to a given type of cancer can even be
-predicted\cite{belikovNumberKeyCarcinogenic2017}. Given that experimental research on cancer development is crucial for
-the lives of many people, numerical references such as that provided by the gamma distribution are of paramount
-importance in our society. The gamma distribution can save lives, if it is used wisely!
-
-\figurecenter{1}{Cancer_probability}{"The Erlang distribution approximates cancer incidence by age for 20 most prevalentcancer types. Dots indicate actual data for 5-year age intervals, curves indicate the PDF of the Erlang distribution fitted to the data [...]. The middle age of each age group is plotted. Cancer types are arranged in the order of decreasing incidence"\cite{belikovNumberKeyCarcinogenic2017}.}{fig:cancerProbability}
-
-%======================================================================================================================
-%======================================================================================================================
-%======================================================================================================================
-
-\pagebreak
 \section{Special Cases of the Gamma Distribution}
 The gamma distribution has many common parameterizations. Hence, in order to make working with them easier, they were
 given a specific name such as the chi-square distribution, the exponential distribution and more. In this section, we
@@ -851,7 +911,7 @@ interpurchase times and cancer incidence (see \autoref{sec:generalApplications})
 %======================================================================================================================
 
 \pagebreak
-\subsection{The Exponential Distribution \bigred{graph?, gamma\_sum}}
+\subsection{The Exponential Distribution \bigred{X+Y}}\label{subsec:specialcases:exponential}
 The gamma distribution can model the elapsed time between random and independent events. However, what should one do
 when they want to strictly model the time to wait before a new event?
 
@@ -862,7 +922,6 @@ $\lambda$, where the rate parameter represents how quickly events occur. More co
 \begin{equation}
 	X\sim\G\text{amma}(1, \lambda)\equiv\E\text{xp}(\lambda)
 \end{equation}
-\bigred{MAYBE HERE INCLUDE GRAPH OF GAMMA DISTRIBUTION WITH SHAPE PARAMETER 1  COMPARED TO OTHER SHAPE PARAMETERS ?}
 Indeed, using a simple substitution of the variables, one gets that:
 \begin{equation}\label{eq:relation:exp}
 	\begin{split}
@@ -880,7 +939,7 @@ $X_1,\,X_2,\,\ldots,\,X_n$ are i.i.d random variables following $\E\text{xp}(\la
 	Y=\sum^k_{i=1}\left[X_i\right]\sim\G\text{amma}(k, \lambda)
 \end{equation}
 \begin{proof}
-	\bigred{ADD HERE PROOF FOR THE DENSITY FUNCTION OF THE SUM OF EXPONENTIAL RANDOM VARIABLES (ETIENNE'S PART)}
+	\bigred{X+Y proof}
 	\begin{equation}
 		XYZ
 	\end{equation}
@@ -983,7 +1042,7 @@ having $60$ data samples following a $\E\text{xp}(1)$ distribution which fits th
 %======================================================================================================================
 
 \pagebreak
-\subsection{The Beta Distribution \bigred{X/(X+Y)}}
+\subsection{The Beta Distribution \bigred{X/(X+Y)}}\label{subsec:specialcases:beta}
 To introduce the beta distribution, let's show how it is related to the gamma distribution. Indeed, for
 $X\sim\G\text{amma}(\alpha, \lambda)$ and $Y\sim\G\text{amma}(\beta, \lambda)$, then
 $\frac{X}{X+Y}\sim\G\text{amma}(\alpha+\beta, \lambda)$ Let's prove it:
@@ -1040,6 +1099,156 @@ Interesting similarities with the probability density function of the gamma dist
 form of this equation. While this generalization of the gamma distribution to matrices is a rather intriguing topic that
 was important to mention, this paper will not explore the Wishart distribution in greater depth
 \cite{wikipediaWishartDistribution2022}.
+
+%======================================================================================================================
+%======================================================================================================================
+%======================================================================================================================
+
+\pagebreak
+\section{Advanced Properties}
+\subsection{Skewness}
+In statistics, the skewness of a distribution is defined as the degree of asymmetry of the shape of the probability
+distribution with respect to the normal distribution. Distributions can exhibit right (positive) or left (negative)
+skewness; the normal distribution is qualified as exhibiting zero skewness. In the case of the gamma distribution, the
+skewness is only dependent upon the shape parameter $\alpha$ and corresponds to\cite{chenLearnSkewness2021,
+wikipediaGammaDistribution2022}:
+\begin{equation}
+	\text{Skewness} = \frac{2}{\sqrt{\alpha}}
+\end{equation}
+
+\subsection{Information Entropy}
+The entropy of a random variable is defined as the average level of uncertainty associated with the possible outcomes
+associated with its probability distribution. In the case of continuous probability distributions such as the gamma
+distribution, one usually refers to differential entropy (also called continuous entropy), defined
+as\cite{wikipediaDifferentialEntropy2022, wikipediaGammaDistribution2022}:
+\begin{equation}
+	h(X) = E[-\log(f(X))]
+\end{equation}
+More specifically, the entropy of the gamma distribution corresponds to:
+\begin{equation}
+	H(X) = \alpha + \ln(\lambda) + \ln(\Gamma(\alpha)) + (1-\alpha)\psi(\alpha)
+\end{equation}
+Following is the proof of this preceding equation:
+\begin{proof}
+	\begin{equation}
+		\begin{split}
+			H(X)	&=	E[-\ln(p(X))]\\
+					&=	E[-\alpha\ln(\lambda) + \ln(\Gamma(\alpha)) - (\alpha-1)\ln(X) + \lambda X]\\
+					&=	\alpha + \ln(\lambda) + \ln(\Gamma(\alpha)) + (1-\alpha)\psi(\alpha)
+		\end{split}
+	\end{equation}
+\end{proof}
+
+\subsection{Characteristic function}\label{subec:advancedproperties:cf}
+In statistics, any random variable associated with a probability density function is said to have a characteristic
+function, which corresponds to the Fourier transformation of its probability density function. The characteristic
+function thus simply corresponds to an alternative way of describing a random variable: it fully determines the behavior
+and properties of a given probability distribution to the same extent as the distribution function, but can provide
+different insights to the features of the random variable. In the case of the gamma distribution, the characteristic
+function is defined as\cite{wikipediaCharacteristicFunctionProbability2022}:
+\begin{equation}
+	\text{CF} = \left(1-\frac{it}{\lambda}\right)^{-\alpha}
+\end{equation}
+
+\subsection{Methods of Moments}
+The "methods of moments" of a probability distribution are methods used to estimate population parameters, that is, to
+describe various aspects of a given group or population. The methods of moments of the gamma distribution are defined
+as\cite{wikipediaMethodMomentsStatistics2021, limWhatPopulationParameter2019}:
+\begin{equation}
+	\begin{split}
+		\alpha	&=	\frac{E(X)^2}{\text{Var}(X)}\\
+		\lambda	&=	\frac{E(X)}{\text{Var}(X)}
+	\end{split}
+\end{equation}
+
+\subsubsection{Higher Moments}
+To describe or estimate further shape parameters of a probability distribution, the higher-order moments of a function
+can be used. Moments beyond 4th-order are often increasingly hard to estimate, and larger sample sizes are often
+required to obtain better quality of estimation\cite{wikipediaMomentMathematics2022}.
+
+The $n$th raw moment is given by:
+\begin{equation}
+	E[X^n] = \frac{\Gamma(n+\alpha)}{\lambda^n\Gamma(\alpha)}
+\end{equation}
+
+\subsection{Excess kurtosis}
+Kurtosis, the fourth standardized moment, is a characteristic used to describe the shape, or the “tailedness” of a
+probability distribution. The normal distribution is used as the standard, displaying an excess kurtosis of zero with
+which one can compare the excess kurtosis of other distributions\cite{wikipediaKurtosis2022}.
+
+The exponential distribution, as a special case of the gamma distribution, has a positive excess kurtosis and is hence
+called leptokurtic. This, in short, indicates that it exhibits fatter tails than the normal distribution. Following is
+the equation characterizing the excess kurtosis of the gamma distribution\cite{wikipediaKurtosis2022}:
+\begin{equation}
+	\text{Kurtosis} = \frac{6}{\alpha}
+\end{equation}
+
+%======================================================================================================================
+%======================================================================================================================
+%======================================================================================================================
+
+\pagebreak
+\section{General Applications and Family}\label{sec:generalApplications}
+
+The gamma distribution is used in many fields, since it is directly related to the Erlang, normal and exponential
+distributions whose contributions extend to several disciplines. Here, we will present some of those applications.
+
+\subsection{Insurance Companies}
+First, the gamma distribution is of great use in the field of insurance services, given its direct relation to the
+exponential distribution. For example, an analyst could use this distribution to specify the amount of time a product
+lasts if one uses it at a constant average rate, thus modeling how reliable it is (and how much insurance should be
+charged for it). Then, the size of loan defaults and the cost of insurance claims are also often modeled according to a
+gamma distribution.
+
+\subsection{Natural Events Prediction}
+Then, the gamma distribution can also be used to model the amount of rainfall accumulated in a given reservoir. Indeed,
+this distribution fits positive data, represents rainfall distribution well and its two parameters -shape and scale-
+give it sufficient flexibility to fit various climates\cite{husakUseGammaDistribution2007}.
+
+\subsection{Customer Satisfaction}
+Service time can also be modeled using the gamma distribution. For example, if one is waiting in line for a meal, the
+waiting time until one receives the long-awaited food can be modelled using an exponential distribution. Using the same
+principle, the Erlang distribution can allow one to determine the total length of a process, that is, the duration of a
+sequence of independent events. For instance, if a large number of people are waiting in line to be served, the
+distribution of each of their individual waiting times (the sum of several independent exponentially distributed
+variables) will correspond to the time it takes for the employee to serve everyone in it. Therefore, the gamma
+distribution lies at the heart of what is called queuing theory: the mathematical study of the congestion of waiting
+lines. Since waiting lines are found in countless places such as banks, restaurants and hospitals, as well as on web
+servers or multistep manufacturing and distribution processes, the gamma distribution provides very useful applications
+in everyday life.
+
+\subsection{Call Centers}
+One of the most famous of those applications concerns phone queuing, on which A. K. Erlang famously worked. The Erlang
+distribution has indeed been developed in the goal to model the time in between incoming calls at a call center, along
+with the expected number of calls, thus allowing call centers to know what their staffing capacity should be depending
+on the time of day.
+
+Beyond waiting lines, the Erlang distribution is often used by retailers to model the frequency of interpurchase times
+by consumers, which gives them an idea of how often a given consumer is expected to purchase a product from them and
+helps them control inventory and staffing.
+
+\subsection{Oncology}
+Finally, in the field of oncology, the age distribution of cancer incidence also follows a gamma distribution. Although
+the factors underlying cancer development are not yet fully understood, it has been hypothesized that cancers arise
+after several successive “driver events”, that is, after some number of mutations occurs in a cell. Analyses of cancer
+statistics suggest that the incidence of the most prevalent cancer types with respect to the patients' age closely
+follows the gamma probability distribution or, more specifically, the Erlang distribution. This may be due to the fact
+that, more broadly, the Erlang distribution can be used to model cell cycle time
+distribution\cite{belikovNumberKeyCarcinogenic2017}.
+
+\begin{equation}
+	Y = A\cdot x^{k-1}\frac{e^{\frac{-x}{b}}}{b^k}\cdot\Gamma(k)
+\end{equation}
+
+In this case, the shape parameter $\alpha$ predicts the number of carcinogenic driver events, whereas the shape
+parameter $\lambda$ predicts the average time between those events for each cancer type. Using an additional amplitude
+parameter A, the maximal population susceptibility to a given type of cancer can even be
+predicted\cite{belikovNumberKeyCarcinogenic2017}. Given that experimental research on cancer development is crucial for
+the lives of many people, numerical references such as that provided by the gamma distribution are of paramount
+importance in our society. The gamma distribution can save lives, if it is used wisely!
+
+\figurecenter{1}{Cancer_probability}{"The Erlang distribution approximates cancer incidence by age for 20 most prevalentcancer types. Dots indicate actual data for 5-year age intervals, curves indicate the PDF of the Erlang distribution fitted to the data [...]. The middle age of each age group is plotted. Cancer types are arranged in the order of decreasing incidence"\cite{belikovNumberKeyCarcinogenic2017}.}{fig:cancerProbability}
+
 %======================================================================================================================
 % END OF DOCUMENT =====================================================================================================
 %======================================================================================================================
@@ -1065,15 +1274,17 @@ Here is the code used to generate the central limit theorem graph in \autoref{su
 
 \pagebreak
 \section{Simulations - Python Code}
-\subsection{Simulation 1 \bigred{add ref}}
+\subsection{Simulation 1: $X+Y$}
 Comparison of the graph of $\G\text{amma}(\alpha+\beta, \lambda)$ and the histogram of a $X+Y$ of
-$X\sim\G\text{amma}(\alpha, \lambda)$ and $Y\sim\G\text{amma}(\beta, \lambda)$ random variables.
+$X\sim\G\text{amma}(\alpha, \lambda)$ and $Y\sim\G\text{amma}(\beta, \lambda)$ random variables featured in
+\autoref{subsec:specialcases:exponential}.
 \lstinputlisting[language=Python, caption={}, label=code:simulation:1]{_assets/Simulation_1.py}
 
 \pagebreak
-\subsection{Simulation 2 \bigred{add ref}}
+\subsection{Simulation 2: $\frac{X}{X+Y}$}
 Comparison of the graph of $\B\text{eta}(\alpha, \beta)$ and the histogram of a $\frac{X}{X+Y}$ of
-$X\sim\G\text{amma}(\alpha, \lambda)$ and $Y\sim\G\text{amma}(\beta, \lambda)$ random variables.
+$X\sim\G\text{amma}(\alpha, \lambda)$ and $Y\sim\G\text{amma}(\beta, \lambda)$ random variables featured in
+\autoref{subsec:specialcases:beta}.
 \lstinputlisting[language=Python, caption={}, label=code:simulation:2]{_assets/Simulation_2.py}
 
 \pagebreak
