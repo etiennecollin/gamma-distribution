@@ -636,7 +636,7 @@ Hence, the median of an exponential distribution is defined as $\frac{\ln(2)}{\l
 \section{The Gamma Function}
 \vspace*{-6pt}
 Studied by Leonhard Euler (1707-1783), the gamma function is related to the gamma distribution. This extremely handy
-function allows the generalization of the factorial notation. As a matter of fact, whereas the factorial $\alpha!$ is
+function allows the generalization of the factorial notation. As a matter of fact, while the factorial $\alpha!$ is
 restricted to $\alpha\in\mathbb{N}$, the gamma function $\Gamma(\alpha)$ allows the computation of fractional and
 negative numbers such that $\alpha\in\mathbb{Q}$. By abusing the notation, the gamma function may even be used to
 compute $\Gamma(\alpha)$ such that $\alpha\in\mathbb{R}$. The relationship between the gamma function and the factorial
@@ -649,7 +649,7 @@ notation is as follows:
 
 \subsection{Definition}\label{subsec:gammafunction:definition}
 \vspace*{-6pt}
-First of all, the gamma function is defined as:
+First of all, the gamma function is defined as
 \vspace*{-12pt}
 \begin{equation}
 	\Gamma(\alpha)=\int^\infty_0 x^{\alpha-1}e^{-x}\diff{x} \textnormal{ for }\alpha\in\mathbb{R}^+
@@ -789,7 +789,7 @@ The proof for Claim \ref{claim:gammafunction:onehalf} may now be articulated:\\[
 
 \pagebreak
 \subsubsection{Negative values of $\alpha$}
-As was mentioned earlier, by abusing this identity shown in \autoref{eq:gammafunction:closedform}, one may extend the
+As was mentioned earlier, by abusing the identity shown in \autoref{eq:gammafunction:closedform}, one may extend the
 gamma function to negative non-integer values of $\alpha$ such that $\alpha\in\mathbb{R}\,\backslash\mathbb{Z}^-$. For
 example, to find $\Gamma(-\sfrac{9}{2})$, one may compute:
 \vspace*{-12pt}
@@ -833,7 +833,7 @@ for example, take the same example of $\Gamma(-\sfrac{9}{2})$\\[-12pt]
 
 \pagebreak
 \subsection{Relationship to Factorial Notation}
-Using a proof by induction, gamma functions may shown to be related to the factorial notation.
+Using a proof by induction, gamma functions can be shown to be related to the factorial notation.
 \begin{proof}
 	Let us prove \autoref{eq:gammafunction:factorial}, that is, that:\\[-18pt]
 	\begin{equation}
@@ -878,7 +878,7 @@ Using a proof by induction, gamma functions may shown to be related to the facto
 \pagebreak
 \subsection{Conclusion}
 Using everything that was computed previously, the graph of $\Gamma(\alpha)$ may be plotted. It includes both positive,
-negative and fractional values of $\alpha$. Notice how the asymptotes of the graph are every negative integer; the
+negative and fractional values of $\alpha$. Notice how the asymptotes of the graph are found at every negative integer value; the
 function, as was mentioned previously, is not defined for negative integers.
 \figurecenter{1}{gamma_function.png}{Graph featuring the plot of the function $\Gamma(\alpha)$ in red and the asymptotes of the function in dotted blue lines.}{fig:graph:gammafunction}
 
@@ -895,7 +895,7 @@ will present some of these special cases and prove their relationship.
 \subsection{The Erlang Distribution}\label{subsec:specialcases:erlang}
 In real world applications, it is often useful to limit the number of occurrences to a positive integer (it may not be
 pertinent to determine, for example, the waiting time until 2.665 events take place). In this context, the special name
-“Erlang distribution” has been attributed to the specific gamma distribution in which the shape parameter $\alpha$ only
+“erlang distribution” has been attributed to the specific gamma distribution in which the shape parameter $\alpha$ only
 takes positive integer values and where the rate parameter $\lambda$ is a positive real number.
 \begin{equation}
 	f_{X_\alpha}(x)	= 	\begin{cases}
@@ -906,7 +906,7 @@ takes positive integer values and where the rate parameter $\lambda$ is a positi
 
 This distribution takes its name from A. K. Erlang, the man who initially popularized its use in order to examine the
 number of telephone calls which can be made at the same time to the operators of the switching stations, in the field of
-phone traffic engineering. Indeed, the Erlang distribution's original purpose was to measure the time between incoming
+phone traffic engineering. Indeed, the erlang distribution's original purpose was to measure the time between incoming
 calls, a statistic which can be used along with the expected duration of incoming calls to analyze phone traffic loads.
 His work has since been expanded to consider queuing systems in general, as well as the load on web servers,
 interpurchase times and cancer incidence (see \autoref{sec:generalApplications})\cite{zachWhatErlangDistribution2020}.
@@ -918,11 +918,11 @@ interpurchase times and cancer incidence (see \autoref{sec:generalApplications})
 \pagebreak
 \subsection{The Exponential Distribution \bigred{X+Y}}\label{subsec:specialcases:exponential}
 The gamma distribution can model the elapsed time between random and independent events. However, what should one do
-when they want to strictly model the time to wait before a new event?
+when one wants to strictly model the time to wait before a single new event?
 
 If a unique event is modeled, it follows that the shape parameter is limited to $\alpha = 1$. In such a case, the gamma
 distribution is said to follow an exponential distribution: more specifically, if $X\sim\G\text{amma}(1, \lambda)$, then
-it can also be said that $X\sim\E\text{xp}(\lambda)$. $X$ thus follows an exponential distribution with rate parameter
+it can also be said that $X\sim\E\text{xp}(\lambda)$. The continuous random varialbe $X$ thus follows an exponential distribution with rate parameter
 $\lambda$, where the rate parameter represents how quickly events occur. More concretely:
 \begin{equation}
 	X\sim\G\text{amma}(1, \lambda)\equiv\E\text{xp}(\lambda)
@@ -956,7 +956,7 @@ $X_1,\,X_2,\,\ldots,\,X_n$ are i.i.d random variables following $\E\text{xp}(\la
 
 \pagebreak
 \subsection{The Chi-Squared Distribution}\label{subsec:specialcases:chi2}
-Then, the gamma distribution with parameters $\alpha=\sfrac{n}{2}$ and $\lambda=\sfrac{1}{2}$ is called the
+Then, a gamma distribution with parameters $\alpha=\sfrac{n}{2}$ and $\lambda=\sfrac{1}{2}$ is called the
 chi-squared distribution with $n$ degrees of freedom such that
 \begin{equation}
 	X\sim\G\text{ammma}(\sfrac{n}{2}, \sfrac{1}{2})\equiv\chi^2_n
@@ -1001,7 +1001,7 @@ chi-squared distribution with $n$ degrees of freedom such that
 	\end{equation}
 \end{proof}
 
-Using the result proved previously, the density function of the chi-squared distribution may be determined by
+Using the previously proven result, the density function of the chi-squared distribution may be determined by
 substituting the parameters $\alpha = \sfrac{n}{2}$ and $\lambda = \sfrac{1}{2}$ into the density function of the gamma
 distribution:
 \begin{equation}\label{eq:chisquared-density}
@@ -1014,7 +1014,7 @@ distribution:
 \figurecenter{1}{Chi2_PDF.png}{Graph of the probability distribution function of a $\chi^2_n$ distribution for various values of $n$.}{fig:specialcases:chi2:pdf}
 
 The chi square distribution is often used to describe the distribution of a sum of squared random variables, to test the
-fit of a distribution of data or to determine whether data series are independent or dependent.
+fit of a distribution of data, or to determine whether data series are independent or dependent.
 
 %======================================================================================================================
 %======================================================================================================================
@@ -1028,18 +1028,18 @@ distribution as it may be used to prove that the latter is related to the chi-sq
 	Z\sim\N\text{ormal}(0, 1)\Rightarrow Z^2\sim\G\text{amma}(\sfrac{1}{2}, \sfrac{1}{2})\equiv\chi^2_1
 \end{equation}
 
-Furthermore, as the gamma distribution $\G\text{amma}(\alpha, \lambda)$ may be viewed as a sum of $\alpha$ exponential
+Furthermore, since the gamma distribution $\G\text{amma}(\alpha, \lambda)$ may be viewed as a sum of $\alpha$ exponential
 distributions, then by the central limit theorem, the density function of the gamma distribution will be extremely similar
 to that of a normal distribution when $\alpha$ approaches $\infty$:
 \begin{equation}
 	\G\text{amma}(\alpha, \lambda) \approxequiv \N(\sfrac{\alpha}{\lambda}, \sfrac{\alpha}{\lambda^2})\text{ for }\alpha\to\infty
 \end{equation}
-The central limit theorem will not be proved as it is quite intuitive; the more data samples you have, the more
-centered around the expected value the probability density function graph will be. That being mentioned, here is a graph
+The central limit theorem will not be proved as it is quite intuitive; the more data samples one has, the more
+centered around the expected value the probability density function graph will be. That being said, here is a graph
 representing this concept by comparing the probability density function graph of a $\G\text{amma}(60, 1)$ to that of a
 $\N(60, 60)$. Because $\G\text{amma}(\alpha, \lambda)$ is in essence a sum of $\alpha$ i.i.d. random variables following
 a distribution $\E\text{xp}(\lambda)$, then it makes sense that having a distribution $\G\text{amma}(60, 1)$ is like
-having $60$ data samples following a $\E\text{xp}(1)$ distribution which fits the central limit theorem. Here is the graph:
+having $60$ data samples following a $\E\text{xp}(1)$ distribution, which fits the central limit theorem. 
 \figurecenter{1}{Central_limit_theorem.png}{Graph showcasing the central limit theorem by comparing the probability density function graph of $\G\text{amma}(60, 1)$ to that of $\N(60, 60)$.}{fig:graph:clt}
 
 %======================================================================================================================
@@ -1123,7 +1123,7 @@ wikipediaGammaDistribution2022}:
 
 \subsection{Information Entropy}
 The entropy of a random variable is defined as the average level of uncertainty associated with the possible outcomes
-associated with its probability distribution. In the case of continuous probability distributions such as the gamma
+of its probability distribution. In the case of continuous probability distributions such as the gamma
 distribution, one usually refers to differential entropy (also called continuous entropy), defined
 as\cite{wikipediaDifferentialEntropy2022, wikipediaGammaDistribution2022}:
 \begin{equation}
@@ -1195,7 +1195,7 @@ the equation characterizing the excess kurtosis of the gamma distribution\cite{w
 \pagebreak
 \section{General Applications and Family}\label{sec:generalApplications}
 
-The gamma distribution is used in many fields, since it is directly related to the Erlang, normal and exponential
+The gamma distribution is used in many fields, since it is directly related to the erlang, normal and exponential
 distributions whose contributions extend to several disciplines. Here, we will present some of those applications.
 
 \subsection{Insurance Companies}
@@ -1207,13 +1207,13 @@ gamma distribution.
 
 \subsection{Natural Events Prediction}
 Then, the gamma distribution can also be used to model the amount of rainfall accumulated in a given reservoir. Indeed,
-this distribution fits positive data, represents rainfall distribution well and its two parameters -shape and scale-
+this distribution fits positive data, represents rainfall distribution well and its two parameters
 give it sufficient flexibility to fit various climates\cite{husakUseGammaDistribution2007}.
 
 \subsection{Customer Satisfaction}
-Service time can also be modeled using the gamma distribution. For example, if one is waiting in line for a meal, the
+Service time can also be modeled using the gamma distribution. For example, if one is the sole person in line waiting for a meal, the
 waiting time until one receives the long-awaited food can be modelled using an exponential distribution. Using the same
-principle, the Erlang distribution can allow one to determine the total length of a process, that is, the duration of a
+principle, the erlang distribution can allow one to determine the total length of a process, that is, the duration of a
 sequence of independent events. For instance, if a large number of people are waiting in line to be served, the
 distribution of each of their individual waiting times (the sum of several independent exponentially distributed
 variables) will correspond to the time it takes for the employee to serve everyone in it. Therefore, the gamma
@@ -1223,12 +1223,13 @@ servers or multistep manufacturing and distribution processes, the gamma distrib
 in everyday life.
 
 \subsection{Call Centers}
-One of the most famous of those applications concerns phone queuing, on which A. K. Erlang famously worked. The Erlang
-distribution has indeed been developed in the goal to model the time in between incoming calls at a call center, along
+One of the most famous of those applications concerns phone queuing, on which A. K. Erlang famously worked. The erlang
+distribution has indeed been developed in the objective to model the time between incoming calls at a call center, along
 with the expected number of calls, thus allowing call centers to know what their staffing capacity should be depending
 on the time of day.
 
-Beyond waiting lines, the Erlang distribution is often used by retailers to model the frequency of interpurchase times
+\subsection{Retail}
+Beyond waiting lines, the erlang distribution is often used by retailers to model the frequency of interpurchase times
 by consumers, which gives them an idea of how often a given consumer is expected to purchase a product from them and
 helps them control inventory and staffing.
 
@@ -1237,16 +1238,16 @@ Finally, in the field of oncology, the age distribution of cancer incidence also
 the factors underlying cancer development are not yet fully understood, it has been hypothesized that cancers arise
 after several successive “driver events”, that is, after some number of mutations occurs in a cell. Analyses of cancer
 statistics suggest that the incidence of the most prevalent cancer types with respect to the patients' age closely
-follows the gamma probability distribution or, more specifically, the Erlang distribution. This may be due to the fact
-that, more broadly, the Erlang distribution can be used to model cell cycle time
-distribution\cite{belikovNumberKeyCarcinogenic2017}.
+follows the gamma probability distribution or, more specifically, the erlang distribution. This may be due to the fact
+that, more broadly, the erlang distribution can be used to model cell cycle time
+distribution\cite{belikovNumberKeyCarcinogenic2017}. The age distribution of cancer can be modeled using the following equation:
 
 \begin{equation}
-	Y = A\cdot x^{k-1}\frac{e^{\frac{-x}{b}}}{b^k}\cdot\Gamma(k)
+	Y = A\cdot x^{\alpha-1}\frac{e^{\frac{-x}{\beta}}}{\beta^\alpha}\cdot\Gamma(k)
 \end{equation}
 
-In this case, the shape parameter $\alpha$ predicts the number of carcinogenic driver events, whereas the shape
-parameter $\lambda$ predicts the average time between those events for each cancer type. Using an additional amplitude
+In this case, the shape parameter $\alpha$ predicts the number of carcinogenic driver events, whereas the scale
+parameter $\beta$ predicts the average time between those events for each cancer type. Using an additional amplitude
 parameter A, the maximal population susceptibility to a given type of cancer can even be
 predicted\cite{belikovNumberKeyCarcinogenic2017}. Given that experimental research on cancer development is crucial for
 the lives of many people, numerical references such as that provided by the gamma distribution are of paramount
