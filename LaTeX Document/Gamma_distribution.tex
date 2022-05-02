@@ -251,7 +251,7 @@ Now that the fundamentals of the gamma distribution are set, a few properties st
 function and the cumulative distribution function will be presented and proved. These properties, along
 with being extremely intriguing, are essential to multiple computations and statistical analyses.
 
-\subsection{Memoryless Distribution}
+\subsection{Memoryless Property}
 The memoryless property indicates that a given probability distribution is independent of its history: the likelihood of
 something happening in the future has no relation to past events. In statistics, a continuous random variable $X$
 satisfies the memoryless property if:
@@ -325,7 +325,7 @@ formula::
 \begin{equation}
 	\mu = E(X) = \frac{\alpha}{\lambda}
 \end{equation}
-Interestingly, there are multiple ways to prove this result. Three different proofs will be explored.
+Interestingly, there are multiple ways to prove this result. Three different proofs will be explored in this paper.
 
 \paragraph{Proof 1}\label{par:gamma:expected:proof1}
 The first technique uses the gamma distribution probability density function presented in \autoref{subsec:gamma:pdf} as
@@ -373,7 +373,7 @@ A third way to demonstrate that $E(X) = \frac{\alpha}{\lambda}$, is by performin
 \begin{equation}
 	\int^\infty_0 1-F(x)\diff{x}
 \end{equation}
-However, this technique is not possible in the case of the gamma distribution as there is no explicit formula for $F(x)$
+However, this technique is not possible in the case of the gamma distribution, as there is no explicit formula for $F(x)$
 as seen in \autoref{subsec:gamma:cdf}.
 
 \subsubsection{Special Case}
@@ -419,7 +419,7 @@ The variance can now be found with this technique:
 						&=	\frac{\alpha}{\lambda^2}
 	\end{split}
 \end{equation}
-In the next section, let's examine other techniques that may be used to get the variance of the gamma distribution.
+In the next section, we will examine other techniques that may be used to get the variance of the gamma distribution.
 
 %======================================================================================================================
 %======================================================================================================================
@@ -522,8 +522,8 @@ Conclusively, \autoref{eq:gamma:var} is confirmed.
 \subsection{Quantiles}
 Usually, the quantile function is defined as the inverse of the cumulative distribution function. Since the gamma
 distribution has no closed form for its CDF (see \autoref{subsec:gamma:cdf}) and, therefore, the latter cannot be
-inverted, it has no quantile function. In other words, there is no explicit form for the quantile function since
-$q(p)=F^{-1}(p)$ but $F^{-1}(x)$ is not defined as $F(x)$ is an integral with no antiderivative.
+inverted, it has no quantile function. In other words, there is no explicit form for the quantile function:
+$q(p)=F^{-1}(p)$, but $F^{-1}(x)$ is not defined, since $F(x)$ is an integral with no antiderivative.
 
 Visually, quantiles may are represented as equal subdivisions of a probability density function graph starting from the
 median. That is, in the following figure, the first quantile is represented by the section weighing 34\% of the whole
@@ -560,7 +560,7 @@ There are two special cases concerning the mode of the gamma distribution: when 
 (the graph has a vertical asymptote) and when the parameter $\alpha=1$.
 
 \paragraph{Case 1:}
-The first special case is when the mode PDF never reaches its maximum value, that is, when there is a vertical asymptote
+The first special case is when the mode of the PDF never reaches its maximum value, that is, when there is a vertical asymptote
 on its plot. The purple plot ($\G\text{amma}(0.5, 1)$) on \autoref{fig:graph:gamma:mode} features this case. Indeed, if
 $f(x)$ is the probability density function, then:
 \begin{equation}
