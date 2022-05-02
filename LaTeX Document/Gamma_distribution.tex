@@ -92,8 +92,8 @@ parameterized with two different parameterizations\cite{wikipediaGammaDistributi
 
 In the second parameterization, the scale parameter $\theta$ corresponds to the inverse of the rate parameter $\lambda$,
 allowing flexibility in the modelization of the distribution. Indeed, the application of the scale parameter is
-pertinent when one wants to use the value of the mean time between events in the probability density function, as
-opposed to the total time until a given number of events occurs.
+pertinent when one wants to use the value of the mean time between events in a Poisson process, as
+opposed to the mean rate of occurence during one unit of time.
 
 That being said, in this document, as the two parameterizations only exist for the sake of convenience and are identical
 in their results, only the parameterization 1 presented in \autoref{eq:gamma:parameterization:1} will be considered and
@@ -105,12 +105,15 @@ used for proofs.
 
 \pagebreak
 \subsection{Probability density function \bigred{INTRODUCE PDF}}\label{subsec:gamma:pdf}
-\bigred{INTRODUCE PDF}
+
+The probability density function of a gamma distributed random variable X corresponds to 
+
 \begin{equation}\label{eq:gamma:pdf}
 	f(x) = \frac{\lambda^\alpha}{\Gamma(\alpha)}x^{\alpha-1}e^{-\lambda x}\text{ for }x\in (0,\,\infty)
 \end{equation}
 
-Here is a graph of the probability density function of a gamma distribution with parameters $\alpha=4$ and $\lambda=3$:
+In statistics, it is often used to model the time between independent events that occur at a constant average rate in a Poisson process. Indeed, the parameter \alpha indicates the number of events that are modeled, and the parameter \lambda specifies the average rate at which they occur. 
+Here is a graph of the probability density function of a gamma distribution with parameters $\alpha=4$ and $\lambda=3$. As an example, this probability density could be used to evaluate the time until four events that occur at a rate of three events per unit time take place:
 \figurecenter{1}{Gamma_PDF.png}{Graph featuring the plot of the probability density function of a gamma distribution.}{fig:graph:gamma:pdf}
 
 Let's now prove that this equation is a probability density function. That is, let's show that:
