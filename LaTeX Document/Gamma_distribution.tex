@@ -47,22 +47,24 @@
 % START OF DOCUMENT ===================================================================================================
 %======================================================================================================================
 \section{Historical Context}
-The gamma distribution is a distribution containing continuous random variables $X$ with two non-negative parameters
-$\alpha$ and $\lambda$. It is written as
+The gamma distribution is a distribution of continuous random variables $X$ with two non-negative parameters
+$\alpha$ and $\lambda$. A gamma distributed random variable $X$ is represented as 
 \begin{equation}
 	X\sim\G\text{amma}(\alpha, \lambda)
 \end{equation}
-and its density function is
-\begin{equation}
-	f(x)=\frac{\lambda^\alpha}{\Gamma(\alpha)}x^{\alpha-1}e^{-\lambda x}\text{ for }x\in(0,\infty)
-\end{equation}
-A gamma distributed
-random variable $X$ is represented by
+or, alternatively, as 
 \begin{equation}
 	X\sim\Gamma(\alpha,\lambda)
 \end{equation}
-This distribution gave rise to many other functions and distributions such as the gamma function, the exponential
-distribution, Erlang distribution, chi-square distribution. This distribution was firstly presented by Leon Hard Euler,
+
+Its probability density function corresponds to 
+\begin{equation}
+	f(x)=\frac{\lambda^\alpha}{\Gamma(\alpha)}x^{\alpha-1}e^{-\lambda x}\text{ for }x\in(0,\infty)
+\end{equation}
+
+
+The gamma probability distribution gave rise to many other functions and distributions, such as the gamma function, the exponential
+distribution, the erlang distribution or the chi-square distribution. Originally, it was first presented by Leon Hard Euler,
 a Swiss mathematician and physician. As Euler gained popularity, the gamma distribution was further researched by
 important figures in the domain of mathematics such as Karl Weierstrass, Carl Friedrich Gauss, Charles Hermite, and many
 more\cite{hoschGammaDistribution2017, wikipediaGammaDistribution2022, sebahIntroductionGammaFunction2002}.
