@@ -134,10 +134,10 @@ Let's now prove that this equation is a probability density function. That is, l
 		\end{split}
 	\end{equation}
 \end{proof}
-It is therefore clear that \autoref{eq:gamma:pdf} is a probability density function.
+It is now clear that \autoref{eq:gamma:pdf} is a probability density function.
 
 \subsubsection{Discovery \bigred{source}}
-A question that may now be formulated is: how could someone have come up with such an equation? Here, we propose that
+A question may now be formulated: how could someone have come up with such an equation? Here, we propose that
 the PDF of the gamma distribution was found by adding multiple i.i.d random variables following an exponential
 distribution $\E\text{xp}(\lambda)$. Here is a proof by induction demonstrating this supposition:
 \begin{proof}
@@ -218,26 +218,26 @@ distribution $\E\text{xp}(\lambda)$. Here is a proof by induction demonstrating 
 
 \pagebreak
 \subsection{Cumulative distribution function}\label{subsec:gamma:cdf} The cumulative distribution
-function (CDF) $F(x)$ of the gamma distribution is defined as:
+function (CDF) of the gamma distribution is defined as
 \begin{equation}
-	\int^x_0\frac{\lambda^\alpha}{\Gamma(\alpha)}u^{\alpha-1}e^{-\lambda u}\diff{u}
+	F(x) = \int^x_0\frac{\lambda^\alpha}{\Gamma(\alpha)}u^{\alpha-1}e^{-\lambda u}\diff{u}
 \end{equation}
-but this integral has no definite form, that is, the integrand has no antiderivative. Hence, this CDF is often
+However, this integral has no definite form, that is, the integrand has no antiderivative. Hence, this CDF is often
 represented in its simplified form using the lower incomplete gamma function\cite{weissteinIncompleteGammaFunction}:
 \begin{equation}
 	\gamma(\alpha, \lambda x)\equiv\int^x_0u^{\alpha-1}e^{-u}\diff{u}
 \end{equation}
-such that:
+such that
 \begin{equation}
 	F(x) = \frac{\gamma(\alpha, \lambda x)}{\Gamma(\alpha)}
 \end{equation}
-Interestingly, there is a special case to the CDF; when $\alpha$ is a positive integer, that is, when the distribution
-is an Erlang distribution (see \autoref{subsec:specialcases:erlang}), the CDF follows the following series expansion
+Interestingly, there exists a special case of the CDF: when $\alpha$ is a positive integer, that is, when the distribution
+is an erlang distribution (see \autoref{subsec:specialcases:erlang}), the CDF follows the following series expansion
 \cite{wikipediaGammaDistribution2022}:
 \begin{equation}
 	F(x) = 1-\sum^{\alpha-1}_{i=0}\frac{(\lambda x)^i}{i!}e^{-\lambda x} = e^{-\lambda x}\sum^\infty_{i=\alpha}\frac{(\lambda x)^i}{i!}
 \end{equation}
-That being mentioned, generally, although lacking a closed form, the cumulative distribution function of the gamma
+That being said, generally, although lacking a closed form, the cumulative distribution function of the gamma
 distribution may be graphed using software:
 \figurecenter{1}{Gamma_CDF.png}{Graph featuring the plot of the cumulative distribution function of a gamma distribution.}{fig:graph:gamma:cdf}
 
