@@ -48,16 +48,16 @@
 %======================================================================================================================
 \section{Historical Context}
 The gamma distribution is a distribution of continuous random variables $X$ with two non-negative parameters
-$\alpha$ and $\lambda$. A gamma distributed random variable $X$ is represented as 
+$\alpha$ and $\lambda$. A gamma distributed random variable $X$ is represented as
 \begin{equation}
 	X\sim\G\text{amma}(\alpha, \lambda)
 \end{equation}
-or, alternatively, as 
+or, alternatively, as
 \begin{equation}
 	X\sim\Gamma(\alpha,\lambda)
 \end{equation}
 
-Its probability density function corresponds to 
+Its probability density function corresponds to
 \begin{equation}
 	f(x)=\frac{\lambda^\alpha}{\Gamma(\alpha)}x^{\alpha-1}e^{-\lambda x}\text{ for }x\in(0,\infty)
 \end{equation}
@@ -106,14 +106,17 @@ used for proofs.
 \pagebreak
 \subsection{Probability density function \bigred{INTRODUCE PDF}}\label{subsec:gamma:pdf}
 
-The probability density function of a gamma distributed random variable X corresponds to 
+The probability density function of a gamma distributed random variable X corresponds to
 
 \begin{equation}\label{eq:gamma:pdf}
 	f(x) = \frac{\lambda^\alpha}{\Gamma(\alpha)}x^{\alpha-1}e^{-\lambda x}\text{ for }x\in (0,\,\infty)
 \end{equation}
 
-In statistics, it is often used to model the time between independent events that occur at a constant average rate in a Poisson process. Indeed, the parameter \alpha indicates the number of events that are modeled, and the parameter \lambda specifies the average rate at which they occur. 
-Here is a graph of the probability density function of a gamma distribution with parameters $\alpha=4$ and $\lambda=3$. As an example, this probability density could be used to evaluate the time until four events that occur at a rate of three events per unit time take place:
+In statistics, it is often used to model the time between independent events that occur at a constant average rate in a
+Poisson process. Indeed, the parameter $\alpha$ indicates the number of events that are modeled, and the parameter
+$\lambda$ specifies the average rate at which they occur. Here is a graph of the probability density function of a gamma
+distribution with parameters $\alpha=4$ and $\lambda=3$. As an example, this probability density could be used to
+evaluate the time until four events that occur at a rate of three events per unit time take place:
 \figurecenter{1}{Gamma_PDF.png}{Graph featuring the plot of the probability density function of a gamma distribution.}{fig:graph:gamma:pdf}
 
 Let's now prove that this equation is a probability density function. That is, let's show that:
@@ -1039,7 +1042,7 @@ centered around the expected value the probability density function graph will b
 representing this concept by comparing the probability density function graph of a $\G\text{amma}(60, 1)$ to that of a
 $\N(60, 60)$. Because $\G\text{amma}(\alpha, \lambda)$ is in essence a sum of $\alpha$ i.i.d. random variables following
 a distribution $\E\text{xp}(\lambda)$, then it makes sense that having a distribution $\G\text{amma}(60, 1)$ is like
-having $60$ data samples following a $\E\text{xp}(1)$ distribution, which fits the central limit theorem. 
+having $60$ data samples following a $\E\text{xp}(1)$ distribution, which fits the central limit theorem.
 \figurecenter{1}{Central_limit_theorem.png}{Graph showcasing the central limit theorem by comparing the probability density function graph of $\G\text{amma}(60, 1)$ to that of $\N(60, 60)$.}{fig:graph:clt}
 
 %======================================================================================================================
