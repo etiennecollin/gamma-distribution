@@ -47,7 +47,7 @@
 % START OF DOCUMENT ===================================================================================================
 %======================================================================================================================
 \section{Introduction}
-\subsection{Historical Context}
+\subsection{Historical Context \& Parameterization}
 The gamma distribution is a distribution of continuous random variables $X$ with two non-negative parameters
 $\alpha$ and $\lambda$. A gamma distributed random variable $X$ is represented as
 \begin{equation}
@@ -93,7 +93,7 @@ used for proofs.
 %======================================================================================================================
 
 \pagebreak
-\subsection{Probability Density Function \bigred{INTRODUCE PDF}}\label{subsec:gamma:pdf}
+\subsection{Probability Density Function}\label{subsec:gamma:pdf}
 The probability density function of a gamma distributed random variable X corresponds to
 
 \begin{equation}\label{eq:gamma:pdf}
@@ -811,7 +811,7 @@ The gamma distribution has many common parameterizations. Hence, in order to mak
 given a specific name such as the chi-square distribution, the exponential distribution and more. In this section, we
 will present some of these special cases and prove their relationship.
 
-\subsection{The Exponential Distribution \bigred{X+Y}}\label{subsec:specialcases:exponential}
+\subsection{The Exponential Distribution}\label{subsec:specialcases:exponential}
 The gamma distribution can model the elapsed time between random and independent events. However, what should one do
 when one wants to strictly model the time to wait before a single new event?
 
@@ -1029,27 +1029,24 @@ This corresponds, most clearly, to the probability density function of a gamma d
 %======================================================================================================================
 
 \pagebreak
-\subsection{The Beta Distribution \bigred{X/(X+Y)}}\label{subsec:specialcases:beta}
-To introduce the beta distribution, let's show how it is related to the gamma distribution. Indeed, for
-$X\sim\G\text{amma}(\alpha, \lambda)$ and $Y\sim\G\text{amma}(\beta, \lambda)$, then
-$\frac{X}{X+Y}\sim\G\text{amma}(\alpha+\beta, \lambda)$ Let's prove it:
-\begin{proof}
-	\bigred{X/(X+Y)}
-\end{proof}
-
-It follows from the previous result that the beta distribution is, in fact, a proportion of two gamma distributions! In
-this section, we will define this distribution more precisely and explore its distinguishing features.
-
+\subsection{The Beta Distribution}\label{subsec:specialcases:beta}
 A random variable $X$ is said to have a beta distribution with two parameters $\alpha$ and $\beta$ if its probability
 distribution function is defined by
-\begin{equation}
+\begin{equation}\label{eq:specialcases:beta:pdf}
 	f(x) = \frac{x^{\alpha-1} (1-x)^{\beta-1}}{\B(\alpha, \beta)}\text{ for } 0\leq x\leq 1\text{ and }\alpha, \beta > 0
 \end{equation}
 where
 \begin{equation}
 	\B(\alpha, \beta) = \frac{\Gamma(\alpha)\Gamma(\beta)}{\Gamma(\alpha+\beta)}
 \end{equation}
+ Here is a graph of the probability density function:
+\figurecenter{1}{Beta_PDF.png}{Graph of the probability distribution function of a beta distribution for various parameterizations.}{fig:specialcases:beta:pdf}
 
+%======================================================================================================================
+%======================================================================================================================
+%======================================================================================================================
+
+\pagebreak
 When looking at the numerator of the beta distribution function, similarities with the distribution function of the
 binomial distribution for independently distributed random events are evident.
 \begin{equation}
@@ -1063,42 +1060,109 @@ probability distribution will shift towards the right, whereas an increase in $\
 left (more failures). Finally, the distribution will narrow if both $\alpha$ and $\beta$ increase, for this increases the
 certainty regarding possible outcomes.
 
-\subsubsection{Title}
-\paragraph{Using Integration}
+%======================================================================================================================
+%======================================================================================================================
+%======================================================================================================================
 
-Alternatively, using a change of variables,
+\pagebreak
+\subsubsection{Quotient of Gamma Random Variables}
+Let's show how this distribution is related to the gamma distribution. Indeed, for $X\sim\G\text{amma}(\alpha, \lambda)$
+and $Y\sim\G\text{amma}(\beta, \lambda)$, then $\frac{X}{X+Y}\sim\G\text{amma}(\alpha+\beta, \lambda)$. Let's prove it
+using two different techniques:
 
-\begin{equation}
-	Z = \frac{X_1}{X_1+X_2}\\
-\end{equation}
+\paragraph{Using a Jacobian}
+\begin{proof}
+	First, let:
+	\begin{empheq}[box=\widefbox]{align*}
+		Y_1 = X_1 + X_2;&& Y_2 = \frac{X_1}{X_1+X_2}
+	\end{empheq}
+	Therefore:
+	\begin{empheq}[box=\widefbox]{align*}
+		x_1 = y_1y_2; && x_2 = y_1(1-y_2)
+	\end{empheq}
+	\begin{equation}
+		\J = \det\begin{bmatrix}
+			\pderiv{x_1}{y_1}	&	\pderiv{x_1}{y_1}\\[6pt]
+			\pderiv{x_2}{y_2}	&	\pderiv{x_2}{y_2}
+			\end{bmatrix} = \det\begin{bmatrix}
+				y_2		&	y_1\\
+				1-y_2	&	-y_1
+			\end{bmatrix} = -y_1
+	\end{equation}
+	\begin{equation}
+		\begin{split}
+			f(y_1, y_2)	&=	f(x_1, x_2)\cdot\J\\
+						&=	\frac{\lambda^{\alpha_1+\alpha_2}}{\Gamma(\alpha_1)\Gamma(\alpha_2)}x_1^{\alpha_1-1}x_2^{\alpha_2-1}e^{-\lambda(x_1+x_2)}\text{ for }x_1, x_2>0\\
+						&=	\frac{\lambda^{\alpha_1+\alpha_2}}{\Gamma(\alpha_1)\Gamma(\alpha_2)}(y_1y_2)^{\alpha_1-1}(y_1(1-y_2))^{\alpha_2-1}e^{-\lambda y_1}y_1\\
+						&=	\frac{\lambda^{\alpha_1+\alpha_2}}{\Gamma(\alpha_1)\Gamma(\alpha_2)}y_1^{\alpha_1+\alpha_2-1}y_2^{\alpha_2-1}(1-y_2)^{\alpha_2-1}e^{-\lambda y_1}
+		\end{split}
+	\end{equation}
+	Hence:
+	\begin{equation}
+		\begin{split}
+			f(y_2)	&=	\int^\infty_0 f(y_1, y_2)\diff{y_1}\\
+					&=	\int^\infty_0 \frac{\lambda^{\alpha_1+\alpha_2}}{\Gamma(\alpha_1)\Gamma(\alpha_2)}y_1^{\alpha_1+\alpha_2-1}y_2^{\alpha_2-1}(1-y_2)^{\alpha_2-1}e^{-\lambda y_1}\diff{y_1}
+		\end{split}
+	\end{equation}
+	\pagebreak
 
-\begin{equation}
-	\begin{split}
-		P(Z\le z)	&=	P(\frac{X_1}{X_1+X_2}\le z)\\
-					&=	P(X_1\le z (x_1+ x_2))\\
-					&=	P((1-z)X_1\le zx_2)\\
-					&=	P(X_1\le {\frac{zx_2}{1-z}}) \text{ for } X_2 \in (0,\infty)\\
-					&=	\int_{0}^{\infty}\int_{0}^{\frac{zx_2}{1-z}} f(x_1)\diff{x_1} f(x_2)\diff{x_2}\\
-					&=	\int_{0}^{\infty}F_{X_1}(\frac{z x_2}{1-z})f(x_2)\diff{x_2}\\
-		h(z)		&=	\int_{0}^{\infty}\frac{x_2}{(1-z)^2}f_{x_1}(\frac{zx_2}{1-z})f(x_2)\diff{x_2}\\
-					&=	\frac{\lambda^{\alpha_1+\alpha_2} z^{\alpha_1 - 1}}{\Gamma (\alpha _1) \Gamma (\alpha _2) (1-z)^{\alpha_1 -+1}} \int_{0}^{\infty} x_2^{\alpha_1 + \alpha_2 - 1} e^{-\lambda \frac{x_2}{(1-z)}}\diff{x_2}\\
-					&=	\frac{\lambda^{\alpha_1+\alpha_2} z^{\alpha_1 - 1}}{\Gamma (\alpha _1) \Gamma (\alpha _2) (1-z)^{\alpha_1 +1}} \int_{0}^{\infty} x_2^{\alpha_1 + \alpha_2 - 1} e^{-\lambda \frac{x_2}{(1-z)}}\diff{x_2}\\
-    \end{split}
-\end{equation}
-\begin{empheq}[box=\widefbox]{align*}
-	u = \frac{\lambda x_2}{1-z};	&&	x_2 = \frac{u(1-z)}{\lambda};	&&	\diff{x_2} = \frac{(1-z)}{\lambda}\diff{u}
-\end{empheq}
-\begin{equation}
-	\begin{split}
-		h(z)	&=	\frac{\lambda^{\alpha_1+\alpha_2} z^{\alpha_1 - 1}}{\Gamma (\alpha _1) \Gamma (\alpha _2) (1-z)^{\alpha_1 +1}} \int_{0}^{\infty}  (\frac{u (1-z)}{\lambda})^{\alpha_1 + \alpha_2 -1} e^{-u} (\frac{1-z}{\lambda})\diff{u}\\
-				&=	\frac{\lambda^{\alpha_1+\alpha_2} (1-z)^{\alpha_1 + \alpha_1}}{\lambda^{\alpha_1+\alpha_2} \Gamma (\alpha _1) \Gamma (\alpha _2) (1-z)^{\alpha_1 +1}} \int_{0}^{\infty}  u^{\alpha_1 + \alpha_2 -1} e^{-u}\diff{u}\\
-				&=	\frac{z^{\alpha_1 -1} (1-z)^{\alpha_2 -1}}{\Gamma (\alpha _1) \Gamma (\alpha _2)} \int_{0}^{\infty}  u^{\alpha_1 + \alpha_2 -1} e^{-u}\diff{u}\\
-				&=	\frac{z^{\alpha_1 -1} (1-z)^{\alpha_2 -1}}{\Gamma (\alpha _1) \Gamma (\alpha _2)} \Gamma(\alpha_1 + \alpha_2)\\
-				&=	\frac{z^{\alpha_1 -1} (1-z)^{\alpha_2 -1}}{B(\alpha_1 +\alpha_2)} ;\alpha _1,\alpha _2>0, \text{ for } 0<z<1\\
-	\end{split}
-\end{equation}
+	\noindent The beta distribution may now be obtained through the following calculations:
+	\begin{empheq}[box=\widefbox]{align*}
+		y = \lambda y_1 \Rightarrow y_1 = \frac{y}{\lambda}
+	\end{empheq}
+	\begin{equation}
+		\begin{split}
+			\frac{1}{\lambda}\diff{y}	&=	\diff{y_1}\\
+										&=	\frac{\lambda^{\alpha_1+\alpha_2}y_2^{\alpha_2-1}(1-y_2)^{\alpha_2-1}}{\Gamma(\alpha_1)\Gamma(\alpha_2)} \int^\infty_0 \frac{e^{-y}}{\lambda}\left(\frac{y}{\lambda}\right)^{\alpha_1+\alpha_2-1}\diff{y}\\
+										&=	\frac{\lambda^{\alpha_1+\alpha_2}y_2^{\alpha_2-1}(1-y_2)^{\alpha_2-1}}{\lambda^{\alpha_1+\alpha_2}\Gamma(\alpha_1)\Gamma(\alpha_2)} \int^\infty_0 e^{-y}y^{\alpha_1+\alpha_2-1}\diff{y}\\
+										&=	\frac{y_2^{\alpha_2-1}(1-y_2)^{\alpha_2-1}\Gamma(\alpha_1+\alpha_2)}{\Gamma(\alpha_1)\Gamma(\alpha_2)}\\
+										&=	\frac{y_2^{\alpha_2-1}(1-y_2)^{\alpha_2-1}}{\B(\alpha_1, \alpha_2)}\text{ for }0\leq y\leq 1\text{ and }\alpha_1, \alpha_2 > 0
+		\end{split}
+	\end{equation}
+	This last result is exactly the equation of the beta distribution presented in \autoref{eq:specialcases:beta:pdf}, but with
+	different variables.
+\end{proof}
+%======================================================================================================================
+%======================================================================================================================
+%======================================================================================================================
 
-which is clearly the Beta distribution.
+\pagebreak
+\paragraph{Using a Change of Variables}
+\begin{proof}
+	Alternatively, using a change of variables, consider the following random variable:\vspace*{-12pt}
+	\begin{equation}
+		Z = \frac{X_1}{X_1+X_2}\\
+	\end{equation}\\[-38pt]
+	then:\vspace*{-12pt}
+	\begin{equation}
+		\begin{split}
+			P(Z\le z)	&=	P(\frac{X_1}{X_1+X_2}\le z)\\
+						&=	P(X_1\le z (x_1+ x_2))\\
+						&=	P((1-z)X_1\le zx_2)\\
+						&=	P(X_1\le {\frac{zx_2}{1-z}}) \text{ for } X_2 \in (0,\infty)\\
+						&=	\int_{0}^{\infty}\int_{0}^{\frac{zx_2}{1-z}} f(x_1)\diff{x_1} f(x_2)\diff{x_2}\\
+						&=	\int_{0}^{\infty}F_{X_1}(\frac{z x_2}{1-z})f(x_2)\diff{x_2}\\
+			h(z)		&=	\int_{0}^{\infty}\frac{x_2}{(1-z)^2}f_{x_1}(\frac{zx_2}{1-z})f(x_2)\diff{x_2}\\
+						&=	\frac{\lambda^{\alpha_1+\alpha_2} z^{\alpha_1 - 1}}{\Gamma (\alpha _1) \Gamma (\alpha _2) (1-z)^{\alpha_1 -+1}} \int_{0}^{\infty} x_2^{\alpha_1 + \alpha_2 - 1} e^{-\lambda \frac{x_2}{(1-z)}}\diff{x_2}\\
+						&=	\frac{\lambda^{\alpha_1+\alpha_2} z^{\alpha_1 - 1}}{\Gamma (\alpha _1) \Gamma (\alpha _2) (1-z)^{\alpha_1 +1}} \int_{0}^{\infty} x_2^{\alpha_1 + \alpha_2 - 1} e^{-\lambda \frac{x_2}{(1-z)}}\diff{x_2}\\
+		\end{split}
+	\end{equation}
+	\begin{empheq}[box=\widefbox]{align*}
+		u = \frac{\lambda x_2}{1-z};	&&	x_2 = \frac{u(1-z)}{\lambda};	&&	\diff{x_2} = \frac{(1-z)}{\lambda}\diff{u}
+	\end{empheq}
+	\begin{equation}
+		\begin{split}
+			h(z)	&=	\frac{\lambda^{\alpha_1+\alpha_2} z^{\alpha_1 - 1}}{\Gamma (\alpha _1) \Gamma (\alpha _2) (1-z)^{\alpha_1 +1}} \int_{0}^{\infty}  (\frac{u (1-z)}{\lambda})^{\alpha_1 + \alpha_2 -1} e^{-u} (\frac{1-z}{\lambda})\diff{u}\\
+					&=	\frac{\lambda^{\alpha_1+\alpha_2} (1-z)^{\alpha_1 + \alpha_1}}{\lambda^{\alpha_1+\alpha_2} \Gamma (\alpha _1) \Gamma (\alpha _2) (1-z)^{\alpha_1 +1}} \int_{0}^{\infty}  u^{\alpha_1 + \alpha_2 -1} e^{-u}\diff{u}\\
+					&=	\frac{z^{\alpha_1 -1} (1-z)^{\alpha_2 -1}}{\Gamma (\alpha _1) \Gamma (\alpha _2)} \int_{0}^{\infty}  u^{\alpha_1 + \alpha_2 -1} e^{-u}\diff{u}\\
+					&=	\frac{z^{\alpha_1 -1} (1-z)^{\alpha_2 -1}}{\Gamma (\alpha _1) \Gamma (\alpha _2)} \Gamma(\alpha_1 + \alpha_2)\\
+					&=	\frac{z^{\alpha_1 -1} (1-z)^{\alpha_2 -1}}{B(\alpha_1 +\alpha_2)} ;\alpha _1,\alpha _2>0, \text{ for } 0<z<1\\
+		\end{split}
+	\end{equation}
+	This last result is clearly the beta distribution found in \autoref{eq:specialcases:beta:pdf}.
+\end{proof}
+
+It follows from the previous results that the beta distribution is, in fact, a proportion of two gamma distributions!
 
 %======================================================================================================================
 %======================================================================================================================
