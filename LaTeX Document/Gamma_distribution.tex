@@ -49,15 +49,15 @@
 \section{Introduction}\vspace*{-24pt}
 \subsection{Historical Context \& Parameterization}
 The gamma distribution\cite{carrierProbabilityStatistics201BNM05} is a distribution of continuous random variables $X$
-with two non-negative parameters $\alpha$ and $\lambda$. A gamma distributed random variable $X$ is represented as
+with two non-negative parameters $\alpha$ and $\lambda$. A gamma distributed random variable $X$ is represented as:
 \vspace*{-24pt}
-\begin{equation}
+\begin{equation*}
 	X\sim\G\text{amma}(\alpha, \lambda)
-\end{equation}\\[-40pt]
-or, alternatively, as\vspace*{-6pt}
-\begin{equation}
+\end{equation*}\\[-40pt]
+or, alternatively, as:\vspace*{-6pt}
+\begin{equation*}
 	X\sim\Gamma(\alpha,\lambda)
-\end{equation}\\[-60pt]
+\end{equation*}\\[-60pt]
 
 The gamma probability distribution gave rise to many other functions and distributions, such as the gamma function, the
 exponential distribution, the erlang distribution or the chi-square distribution. Originally, it was first presented by
@@ -70,14 +70,14 @@ The gamma distribution is part of the two-parameters family of continuous probab
 parameterized with two different parameterizations\cite{wikipediaGammaDistribution2022}:
 
 \noindent Parameterization 1:\vspace*{-24pt}
-\begin{align}\label{eq:gamma:parameterization:1}
+\begin{align*}
 	\text{Shape: } \alpha>0		&&	\text{Rate: }\lambda>0
-\end{align}\\[-60pt]
+\end{align*}\\[-60pt]
 
 \noindent Parameterization 2:\vspace*{-24pt}
-\begin{align}\label{eq:gamma:parameterization:2}
+\begin{align*}
 	\text{Shape: } k>0			&&	\text{Scale: }\theta>0
-\end{align}\\[-60pt]
+\end{align*}\\[-60pt]
 
 In the second parameterization, the scale parameter $\theta$ corresponds to the inverse of the rate parameter $\lambda$,
 allowing flexibility in the modelization of the distribution. Indeed, the application of the scale parameter is
@@ -85,8 +85,7 @@ pertinent when one wants to use the value of the mean time between events in a P
 opposed to the mean rate of occurence during one unit of time.
 
 That being said, in this document, as the two parameterizations only exist for the sake of convenience and are identical
-in their results, only the parameterization 1 presented in \autoref{eq:gamma:parameterization:1} will be considered and
-used for proofs.
+in their results, only parameterization 1 will be considered and used for proofs.
 
 %======================================================================================================================
 %======================================================================================================================
