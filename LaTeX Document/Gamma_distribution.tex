@@ -46,17 +46,18 @@
 %======================================================================================================================
 % START OF DOCUMENT ===================================================================================================
 %======================================================================================================================
-\section{Introduction}
+\section{Introduction}\vspace*{-24pt}
 \subsection{Historical Context \& Parameterization}
 The gamma distribution\cite{carrierProbabilityStatistics201BNM05} is a distribution of continuous random variables $X$
 with two non-negative parameters $\alpha$ and $\lambda$. A gamma distributed random variable $X$ is represented as
+\vspace*{-24pt}
 \begin{equation}
 	X\sim\G\text{amma}(\alpha, \lambda)
-\end{equation}
-or, alternatively, as
+\end{equation}\\[-40pt]
+or, alternatively, as\vspace*{-6pt}
 \begin{equation}
 	X\sim\Gamma(\alpha,\lambda)
-\end{equation}
+\end{equation}\\[-60pt]
 
 The gamma probability distribution gave rise to many other functions and distributions, such as the gamma function, the
 exponential distribution, the erlang distribution or the chi-square distribution. Originally, it was first presented by
@@ -68,17 +69,15 @@ sebahIntroductionGammaFunction2002}.
 The gamma distribution is part of the two-parameters family of continuous probability distributions. Indeed, it may be
 parameterized with two different parameterizations\cite{wikipediaGammaDistribution2022}:
 
-\noindent Parameterization 1:
-\vspace*{-24pt}
+\noindent Parameterization 1:\vspace*{-24pt}
 \begin{align}\label{eq:gamma:parameterization:1}
 	\text{Shape: } \alpha>0		&&	\text{Rate: }\lambda>0
-\end{align}
+\end{align}\\[-60pt]
 
-\noindent Parameterization 2:
-\vspace*{-24pt}
+\noindent Parameterization 2:\vspace*{-24pt}
 \begin{align}\label{eq:gamma:parameterization:2}
 	\text{Shape: } k>0			&&	\text{Scale: }\theta>0
-\end{align}
+\end{align}\\[-60pt]
 
 In the second parameterization, the scale parameter $\theta$ corresponds to the inverse of the rate parameter $\lambda$,
 allowing flexibility in the modelization of the distribution. Indeed, the application of the scale parameter is
@@ -106,7 +105,7 @@ Poisson process. Indeed, the parameter $\alpha$ indicates the number of events t
 $\lambda$ specifies the average rate at which they occur. Here is a graph of the probability density function of a gamma
 distribution with parameters $\alpha=4$ and $\lambda=3$. As an example, this probability density function could be used
 to evaluate the time until four events that occur at a rate of three events per unit time take place:
-\figurecenter{0.9}{Gamma_PDF.png}{Graph featuring the plot of the probability density function of a gamma distribution.}{fig:graph:gamma:pdf}
+\figurecenter{0.9}{Gamma_PDF.png}{Plot of the probability density function of a gamma distribution.}{fig:graph:gamma:pdf}
 
 Let's now prove that this equation is a probability density function. That is, let's show that:
 \begin{equation}
@@ -155,7 +154,7 @@ is an erlang distribution (see \autoref{subsec:specialcases:erlang}), the CDF fo
 \end{equation}
 That being said, generally, although lacking a closed form, the cumulative distribution function of the gamma
 distribution may be graphed using software:
-\figurecenter{1}{Gamma_CDF.png}{Graph featuring the plot of the cumulative distribution function of a gamma distribution.}{fig:graph:gamma:cdf}
+\figurecenter{1}{Gamma_CDF.png}{Plot of the cumulative distribution function of a gamma distribution.}{fig:graph:gamma:cdf}
 
 %======================================================================================================================
 %======================================================================================================================
@@ -419,19 +418,20 @@ be noticed, these subdivisions are equally divided both sides of the median.
 The mode is defined as the value appearing the most through a certain set of data values, that is, the location of the
 highest peak on a probability density function plot. On \autoref{fig:graph:gamma:mode}, the mode represents the value of
 $T$ where the density is at its peak.
-\figurecenter{1}{Gamma_mode.png}{Graph featuring the probability density function of two distinct gamma distributions.}{fig:graph:gamma:mode}
-As may be observed in the red plot ($\G\text{amma}(1, 0.3)$), the highest value of the density on the curve is $0.3$ at
+\figurecenter{1}{Gamma_mode.png}{Plot of the probability density function of three distinct gamma distributions with different modes.}{fig:graph:gamma:mode}
+As may be observed in the plot of $\G\text{amma}(1, 0.3)$, the highest value of the density on the curve is $0.3$ at
 $T=0$ which corresponds to the mode of this specific parameterization of the distribution. The mode of the density
-function $\G\text{amma}(1, 0.3)$ is thus $0.3$. To be more precise and avoid the need for a graph, the following
+function of $\G\text{amma}(1, 0.3)$ is thus $0.3$. To be more precise and avoid the need for a graph, the following
 equation may be used to calculate the mode of a gamma distribution:
 \begin{equation}\label{eq:gamma:mode}
 	\text{Mode} = \frac{(\alpha-1)}{\lambda}\text{ for }\alpha \geq 1
 \end{equation}
-Ergo, for the orange plot ($\G\text{amma}(5, 3)$), the mode can be determined to be:
+Ergo, for the plot of $\G\text{amma}(5, 3)$, the mode can be determined to be:
 \begin{equation}
 	T = \frac{(5-1)}{3} = \frac{4}{3}
 \end{equation}
-Accordingly, on \autoref{fig:graph:gamma:mode}, the highest peak of the plot $\G\text{amma}(5, 3)$ is at $\frac{4}{3}$.
+Accordingly, on \autoref{fig:graph:gamma:mode}, the highest peak of the plot of $\G\text{amma}(5, 3)$ is at
+$\frac{4}{3}$.
 
 \subsubsection{Special Cases}
 There are two special cases concerning the mode of the gamma distribution: when the density of the PDF goes to infinity
@@ -439,8 +439,8 @@ There are two special cases concerning the mode of the gamma distribution: when 
 
 \paragraph{Case 1:}
 The first special case is when the mode of the PDF never reaches its maximum value, that is, when there is a vertical asymptote
-on its plot. The purple plot ($\G\text{amma}(0.5, 1)$) on \autoref{fig:graph:gamma:mode} features this case. Indeed, if
-$f(x)$ is the probability density function, then:\vspace*{-20pt}
+on its plot. The plot of $\G\text{amma}(0.5, 1)$ on \autoref{fig:graph:gamma:mode} features this case. Indeed, if $f(x)$
+is the probability density function, then:\vspace*{-20pt}
 \begin{equation}
 	\lim_{T\to 0^+}f(x)=\infty
 \end{equation}\\[-40pt]
@@ -448,8 +448,8 @@ Notice how this case arises when the condition stated in \autoref{eq:gamma:mode}
 1$. In fact, in the case of the purple plot, $\alpha=0.5<1$
 \paragraph{Case 2:}
 In a gamma distribution $\G\text{amma}(1, \lambda)\equiv\E\text{xp}(\lambda)$, the highest point of the plot of the PDF
-will be located at $T=0$ and will correspond to a density value of $\lambda$. In \autoref{fig:graph:gamma:mode}, the red
-plot ($\G\text{amma}(1, 0.3)$) is an example of this special case as it has $\alpha=1$ as a parameter. Hence, the mode
+will be located at $T=0$ and will correspond to a density value of $\lambda$. In \autoref{fig:graph:gamma:mode}, the
+plot of $\G\text{amma}(1, 0.3)$ is an example of this special case as it has $\alpha=1$ as a parameter. Hence, the mode
 of this latter parameterization of the gamma distribution is of $\lambda=0.3$ at $T=0$.
 
 %======================================================================================================================
@@ -464,7 +464,7 @@ However, its $y$-intercept is equal to $\lambda$. As the value of $\alpha$ incre
 each side of the mode, can be found on the graph. Inflection points are obtained by performing the second derivative of
 the curve. Below are found different possible shapes of the density function graph in function of the value of $\alpha$.
 By increasing the value of $\alpha$, the inflection points become closer to each other.
-\figurecenter{1}{Gamma_inflection.png}{Graph featuring the probability density function of four distinct gamma distributions.}{fig:graph:gamma:inflection}
+\figurecenter{1}{Gamma_inflection.png}{Plot of the probability density function of four distinct gamma distributions with different inflection points.}{fig:graph:gamma:inflection}
 
 %======================================================================================================================
 %======================================================================================================================
@@ -500,7 +500,7 @@ Let's take the case of a distribution $\G\text{amma}(5, 1)$ to examine this clai
 
 Let's confirm the validity of the answer using the graph of the probability density function of the distribution
 $\G\text{amma}(5, 1)$.
-\figurecenter{1}{Gamma_median_approximation.png}{Graph featuring the probability density function of a gamma distribution with parameters $\alpha=5$ and $\lambda=1$.}{fig:graph:gamma:median:approximation}
+\figurecenter{1}{Gamma_median_approximation.png}{Plot of the probability density function of a gamma distribution with parameters $\alpha=5$ and $\lambda=1$.}{fig:graph:gamma:median:approximation}
 The approximation seems to, in fact, be valid as the PDF is "weighted" more towards the right and its median seems to be
 between 4.5 and 5.
 
@@ -817,7 +817,7 @@ Using a proof by induction, gamma functions can be shown to be related to the fa
 Using everything that was computed previously, the graph of $\Gamma(\alpha)$ may be plotted. It includes both positive,
 negative and fractional values of $\alpha$. Notice how the asymptotes of the graph are found at every negative integer
 value; the function, as was mentioned previously, is not defined for negative integers.
-\figurecenter{1}{gamma_function.png}{Graph featuring the plot of the function $\Gamma(\alpha)$ in red and the asymptotes of the function in dotted blue lines.}{fig:graph:gammafunction}
+\figurecenter{1}{gamma_function.png}{Plot of the function $\Gamma(\alpha)$ in red and the asymptotes of the function in dotted blue lines.}{fig:graph:gammafunction}
 
 %======================================================================================================================
 %======================================================================================================================
@@ -1034,18 +1034,21 @@ Let us now make a simple substitution so that the final answer can be revealed.
 	    			&=	\frac{ \lambda^{\alpha_1 + \alpha_2}}{\Gamma(\alpha_1) \Gamma(\alpha_2)} e^{-\lambda z} z^{\alpha_1 + \alpha_2 - 1} \int_{0}^{\infty}   u^{\alpha_2 - 1} (1-u)^{\alpha_1 - 1} \,  \diff{u}\\
     \end{split}
 \end{equation}
-We will note here that the integral part of this equation corresponds to the Beta distribution function. Hence, we get
+We will note here that the integral part of this equation corresponds to the Beta distribution function. Hence, we get:\vspace*{-18pt}
 \begin{equation}
-	    f_{X+Y} (z) = \frac{\lambda^{\alpha_1 + \alpha_2}}{\Gamma(\alpha_1) \Gamma(\alpha_2)}  e^{-\lambda z} z^{\alpha_1 + \alpha_2 - 1} B(\alpha_1, \alpha_2)\\
-\end{equation}
-Using an alternative definition of the beta distribution, which was proven in the last demonstration, we arrive to our final answer :
+	    f_{X+Y} (z) = \frac{\lambda^{\alpha_1 + \alpha_2}}{\Gamma(\alpha_1) \Gamma(\alpha_2)}  e^{-\lambda z} z^{\alpha_1 + \alpha_2 - 1} B(\alpha_1, \alpha_2)
+\end{equation}\\[-30pt]
+Using an alternative definition of the beta distribution, which was proven in the last demonstration, we arrive to our final answer:\vspace*{-18pt}
 \begin{equation}
-	    f_{X+Y}(z) = \frac{\lambda^{\alpha_1 + \alpha_2}}{\Gamma(\alpha_1 + \alpha_2)} e^{-\lambda z} z^{(\alpha_1 + \alpha_2) - 1}\\
-\end{equation}
-This corresponds, most clearly, to the probability density function of a gamma distribution.
+	    f_{X+Y}(z) = \frac{\lambda^{\alpha_1 + \alpha_2}}{\Gamma(\alpha_1 + \alpha_2)} e^{-\lambda z} z^{(\alpha_1 + \alpha_2) - 1}
+\end{equation}\\[-30pt]
+This corresponds, most clearly, to the probability density function of a gamma distribution.\vspace*{-18pt}
 \begin{equation}
     Z \sim \G\text{amma}({\alpha_1 + \alpha_2,  \lambda})
-\end{equation}
+\end{equation}\\[-30pt]
+Here is a graph showing this result:
+\figurecenter{1}{Simulation_sum.png}{Comparison of the histogram of a sum of gamma random variables with the probability density function of a gamma distribution.}{fig:simulation:sum}
+
 
 %======================================================================================================================
 %======================================================================================================================
@@ -1063,7 +1066,7 @@ where, from \autoref{eq:specialcases:beta:beta}:
 	B(\alpha, \beta) = \frac{\Gamma(\alpha)\Gamma(\beta)}{\Gamma(\alpha+\beta)}
 \end{equation}
  Here is a graph of the probability density function:
-\figurecenter{1}{Beta_PDF.png}{Graph of the probability distribution function of a beta distribution for various parameterizations.}{fig:specialcases:beta:pdf}
+\figurecenter{1}{Beta_PDF.png}{Plot of the probability distribution function of a beta distribution for various parameterizations.}{fig:specialcases:beta:pdf}
 
 %======================================================================================================================
 %======================================================================================================================
@@ -1088,7 +1091,7 @@ certainty regarding possible outcomes \cite{kimBetaDistributionIntuition2020, di
 %======================================================================================================================
 
 \pagebreak
-\subsubsection{Quotient of Gamma Random Variables}
+\subsubsection{Quotient of Gamma Random Variables}\label{subsubsec:specialcases:beta:quotient}
 Let's show how this distribution is related to the gamma distribution. Indeed, for $X\sim\G\text{amma}(\alpha, \lambda)$
 and $Y\sim\G\text{amma}(\beta, \lambda)$, then
 $\frac{X}{X+Y}\sim\G\text{amma}(\alpha+\beta, \lambda)\equiv\text{Beta}(\alpha, \beta)$. Let's prove it using two
@@ -1188,6 +1191,11 @@ different techniques \cite{ayiendaGammaRelatedDistributions2013}:
 
 It follows from the previous results that the beta distribution is, in fact, a proportion of two gamma distributions!
 
+Here is a comparison of the histogram of the random variable $Z=\dfrac{X}{X+Y}$, where $X\sim\G\text{amma}(2, 1)$ and
+$Y\sim\G\text{amma}(5, 1)$, with the plot of the probability density function of the beta distribution with parameters
+$\B\text{eta}(2,5)$:
+\figurecenter{1}{Simulation_quotient.png}{Comparison of the histogram of a quotient of gamma random variables with the probability density function of a beta distribution.}{fig:simulation:quotient}
+
 %======================================================================================================================
 %======================================================================================================================
 %======================================================================================================================
@@ -1249,7 +1257,7 @@ distribution:
 				&=	\frac{1}{2^{\sfrac{n}{2}}\Gamma(\frac{n}{2})}x^{\frac{n}{2}-1}e^{-\sfrac{x}{2}}
 	\end{split}
 \end{equation}
-\figurecenter{1}{Chi2_PDF.png}{Graph of the probability distribution function of a $\chi^2_n$ distribution for various values of $n$.}{fig:specialcases:chi2:pdf}
+\figurecenter{1}{Chi2_PDF.png}{Plot of the probability distribution function of a $\chi^2_n$ distribution for various values of $n$.}{fig:specialcases:chi2:pdf}
 
 The chi square distribution is often used to describe the distribution of a sum of squared random variables, to test the
 fit of a distribution of data, or to determine whether data series are independent or dependent.
@@ -1278,7 +1286,7 @@ representing this concept by comparing the probability density function graph of
 $\N(60, 60)$. Because $\G\text{amma}(\alpha, \lambda)$ is in essence a sum of $\alpha$ i.i.d. random variables following
 a distribution $\E\text{xp}(\lambda)$, then it makes sense that having a distribution $\G\text{amma}(60, 1)$ is like
 having $60$ data samples following a $\E\text{xp}(1)$ distribution, which fits the central limit theorem.
-\figurecenter{1}{Central_limit_theorem.png}{Graph showcasing the central limit theorem by comparing the probability density function graph of $\G\text{amma}(60, 1)$ to that of $\N(60, 60)$.}{fig:graph:clt}
+\figurecenter{1}{Central_limit_theorem.png}{Graph showcasing the central limit theorem by comparing the probability density function plot of a $\G\text{amma}(60, 1)$ distribution to that of $\N(60, 60)$ distribution.}{fig:graph:clt}
 
 %======================================================================================================================
 %======================================================================================================================
@@ -1505,17 +1513,17 @@ Here is the code used to generate the central limit theorem graph in \autoref{su
 \pagebreak
 \section{Simulations - Python Code}
 \subsection{Simulation 1: $X+Y$}
-Comparison of the graph of $\G\text{amma}(\alpha+\beta, \lambda)$ and the histogram of a $X+Y$ of
-$X\sim\G\text{amma}(\alpha, \lambda)$ and $Y\sim\G\text{amma}(\beta, \lambda)$ random variables featured in
-\autoref{subsec:specialcases:exponential}.
-\lstinputlisting[language=Python, caption={}, label=code:simulation:1]{_assets/Simulation_1.py}
+Comparison of the graph of $\G\text{amma}(\alpha+\beta, \lambda)$ and the histogram of $X+Y$ with
+$X\sim\G\text{amma}(\alpha, \lambda)$ and $Y\sim\G\text{amma}(\beta, \lambda)$. Featured in
+\autoref{fig:fig:simulation:sum}.
+\lstinputlisting[language=Python, caption={}, label=code:simulation:sum]{_assets/Simulation_sum.py}
 
 \pagebreak
 \subsection{Simulation 2: $\frac{X}{X+Y}$}
-Comparison of the graph of $\B\text{eta}(\alpha, \beta)$ and the histogram of a $\frac{X}{X+Y}$ of
-$X\sim\G\text{amma}(\alpha, \lambda)$ and $Y\sim\G\text{amma}(\beta, \lambda)$ random variables featured in
-\autoref{subsec:specialcases:beta}.
-\lstinputlisting[language=Python, caption={}, label=code:simulation:2]{_assets/Simulation_2.py}
+Comparison of the graph of $\B\text{eta}(\alpha, \beta)$ and the histogram of $\frac{X}{X+Y}$ with
+$X\sim\G\text{amma}(\alpha, \lambda)$ and $Y\sim\G\text{amma}(\beta, \lambda)$. Featured in
+\autoref{fig:simulation:quotient}.
+\lstinputlisting[language=Python, caption={}, label=code:simulation:quotient]{_assets/Simulation_quotient.py}
 
 \pagebreak
 \phantomsection\listoffigures

@@ -8,22 +8,19 @@ plt.rcParams["font.family"] = "CMU Serif"
 plt.rcParams['figure.dpi'] = 140
 
 
-def gamma_distribution_pdf(alpha_=4, lambda_=3):
-	# Array with values from 0 to 25 with 10000 equal increments
-	x = np.linspace(0, 25, 10000)
+def gamma_pdf(alpha_=4, lambda_=3):
+	x = np.linspace(0, 5, 100000)
+	# PDF of Gamma(alpha_, lambda_)
+	y1 = sp.stats.gamma.pdf(x, alpha_, scale=1/lambda_)
 
-	# f(x) for X ~ Gamma(alpha_,lambda_)
-	fx = (((1/lambda_)**alpha_)/math.gamma(alpha_)) * (x**(1/lambda_)) * np.exp(-(1/lambda_)*x)
-
-	# Generating graph using matplotlib
-	plt.title("Probability Density Function of Gamma Distribution", fontsize=20)
-	plt.annotate(f"Gamma({alpha_}, {lambda_})", xy=(15, 0.0012), size=14, ha="center", va="center", color="firebrick")
+    # Generating graph using matplotlib
+	plt.title("Probability Density Function of the Gamma Distribution", fontsize=20)
 	plt.xlabel("T", fontsize=16)
 	plt.ylabel("Density", fontsize=16)
-	plt.plot(x, fx, linewidth=3, color="firebrick")
-	plt.xlim([0, 25])
-	plt.ylim([0, 0.0015])
+	plt.plot(x, y1, label=f"Gamma({alpha_}, {lambda_})", linewidth=3, color="blue")
+	plt.legend(bbox_to_anchor=(1, 1), loc="upper right", borderaxespad=1, fontsize=12)
+	plt.ylim([0, 0.7])
+	plt.xlim([0, 5])
 	plt.show()
 
-
-gamma_distribution_pdf(4, 3)
+gamma_pdf(4, 3)
