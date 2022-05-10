@@ -1,9 +1,9 @@
 .DS_Store
 .python-version
 
-#Exclude everyting in LaTeX Document except a few files.
+#Exclude everything in /LaTeX\ Document except a few files and folders.
 /LaTeX Document/*
-!/LaTeX Document/Gamma_distribution.pdf
-!/LaTeX Document/Gamma_distribution.tex
+!/LaTeX Document/The_gamma_distribution.pdf
+!/LaTeX Document/The_gamma_distribution.tex
 !/LaTeX Document/_assets
 !/LaTeX Document/images

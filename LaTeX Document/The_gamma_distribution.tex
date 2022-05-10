@@ -1,0 +1,1546 @@
+\input{~/Programming/LaTex/Paths}
+\path{macOS}
+
+\documentclass[12pt]{article}
+\usepackage[english]{babel}																												% Selects language of document
+\usepackage{./_assets/Packages}																											% Imports custom packages selection
+\usepackage[style=numeric,autocite=superscript,sorting=none,backref=false,backend=biber,date=iso,datezeros=true,seconds=true]{biblatex}	% Bibliography options. autocite=<inline, footnote, superscript, plain>
+
+% \usepackage{indentfirst}																												% Used to indent first paragraph of section
+
+%======================================================================================================================
+% DOCUMENT USER SETTINGS ==============================================================================================
+%======================================================================================================================
+\newcommand{\docAuthorName}{Etienne Collin, Marie Ouellet \& Rania Yahyaoui}
+\newcommand{\docAuthorStudentNumber}{}
+\newcommand{\docAuthorTitlePage}{\docAuthorName}
+\newcommand{\docClass}{Probability and Statistics}
+\newcommand{\docClassInstructor}{Professor Vincent Carrier}
+\newcommand{\docClassNumber}{201-BNM-LW}
+\newcommand{\docClassTime}{Section 20108}
+\newcommand{\docClassSemester}{Winter 2022}
+\newcommand{\docDueDate}{May 13, 2022}
+\newcommand{\docDueTime}{23:59}
+\newcommand{\docSubTitle}{Properties, Proofs and Applications}
+\newcommand{\docTitle}{The Gamma Distribution}
+\input{./_assets/Page_settings.tex}											% Imports custom page settings
+\input{./_assets/Environment.tex}											% Imports custom environments and definitions
+% \customfont{Comic Sans MS}													% Use a custom font
+
+\fancyhf[HR]{\docClassTime}													% Removes student number from right header
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\E}{\mathcal{E}}
+\newcommand{\G}{\mathcal{G}}
+\newcommand{\J}{\mathcal{J}}
+\newcommand{\N}{\mathcal{N}}
+
+
+%======================================================================================================================
+% SOURCE ==============================================================================================================
+%======================================================================================================================
+\begin{document}
+\singlespacing
+\input{_assets/Title_page.tex}
+\phantomsection\tableofcontents\pagebreak
+\doublespacing
+%======================================================================================================================
+% START OF DOCUMENT ===================================================================================================
+%======================================================================================================================
+\section{Introduction}\vspace*{-24pt}
+\subsection{Historical Context \& Parameterization}
+The gamma distribution\cite{carrierProbabilityStatistics201BNM05} is a distribution of continuous random variables $X$
+with two nonnegative parameters. A gamma distributed random variable $X$ is represented as:
+\vspace*{-24pt}
+\begin{equation*}
+	X\sim\G\text{amma}(\alpha, \lambda)
+\end{equation*}\\[-50pt]
+or, alternatively, as:\vspace*{-6pt}
+\begin{equation*}
+	X\sim\Gamma(\alpha,\lambda)
+\end{equation*}\\[-60pt]
+
+The gamma probability distribution gave rise to many other functions and distributions, such as the gamma function, the
+exponential distribution, the Erlang distribution or the chi-square distribution. Originally, it was first presented by
+Leon Hard Euler, a Swiss mathematician and physician. As Euler gained popularity, the gamma distribution was further
+researched by important figures in the domain of mathematics such as Karl Weierstrass, Carl Friedrich Gauss, Charles
+Hermite, and many more\cite{hoschGammaDistribution2017, wikipediaGammaDistribution2022,
+sebahIntroductionGammaFunction2002}.
+
+The gamma distribution is part of the two-parameter family of continuous probability distributions. Indeed, it may be
+parameterized with two different parameterizations\cite{wikipediaGammaDistribution2022}:
+
+\noindent Parameterization 1:\vspace*{-24pt}
+\begin{align*}
+	\text{Shape: } \alpha>0		&&	\text{Rate: }\lambda>0
+\end{align*}\\[-60pt]
+
+\noindent Parameterization 2:\vspace*{-24pt}
+\begin{align*}
+	\text{Shape: } k>0			&&	\text{Scale: }\theta>0
+\end{align*}\\[-60pt]
+
+In the second parameterization, the scale parameter $\theta$ corresponds to the inverse of the rate parameter $\lambda$,
+allowing flexibility in the modelization of the distribution. Indeed, the application of the scale parameter is
+pertinent when one wants to use the value of the mean time between events in a Poisson process, as
+opposed to the mean rate of occurrence during one unit of time.
+
+That being said, in this document, as the two parameterizations only exist for the sake of convenience and are identical
+in their results, only parameterization 1 will be considered and used for proofs.
+
+%======================================================================================================================
+%======================================================================================================================
+%======================================================================================================================
+
+\pagebreak
+\subsection{Probability Density Function}\label{subsec:gamma:pdf}
+The probability density function of a gamma distributed random variable $X$ corresponds to:
+\begin{equation}\label{eq:gamma:pdf}
+	f(x) = \frac{\lambda^\alpha}{\Gamma(\alpha)}x^{\alpha-1}e^{-\lambda x}\text{ for }x\in (0, \infty)
+\end{equation}
+
+In statistics, it is often used to model the time between independent events that occur at a constant average rate in a
+Poisson process. Indeed, the parameter $\alpha$ indicates the number of events that are modelled, and the parameter
+$\lambda$ specifies the average rate at which they occur. Here is a graph of the probability density function of a gamma
+distribution with parameters $\alpha=4$ and $\lambda=3$. As an example, this probability density function could be used
+to evaluate the time until four events that occur at a rate of three events per unit time take place:
+\figurecenter{0.9}{Gamma_PDF.png}{Plot of the probability density function of a gamma distribution.}{fig:graph:gamma:pdf}
+
+Let's now prove that this equation is a probability density function. That is, let's show that:
+\begin{equation}
+	\int_{D_X} f(x)\diff{x} = 1
+\end{equation}
+\begin{proof}
+	Let's use the following substitution to solve the integral:
+	\begin{empheq}[box=\widefbox]{align*}
+		u=\lambda x;	&&	\diff{u}=\lambda\diff{x}
+	\end{empheq}
+	\begin{equation}
+		\begin{split}
+			\int_{D_X} f(x)\diff{x}	&=	\int^\infty_0\frac{\lambda^\alpha}{\Gamma(\alpha)}x^{\alpha -1}e^{-\lambda x}\diff{x}\\
+									&=	\frac{1}{\lambda}\int^\infty_0\frac{\lambda^\alpha}{\Gamma(\alpha)}\left(\frac{u}{\lambda}\right)^{\alpha-1}e^{-u}\diff{u}\\
+									&=	\frac{1}{\Gamma(\alpha)}\int^\infty_0 u^{\alpha-1}e^{-u}\diff{u}\\
+									&=	1
+		\end{split}
+	\end{equation}
+\end{proof}
+It is now clear that \autoref{eq:gamma:pdf} is a probability density function.
+
+%======================================================================================================================
+%======================================================================================================================
+%======================================================================================================================
+
+\pagebreak
+\subsection{Cumulative Distribution Function}\label{subsec:gamma:cdf} The cumulative distribution
+function (CDF) of the gamma distribution is defined as:
+\begin{equation}
+	F(x) = \int^x_0\frac{\lambda^\alpha}{\Gamma(\alpha)}u^{\alpha-1}e^{-\lambda u}\diff{u}
+\end{equation}
+However, this integral has no definite form, that is, the integrand has no antiderivative. Hence, this CDF is often
+represented in its simplified form using the lower incomplete gamma function\cite{weissteinIncompleteGammaFunction}:
+\begin{equation}
+	\gamma(\alpha, \lambda x)\equiv\int^x_0u^{\alpha-1}e^{-u}\diff{u}
+\end{equation}
+such that:
+\begin{equation}
+	F(x) = \frac{\gamma(\alpha, \lambda x)}{\Gamma(\alpha)}
+\end{equation}
+Interestingly, there exists a special case of the CDF: when $\alpha$ is a positive integer, that is, when the distribution
+is an Erlang distribution (see \autoref{subsec:specialcases:erlang}), the CDF follows the following series expansion
+\cite{wikipediaGammaDistribution2022}:
+\begin{equation}
+	F(x) = 1-\sum^{\alpha-1}_{i=0}\frac{(\lambda x)^i}{i!}e^{-\lambda x} = e^{-\lambda x}\sum^\infty_{i=\alpha}\frac{(\lambda x)^i}{i!}
+\end{equation}
+
+\pagebreak
+That being said, generally, although lacking a closed form, the cumulative distribution function of the gamma
+distribution may be graphed using software:
+\figurecenter{1}{Gamma_CDF.png}{Plot of the cumulative distribution function of a gamma distribution.}{fig:graph:gamma:cdf}
+
+%======================================================================================================================
+%======================================================================================================================
+%======================================================================================================================
+
+\pagebreak
+\section{Properties}
+Now that the fundamentals of the gamma distribution are set, a few properties stemming from the probability density
+function and the cumulative distribution function will be presented and proven. These properties, along
+with being extremely intriguing, are essential to multiple computations and statistical analyses.
+
+\subsection{Moment Generating Function}\label{subsec:gamma:mgf}
+The moment generating function (MGF) of a real number, vector or matrix random variable $X$ is used to compute a
+distribution's moment. It provides an extremely useful tool for distribution analysis and proofs related to many other
+properties. Unlike the characteristic function, which will be briefly explored in \autoref{subec:advancedproperties:cf},
+the MGF does not always exist for real values of a distribution \cite{wikipediaMomentgeneratingFunction2022}. Here is
+the MGF of the gamma distribution:
+\begin{equation}
+	M(t)=\left(\frac{\lambda}{\lambda-t}\right)^\alpha\text{ for }t<\lambda
+\end{equation}
+This function may be found using the fact that $M(t)=E(e^{tx})$. Hence:
+\begin{equation}
+	\begin{split}
+		M(t)	&=	E(e^{tx})\\
+				&=	\int^\infty_0 e^{tx}f(x)\diff{x}\\
+				&=	\int^\infty_0 e^{tx}\frac{\lambda^\alpha x^{\alpha-1}}{\Gamma(\alpha)}e^{-\lambda x}\diff{x}\\
+				&=	\int^\infty_0 \frac{\lambda^\alpha x^{\alpha-1}}{\Gamma(\alpha)}e^{-(\lambda-t) x}\diff{x}\\
+				&=	\frac{\lambda^\alpha}{(\lambda-t)^\alpha}\int^\infty_0 \frac{(\lambda-t)^\alpha x^{\alpha-1}}{\Gamma(\alpha)}e^{-(\lambda-t) x}\diff{x}\\
+				&=	\frac{\lambda^\alpha}{(\lambda-t)^\alpha}(1)\\
+				&=	\left(\frac{\lambda}{\lambda-t}\right)^\alpha
+	\end{split}
+\end{equation}
+
+%======================================================================================================================
+%======================================================================================================================
+%======================================================================================================================
+
+\pagebreak
+\subsection{Expected Value}\label{subsec:gamma:expected}
+\subsubsection{Finding the Equation}
+The expected value, also known as the theoretical mean, may be found for the gamma distribution using the following
+formula:
+\begin{equation}
+	\mu = E(X) = \frac{\alpha}{\lambda}
+\end{equation}
+Interestingly, there are multiple ways to prove this result. Three different proofs will be explored in this paper.
+
+\paragraph{Proof 1}\label{par:gamma:expected:proof1}
+The first technique uses the gamma distribution probability density function presented in \autoref{subsec:gamma:pdf} as
+a means to get the expected value. In fact:
+\begin{equation}\label{eq:gamma:expected:proof1}
+	E(X) = \int^\infty_0 xf(x)\diff{x} = \frac{\alpha}{\lambda}
+\end{equation}
+\begin{proof}
+	\begin{equation}
+		\begin{split}
+			E(X)	&=	\int^\infty_0 xf(x)\diff{x}\\
+					&=	\int^\infty_0 \frac{\lambda^\alpha}{\Gamma(\alpha)}x^\alpha e^{-\lambda x}\diff{x}\\
+					&=	\int^\infty_0 \frac{\lambda^\alpha}{\Gamma(\alpha)}x^{(\alpha+1)-1} e^{-\lambda x}\diff{x}\\
+					&=	\frac{\Gamma(\alpha+1)}{\lambda\Gamma(\alpha)}\int^\infty_0 \frac{\lambda^{\alpha+1}}{\Gamma(\alpha+1)}x^{(\alpha+1)-1} e^{-\lambda x}\diff{x}\\
+					&=	\frac{\alpha\Gamma(\alpha)}{\lambda\Gamma(\alpha)}(1)\\
+					&=	\frac{\alpha}{\lambda}
+		\end{split}
+	\end{equation}
+\end{proof}
+
+\paragraph{Proof 2}
+Using the moment generating function obtained in \autoref{subsec:gamma:pdf}, the expected value of a gamma distribution
+may be found. That is:
+\begin{equation}
+	E(X) = M^\prime(0) = \frac{\alpha}{\lambda}
+\end{equation}
+\begin{proof}
+	\begin{equation}\label{eq:gamma:mgfprime}
+		\begin{split}
+			M^\prime(t)	&=	\deriv{t}\left(\frac{\lambda}{\lambda - t}\right)^\alpha\\
+						&=	\lambda\alpha\left(\frac{\lambda}{\lambda - t}\right)^{\alpha-1}\deriv{t}\left(\frac{1}{\lambda - t}\right)\\
+						&=	\frac{\lambda\alpha}{(\lambda - t)^2}\left(\frac{\lambda}{\lambda - t}\right)^{\alpha-1}
+		\end{split}
+	\end{equation}
+	\begin{equation}
+		\begin{split}
+			M^\prime(0)	&=	\frac{\lambda\alpha}{\lambda^2}\left(\frac{\lambda}{\lambda}\right)^{\alpha-1}\\
+						&=	\frac{\alpha}{\lambda}\\
+		\end{split}
+	\end{equation}
+\end{proof}
+
+\paragraph{Proof 3}
+A third way to demonstrate that $E(X) = \frac{\alpha}{\lambda}$, is by performing the following integral:
+\begin{equation}
+	\int^\infty_0 1-F(x)\diff{x}
+\end{equation}
+However, this technique is not possible in the case of the gamma distribution, as there is no explicit formula for $F(x)$
+as seen in \autoref{subsec:gamma:cdf}.
+
+\subsubsection{Special Case}
+The expected value may be used to derive several other properties. For example, consider i.i.d random variable
+$X\sim\G\text{amma}(\alpha, \lambda)$ such that $f(x) = \frac{\lambda^\alpha}{\Gamma(\alpha)}x^{\alpha-1}e^{-\lambda x}$.
+Then:
+\begin{equation}
+	\begin{split}
+		E(X^\beta)	&=	\int^\infty_0 x^\beta f(x)\diff{x}\\
+					&=	\int^\infty_0 x^\beta \frac{\lambda^\alpha}{\Gamma(\alpha)}x^{\alpha-1}e^{-\lambda x}\diff{x}\\
+					&=	\frac{\lambda^\alpha}{\Gamma(\alpha)}\int^\infty_0 x^{(\alpha+\beta)-1}e^{-\lambda x}\diff{x}\\
+					&=	\frac{\lambda^\alpha}{\Gamma(\alpha)}\frac{\Gamma(\alpha+\beta)}{\lambda^{\alpha+\beta}}\int^\infty_0 \frac{\lambda^{\alpha+\beta}}{\Gamma(\alpha+\beta)}x^{(\alpha+\beta)}\diff{x}\\
+					&=	\frac{\Gamma(\alpha+\beta)}{\lambda^\beta \Gamma(\alpha)}\text{ for }\beta\in (-\alpha, \infty)
+	\end{split}
+\end{equation}
+The expected value and the variance can be determined using the provided formula above:
+\paragraph{Expected Value}
+If $E(X^\beta) = \frac{\Gamma(\alpha+\beta)}{\lambda^\beta \Gamma(\alpha)}$, then:
+\begin{equation}
+	\begin{split}
+		E(X^1)	&=	\frac{\Gamma(\alpha+1)}{\lambda^1 \Gamma(\alpha)}\\
+		E(X^1)	&=	\frac{\alpha\Gamma(\alpha)}{\lambda\Gamma(\alpha)}\\
+				&=	\frac{\alpha}{\lambda}
+	\end{split}
+\end{equation}
+
+\paragraph{Variance}
+In order to find the variance, $E(X^2)$ will need to be found using the same technique used to determine the formula for
+$E(X)$. If $E(X^\beta) = \frac{\Gamma(\alpha+\beta)}{\lambda^\beta \Gamma(\alpha)}$, then:
+\begin{equation}
+	\begin{split}
+		E(X^2)	&=	\frac{\Gamma(\alpha+2)}{\lambda^2 \Gamma(\alpha)}\\
+				&=	\frac{\alpha(\alpha+1)\Gamma(\alpha)}{\lambda^2 \Gamma(\alpha)}\\
+				&=	\frac{\alpha^2+\alpha}{\lambda^2}
+	\end{split}
+\end{equation}
+The variance can now be found with this technique:
+\begin{equation}
+	\begin{split}
+		\text{Var}(X)	&=	E(X^2) - [E(X)]^2\\
+						&=	\frac{\alpha^2+\alpha}{\lambda^2} - \left[\frac{\alpha}{\lambda}\right]^2\\
+						&=	\frac{\alpha^2+\alpha}{\lambda^2} - \frac{\alpha^2}{\lambda^2}\\
+						&=	\frac{\alpha}{\lambda^2}
+	\end{split}
+\end{equation}
+In the next section, we will examine other techniques that may be used to get the variance of the gamma distribution.
+
+%======================================================================================================================
+%======================================================================================================================
+%======================================================================================================================
+
+\pagebreak
+\subsection{Variance}\label{subsec:gamma:variance}
+The variance is a measure of how "spread out" the data is. Indeed, the lower the variance is, the sharper the
+probability density function graph will be. More specifically, the variance is the square of the standard
+deviation of the random variable examined\cite{wikipediaVariance2022}.
+
+This property may be calculated using the following equation:
+\begin{equation}\label{eq:gamma:var}
+	\text{Var}(X) = \frac{\alpha}{\lambda^2}
+\end{equation}
+and this last equation may be proven in two different ways using either the moment generating function or an integral.
+
+\paragraph{Proof 1}
+This first proof, featuring the moment generating function obtained in \autoref{subsec:gamma:mgf}, will prove the
+following relationship:
+\begin{equation}\label{eq:gamma:var:proof1}
+	\text{Var}(X) = M^{\prime\prime}(0) - [M^\prime(0)]^2 = \frac{\alpha}{\lambda^2}
+\end{equation}
+\begin{proof}
+	Consider the following result from \autoref{eq:gamma:mgfprime} in \autoref{subsec:gamma:expected}:
+	\begin{equation}
+		M^\prime(t) = \frac{\lambda\alpha}{(\lambda - t)^2}\left(\frac{\lambda}{\lambda - t}\right)^{\alpha-1}
+	\end{equation}
+	Then $M^{\prime\prime}(t)$ is derived to be:\vspace*{-12pt}
+	\begin{equation}
+		\begin{split}
+			M^{\prime\prime}(t)	&=	\deriv{t}M^\prime(t)\\
+								&=	\deriv{t}\left[\frac{\lambda\alpha}{(\lambda - t)^2}\left(\frac{\lambda}{\lambda - t}\right)^{\alpha-1}\right]\\
+								&=	\lambda\alpha\left(\deriv{t}\left[\frac{1}{(\lambda - t)^2}\right]\left(\frac{\lambda}{\lambda - t}\right)^{\alpha-1} + \left(\frac{1}{(\lambda - t)^2}\right)\deriv{t}\left[\left(\frac{\lambda}{\lambda - t}\right)^{\alpha-1}\right]\right)\\
+								&=	\lambda\alpha\left(\left(\frac{2}{(\lambda-t)^3}\right)\left(\frac{\lambda}{\lambda - t}\right)^{\alpha-1} + \left(\frac{\lambda(\alpha-1)}{(\lambda - t)^2}\right)\left(\frac{\lambda}{\lambda-t}\right)^{\alpha-2}\deriv{t}\left[\frac{1}{\lambda-t}\right]\right)\\
+								&=	\lambda\alpha\left(\left(\frac{2}{(\lambda-t)^3}\right)\left(\frac{\lambda}{\lambda - t}\right)^{\alpha-1} + \left(\frac{\lambda(\alpha-1)}{(\lambda - t)^2}\right)\left(\frac{\lambda}{\lambda-t}\right)^{\alpha-2}\left(\frac{1}{(\lambda-t)^2}\right)\right)\\
+								&=	\lambda\alpha\left(\left(\frac{2}{(\lambda-t)^3}\right)\left(\frac{\lambda}{\lambda - t}\right)^{\alpha-1} + \left(\frac{\lambda(\alpha-1)}{(\lambda - t)^4}\right)\left(\frac{\lambda}{\lambda-t}\right)^{\alpha-2}\right)
+		\end{split}
+	\end{equation}
+	Let's not even try to simplify further and directly substitute $t=0$:\vspace*{-12pt}
+	\begin{equation}
+		\begin{split}
+			M^{\prime\prime}(0)	&=	\lambda\alpha\left(\left(\frac{2}{(\lambda-0)^3}\right)\left(\frac{\lambda}{\lambda - 0}\right)^{\alpha-1} + \left(\frac{\lambda(\alpha-1)}{(\lambda - 0)^4}\right)\left(\frac{\lambda}{\lambda-0}\right)^{\alpha-2}\right)\\
+								&=	\lambda\alpha\left(\frac{2}{\lambda^3}(1) + \frac{\lambda(\alpha-1)}{\lambda^4}(1)\right)\\
+								&=	\lambda\alpha\left(\frac{2}{\lambda^3} + \frac{\alpha-1}{\lambda^3}\right)\\
+								&=	\lambda\alpha\left(\frac{\alpha+1}{\lambda^3}\right)\\
+								&=	\frac{\alpha^2 + \alpha}{\lambda^2}
+		\end{split}
+	\end{equation}\\[-30pt]
+	Finally:\vspace*{-12pt}
+	\begin{equation}
+		\begin{split}
+			\text{Var}(X)	&=	 M^{\prime\prime}(0) - [M^\prime(0)]^2\\
+							&=	\frac{\alpha(\alpha+1)}{\lambda^2} - \left(\frac{\alpha}{\lambda}\right)^2\\
+							&=	\frac{\alpha^2+\alpha}{\lambda^2} - \frac{\alpha^2}{\lambda^2}\\
+							&=	\frac{\alpha^2 + \alpha -\alpha^2}{\lambda^2}\\
+							&=	\frac{\alpha}{\lambda^2}
+		\end{split}
+	\end{equation}
+\end{proof}
+
+\paragraph{Proof 2}
+This time, the proof features an integral to obtain the variance. That is:
+\begin{equation}\label{eq:gamma:var:proof2}
+	\text{Var}(X) = E(X^2)-[E(X)]^2 = \frac{\alpha}{\lambda^2}
+\end{equation}
+\begin{proof}
+	In the following equations, $E(X)$ is the expected value obtained in \autoref{subsec:gamma:expected} and $E(X^2)$ is
+	obtained using a process similar to \autoref{eq:gamma:expected:proof1} of \nameref{par:gamma:expected:proof1} in
+	\autoref{subsec:gamma:expected}. That is:
+	\begin{equation}
+		\begin{split}
+			E(X^2)	&=	\int^\infty_0 x^2f(x)\diff{x}\\
+					&=	\int^\infty_0 \frac{\lambda^\alpha}{\Gamma(\alpha)}x^{\alpha+1} e^{-\lambda x}\diff{x}\\
+					&=	\int^\infty_0 \frac{\lambda^\alpha}{\Gamma(\alpha)}x^{(\alpha+2)-1} e^{-\lambda x}\diff{x}\\
+					&=	\frac{\Gamma(\alpha+2)}{\lambda^2\Gamma(\alpha)} \int^\infty_0 \frac{\lambda^{\alpha+2}}{\Gamma(\alpha+2)}x^{(\alpha+2)-1} e^{-\lambda x}\diff{x}\\
+					&=	\frac{\alpha(\alpha+1)\Gamma(\alpha)}{\lambda^2\Gamma(\alpha)}(1)\\
+					&=	\frac{\alpha(\alpha+1)}{\lambda^2}
+		\end{split}
+	\end{equation}
+	Then:
+	\begin{equation}
+		\begin{split}
+			\text{Var}(X)	&=	E(X^2)-[E(X)]^2\\
+							&=	\frac{\alpha(\alpha+1)}{\lambda^2} - \left(\frac{\alpha}{\lambda}\right)^2\\
+							&=	\frac{\alpha^2+\alpha}{\lambda^2} - \frac{\alpha^2}{\lambda^2}\\
+							&=	\frac{\alpha^2 + \alpha -\alpha^2}{\lambda^2}\\
+							&=	\frac{\alpha}{\lambda^2}
+		\end{split}
+	\end{equation}
+\end{proof}
+Conclusively, \autoref{eq:gamma:var} is confirmed.
+
+%======================================================================================================================
+%======================================================================================================================
+%======================================================================================================================
+
+\pagebreak
+\subsection{Quantiles}
+Usually, the quantile function is defined as the inverse of the cumulative distribution function. Since the gamma
+distribution has no closed form for its CDF (see \autoref{subsec:gamma:cdf}) and, therefore, the latter cannot be
+inverted, it has no quantile function. In other words, there is no explicit form for the quantile function:
+\begin{equation}
+	q(p)=F^{-1}(p)
+\end{equation}
+because $F^{-1}(x)$ is not defined, since $f(x)$ has no antiderivative.
+
+Visually, quantiles may be represented as equal subdivisions of a probability density function graph starting from the
+median. That is, in the following figure, the first quantile is represented by the section weighing 34\% of the whole
+PDF, the second one represents the section weighing 13.5\% and the last one represents the section weighing 2\%. As may
+be noticed, these subdivisions are equally divided both sides of the median.
+\figurecenter{1}{Quantiles.png}{Visual representation of quantiles in a probability density distribution. Provided by GeeksforGeeks \cite{geeksforgeeksQuantileQuantilePlots2021}}{fig:graph:quantiles}
+
+
+%======================================================================================================================
+%======================================================================================================================
+%======================================================================================================================
+
+\pagebreak
+\subsection{Mode}
+The mode is defined as the value appearing the most through a certain set of data values, that is, the location of the
+highest peak on a probability density function plot. On \autoref{fig:graph:gamma:mode}, the mode represents the value of
+$T$ where the density is at its peak.
+\figurecenter{1}{Gamma_mode.png}{Plot of the probability density function of three distinct gamma distributions with different modes.}{fig:graph:gamma:mode}
+As may be observed in the plot of $\G\text{amma}(1, 0.3)$, the highest value of the density on the curve is $0.3$ at
+$T=0$ which corresponds to the mode of this specific parameterization of the distribution. The mode of the density
+function of $\G\text{amma}(1, 0.3)$ is thus $0.3$. To be more precise and avoid the need for a graph, the following
+equation may be used to calculate the mode of a gamma distribution:
+\begin{equation}\label{eq:gamma:mode}
+	\text{Mode} = \frac{(\alpha-1)}{\lambda}\text{ for }\alpha \geq 1
+\end{equation}
+Ergo, for the plot of $\G\text{amma}(5, 3)$, the mode can be determined to be:
+\begin{equation}
+	T = \frac{(5-1)}{3} = \frac{4}{3}
+\end{equation}
+Accordingly, on \autoref{fig:graph:gamma:mode}, the highest peak of the plot of $\G\text{amma}(5, 3)$ is at
+$\frac{4}{3}$.
+
+\subsubsection{Special Cases}
+There are two special cases concerning the mode of the gamma distribution: when the density of the PDF goes to infinity
+(the graph has a vertical asymptote) and when the parameter $\alpha=1$.
+
+\paragraph{Case 1:}
+The first special case is when the mode of the PDF never reaches its maximum value, that is, when there is a vertical asymptote
+on its plot. The plot of $\G\text{amma}(0.5, 1)$ on \autoref{fig:graph:gamma:mode} features this case. Indeed, if $f(x)$
+is the probability density function, then:\vspace*{-20pt}
+\begin{equation}
+	\lim_{T\to 0^+}f(x)=\infty
+\end{equation}\\[-40pt]
+Notice how this case arises when the condition stated in \autoref{eq:gamma:mode} is broken, that is, that $\alpha\geq
+1$. In fact, in the case of the purple plot, $\alpha=0.5<1$
+\paragraph{Case 2:}
+In a gamma distribution $\G\text{amma}(1, \lambda)\equiv\E\text{xp}(\lambda)$, the highest point of the plot of the PDF
+will be located at $T=0$ and will correspond to a density value of $\lambda$. In \autoref{fig:graph:gamma:mode}, the
+plot of $\G\text{amma}(1, 0.3)$ is an example of this special case as it has $\alpha=1$ as a parameter. Hence, the mode
+of this latter parameterization of the gamma distribution is of $\lambda=0.3$ at $T=0$.
+
+%======================================================================================================================
+%======================================================================================================================
+%======================================================================================================================
+
+\pagebreak
+\subsection{Inflection Points}
+The more the value of alpha increases, the narrower the density function graph of $\G\text{amma}(\alpha,\lambda)$
+becomes narrower. For example, when $\alpha=1$, the density function graph does not contain any inflection point.
+However, its $y$-intercept is equal to $\lambda$. As the value of $\alpha$ increases to 5, two inflection points, on
+each side of the mode, can be found on the graph. Inflection points are obtained by performing the second derivative of
+the curve. Below are found different possible shapes of the density function graph in function of the value of $\alpha$.
+By increasing the value of $\alpha$, the inflection points become closer to each other.
+\figurecenter{1}{Gamma_inflection.png}{Plot of the probability density function of four distinct gamma distributions with different inflection points.}{fig:graph:gamma:inflection}
+
+%======================================================================================================================
+%======================================================================================================================
+%======================================================================================================================
+
+\pagebreak
+\subsection{Median}
+The median of a probability distribution is the value that separates the area under the curve of its distribution
+function in two equal parts. It follows that, in the case of the gamma distribution, the median is defined as the value
+$m$ for which:
+\begin{equation}
+	\frac{1}{2} = \frac{\lambda^\alpha}{\Gamma(\alpha)} \int^m_0 x^{\alpha-1} e^{-\lambda x}\diff{x}
+\end{equation}
+
+However, it is interesting to note that the median of the gamma distribution has no simple closed form : due to its
+highly varying shape, it cannot be represented in an equation as a function of its parameters. Interestingly, some have
+noticed that an approximation of the median can be performed in cases where the parameter
+$\lambda=1$\cite{wikipediaGammaDistribution2022}:
+\begin{equation}\label{eq:gamma:median:approximation}
+	m = \alpha(1-\frac{1}{9\alpha})
+\end{equation}
+
+Let's take the case of a distribution $\G\text{amma}(5, 1)$ to examine this claim. The approximation of the median using
+\autoref{eq:gamma:median:approximation} is as follows:
+\begin{equation}
+	\begin{split}
+		m	&=	\alpha(1-\frac{1}{9\alpha})\\
+			&=	5(1-\frac{1}{9\cdot 5})\\
+			&=	\frac{44}{9}\\
+			&=	4.\bar{8}
+	\end{split}
+\end{equation}
+
+Let's confirm the validity of the answer using the graph of the probability density function of the distribution
+$\G\text{amma}(5, 1)$.
+\figurecenter{1}{Gamma_median_approximation.png}{Plot of the probability density function of a gamma distribution with parameters $\alpha=5$ and $\lambda=1$.}{fig:graph:gamma:median:approximation}
+The approximation seems to, in fact, be valid as the PDF is "weighted" more towards the right and its median seems to be
+between 4.5 and 5.
+
+Still, there is comfort in the fact that some special cases of the gamma distribution do have a
+median, such as the exponential distribution. Indeed, the median of a continuous random variable following the gamma
+distribution such that $X\sim\G\text{amma}(1, \lambda)\equiv\E\text{xp}(\lambda)$ may be obtained through a simple
+integration process:
+\begin{equation}
+	\begin{split}
+		\frac{1}{2}					&=	\frac{\lambda^\alpha}{\Gamma(\alpha)} \int^m_0 x^{\alpha-1} e^{-\lambda x}\diff{x}\\
+		\Rightarrow\frac{1}{2}		&=	-e^{-\lambda m} + 1\\
+		\Rightarrow\frac{1}{2}		&=	e^{-\lambda m}\\
+		\Rightarrow\ln(\frac{1}{2})	&=	-\lambda m\\
+		\Rightarrow-\ln(2)			&=	-\lambda m\\
+		\Rightarrow m				&=	\frac{\ln(2)}{\lambda}
+	\end{split}
+\end{equation}
+Hence, the median of an exponential distribution is defined as $\frac{\ln(2)}{\lambda}$.
+
+%======================================================================================================================
+%======================================================================================================================
+%======================================================================================================================
+
+\pagebreak
+\subsection{Memoryless Property}
+The memoryless property indicates that a given probability distribution is independent of its history: the likelihood of
+something happening in the future has no relation to past events. In statistics, a continuous random variable $X$
+satisfies the memoryless property if:
+ \begin{equation}
+	P(X>x+a | X>a) = P(X>x)\text{ for }a, x \geq 0
+ \end{equation}
+
+ It is easy to show that the exponential distribution (see \autoref{subsec:specialcases:exponential}) displays the
+ memoryless property:
+ \begin{equation}
+	 \begin{split}
+		 P(X>x+a | X>a)	&=	\frac{P(X>x+a, X>a)}{P(X>a)}\\
+		 				&=	\frac{P(X>x+a)}{P(X>a)}\\
+						&=	\frac{1-F_X(x+a)}{1-F_X(a)}\\
+						&=	\frac{e^{-\lambda(x+a)}}{e^{-\lambda a}}\\
+						&=	e^{-\lambda x}\\
+						&=	P(X>x)
+	 \end{split}
+ \end{equation}
+As a consequence, in a sequence of exponentially distributed events, the expected time until the next event always
+corresponds to $\frac{1}{\lambda}$, no matter how much time has passed since the last event.
+
+However, it is interesting to note that when $\alpha>1$, the future behaviour of the probability distribution is not
+independent of its past. Therefore, in general, the gamma distribution does not possess the memoryless property. This
+can be understood intuitively when looking at a case involving $\G\text{amma}(100, 1)$, which models the total time
+until 100 events separated by an average waiting time of 1 minute occur. It can be shown by brute force that if one has
+already waited $x=110$ minutes, the probability of having to wait at least another ten minutes for the hundredth event
+to occur is much lower than the probability of having to wait more than ten minutes in total\cite{myersCS547Lecture,
+probabilitycourseExponentialDistribution}:
+\begin{equation}
+	\begin{split}
+		P(X>110+10 | X>110)	&=			\frac{P(X>110 | X>120)\cdot P(X>120)}{P(X>110)}\\
+							&\approx	0.1760\\
+		P(X>10)				&\approx	1\\
+		P(X>110+10 | X>110)	&\neq		P(X>10)
+	\end{split}
+\end{equation}
+Clearly, the memoryless property is not satisfied.
+
+%======================================================================================================================
+%======================================================================================================================
+%======================================================================================================================
+
+\pagebreak
+\section{The Gamma Function}
+\vspace*{-6pt}
+Studied by Leonhard Euler (1707-1783), the gamma function is related to the gamma distribution. This extremely handy
+function allows the generalization of the factorial notation. As a matter of fact, while the factorial $\alpha!$ is
+restricted to $\alpha\in\mathbb{N}$, the gamma function $\Gamma(\alpha)$ allows the computation of fractional and
+negative numbers such that $\alpha\in\mathbb{Q}$. By abusing the notation, the gamma function may even be used to
+compute $\Gamma(\alpha)$ such that $\alpha\in\mathbb{R}$. The relationship between the gamma function and the factorial
+notation is as follows:
+\vspace*{-18pt}
+\begin{equation}\label{eq:gammafunction:factorial}
+	\Gamma(\alpha)=(\alpha-1)!\text{ for }\alpha\in\mathbb{N}
+\end{equation}
+\vspace*{-60pt}
+
+\subsection{Definition}\label{subsec:gammafunction:definition}
+\vspace*{-6pt}
+First of all, the gamma function is defined as:
+\vspace*{-12pt}
+\begin{equation}
+	\Gamma(\alpha)=\int^\infty_0 x^{\alpha-1}e^{-x}\diff{x} \textnormal{ for }\alpha\in\mathbb{R}^+
+\end{equation}\\[-36pt]
+Assuming that $\alpha > 1$, the closed form of the gamma function may be found with integration by parts:\\[-12pt]
+\begin{empheq}[box=\widefbox]{align*}
+	u=x^{\alpha-1};								&&	\diff{v}=e^{-x}\diff{x}\\
+	\diff{u}=(\alpha-1)x^{\alpha-2}\diff{x};	&&	v=-e^{-x}
+\end{empheq}
+\begin{equation}
+	\begin{split}
+		\Gamma(\alpha)	&=	\int^\infty_0 x^{\alpha-1}e^{-x}\diff{x}\\
+						&=	-\left[x^{\alpha-1}e^{-x}\right]^\infty_0 + (\alpha-1)\int^\infty_0 x^{\alpha-2}e^{-x}\diff{x}\\
+						&=	0+(\alpha-1)\Gamma(\alpha-1)\\
+						&=	(\alpha-1)\Gamma(\alpha-1)
+	\end{split}
+\end{equation}
+Therefore:
+\begin{equation}\label{eq:gammafunction:closedform}
+	\Gamma(\alpha)	=	(\alpha-1)\Gamma(\alpha-1)\textnormal{ for }\alpha\in(1,\infty)
+\end{equation}
+Furthermore, $\Gamma(1)$ is defined separately as being:
+\vspace*{-12pt}
+\begin{equation}
+	\Gamma(1) = \int^\infty_0 e^{-x}\diff{x} = \left[-e^{-x}\right]^\infty_0 = 1
+\end{equation}
+
+%======================================================================================================================
+%======================================================================================================================
+%=================================================================================================================
+
+\pagebreak
+\subsubsection{Special Case of $\Gamma(\sfrac{1}{2})$}
+An extremely interesting case of the gamma function is $\Gamma(\sfrac{1}{2})$. In fact, this result allows the
+computation of fractional values of $\alpha$ such that $\alpha\in\mathbb{Q}$. This special case is as follows:
+\begin{claim}\label{claim:gammafunction:onehalf}
+	\begin{equation*}
+		\Gamma(\sfrac{1}{2})=\sqrt{\pi}
+	\end{equation*}
+\end{claim}
+
+\paragraph{Initial Setup}
+First, to prove Claim \ref{claim:gammafunction:onehalf}, let's start by setting up some equations in preparation for the
+proof:
+\begin{equation}\label{eq:gammafunction:i}
+	I = \int^\infty_0 e^{-x^2}\diff{x}
+\end{equation}
+From this result, one obtains that:
+\begin{equation}\label{eq:gammafunction:isquared}
+	\begin{split}
+		I^2	&=	\left(\int^\infty_0 e^{-x^2}\diff{x}\right)\left(\int^\infty_0 e^{-y^2}\diff{y}\right)\\
+			&=	\int^\infty_0\int^\infty_0 e^{-(x^2+y^2)}\diff{x}\diff{y}
+	\end{split}
+\end{equation}
+To solve this integral easily, one may use the following change of variables:
+\begin{align*}
+	x=r\cos\theta	&&	y=r\sin\theta
+\end{align*}
+This change of variable requires the Jacobian of the transformation to be computed:
+\begin{equation}\label{eq:gammafunction:jacobian}
+	\J = \det\begin{bmatrix}
+		\pderiv{x}{r}	&	\pderiv{x}{\theta}\\[6pt]
+		\pderiv{y}{r}	&	\pderiv{y}{\theta}
+		\end{bmatrix} = \det\begin{bmatrix}
+			\cos\theta	&	-r\sin\theta\\
+			\sin\theta	&	r\cos\theta
+		\end{bmatrix} = r(\cos^2\theta + \sin^2\theta) = r
+\end{equation}
+Using the result obtained in \autoref{eq:gammafunction:jacobian}, the integral in \autoref{eq:gammafunction:isquared}
+may be computed using polar coordinates:
+\begin{equation}
+	\begin{split}
+		I^2	=	\int^\infty_0\int^\infty_0 e^{-(x^2+y^2)}\diff{x}\diff{y}	&=	\int^\frac{\pi}{2}_0\int^\infty_0 re^{-r^2}\diff{r}\diff{\theta}\\
+																			&=	\frac{\pi}{2}\int^\infty_0 re^{-r^2}\diff{r}\\
+																			&=	\frac{\pi}{2}\left[-\frac{e^{-r^2}}{2}\right]^\infty_0\\
+																			&=	\frac{\pi}{2}\frac{1}{2}\\
+																			&=	\frac{\pi}{4}
+	\end{split}
+\end{equation}
+It then follows that \autoref{eq:gammafunction:i} may be solved:
+\begin{equation}
+	I = \sqrt{I^2} = \int^\infty_0 e^{-x^2}\diff{x} = \sqrt{\frac{\pi}{4}} = \frac{\sqrt{\pi}}{2}
+\end{equation}
+Accordingly, Corollaries \autoref{corollary:gammafunction:sqrtpi} and \autoref{corollary:gammafunction:sqrt2pi}
+logically follow:
+\begin{corollary}\label{corollary:gammafunction:sqrtpi}
+	\begin{equation}
+		\int^\infty_{-\infty} e^{-x^2}\diff{x} = \sqrt{\pi}
+	\end{equation}
+\end{corollary}
+\begin{corollary}\label{corollary:gammafunction:sqrt2pi}
+	\begin{equation}
+		\int^\infty_{-\infty} e^{\sfrac{-x^2}{2}}\diff{x} = \sqrt{2\pi}
+	\end{equation}
+\end{corollary}
+\noindent Let's prove these corollaries:\\[-36pt]
+\begin{proof}
+	Consider this substitution of variables:\\[-36pt]
+	\begin{align*}
+		z = \sqrt{2}x	&&	\diff{z} = \sqrt{2}\diff{x}
+	\end{align*}\\[-36pt]
+	Using this substitution, Corollaries \autoref{corollary:gammafunction:sqrtpi} and
+	\autoref{corollary:gammafunction:sqrt2pi} may be proven:\\[-18pt]
+	\begin{equation}
+		\int^\infty_{-\infty} e^{-x^2}\diff{x} = \frac{1}{\sqrt{2}}\int^\infty_{-\infty} e^{\sfrac{-z^2}{2}}\diff{z} = \sqrt{\pi}\\
+	\end{equation}
+	\vspace*{-30pt}
+	\begin{equation}
+		\int^\infty_{-\infty} e^{\sfrac{-z^2}{2}}\diff{z} = \sqrt{2}\sqrt{\pi} = \sqrt{2\pi}
+	\end{equation}
+\end{proof}
+\paragraph{The Proof}
+The proof for Claim \ref{claim:gammafunction:onehalf} may now be articulated:\\[-36pt]
+\begin{proof}
+	Consider, once again, this other substitution of variables:\\[-36pt]
+	\begin{align*}
+		x = \sqrt{z}	&&	\diff{x} = \frac{1}{2\sqrt{z}}\diff{z} = \frac{z^{-\sfrac{1}{2}}}{2}\diff{z}
+	\end{align*}\\[-36pt]
+	Using it, the following integral may be solved:
+	\begin{equation}
+		\begin{split}
+			\int^\infty_0 e^{-x^2}\diff{x}	&=	\frac{1}{2}\int^\infty_0 z^{-\sfrac{1}{2}}e^{-z}\diff{z}\\
+											&=	\frac{1}{2}\Gamma(\sfrac{1}{2})\\
+											&=	\frac{\sqrt{\pi}}{2}
+		\end{split}
+	\end{equation}
+	Conclusively, Claim \ref{claim:gammafunction:onehalf} is proven:
+	\begin{equation}
+		\Gamma(\sfrac{1}{2}) = \sqrt{\pi}
+	\end{equation}
+\end{proof}
+
+
+%======================================================================================================================
+%======================================================================================================================
+%======================================================================================================================
+
+\pagebreak
+\subsubsection{Negative Values of $\alpha$}
+As was mentioned earlier, by abusing the identity shown in \autoref{eq:gammafunction:closedform}, one may extend the
+gamma function to negative non-integer values of $\alpha$ such that $\alpha\in\mathbb{R}\backslash\mathbb{Z}^-$. For
+example, to find $\Gamma(-\sfrac{9}{2})$, one may compute:
+\vspace*{-12pt}
+\begin{equation}
+	\begin{split}
+		\Gamma(\sfrac{1}{2})	&=	(-\sfrac{1}{2})\Gamma(-\sfrac{1}{2})\\
+								&=	(-\sfrac{1}{2})(-\sfrac{3}{2})\Gamma(-\sfrac{3}{2})\\
+								&=	(\sfrac{3}{4})(-\sfrac{5}{2})\Gamma(-\sfrac{5}{2})\\
+								&=	(-\sfrac{15}{8})(-\sfrac{7}{2})\Gamma(-\sfrac{7}{2})\\
+								&=	(\sfrac{105}{16})(-\sfrac{9}{2})\Gamma(-\sfrac{9}{2})\\
+								&=	(-\sfrac{945}{32})\Gamma(-\sfrac{9}{2})\\
+	\end{split}
+\end{equation}
+\begin{equation}
+	\therefore\Gamma(-\sfrac{9}{2})=-\frac{32}{945}\Gamma(\sfrac{1}{2})=-\frac{32}{945}\sqrt{\pi}
+\end{equation}
+Hence, to calculate the value of a gamma function with a negative argument, one might modify a bit the result obtained
+in \autoref{eq:gammafunction:closedform} such that:
+\vspace*{-12pt}
+\begin{equation}
+	\Gamma(\alpha)=\frac{\Gamma(\alpha+1)}{\alpha}\text{ for }\alpha\in\mathbb{R}^-\backslash\mathbb{Z}
+\end{equation}\\[-36pt]
+for example, take the same example of $\Gamma(-\sfrac{9}{2})$:\\[-12pt]
+\begin{equation}
+	\begin{split}
+		\Gamma(-\sfrac{9}{2})	&=	\frac{\Gamma(-\sfrac{7}{2})}{(-\sfrac{9}{2})}\\
+								&=	\frac{\Gamma(-\sfrac{5}{2})}{(-\sfrac{9}{2})(-\sfrac{7}{2})}\\
+								&=	\frac{\Gamma(-\sfrac{3}{2})}{(\sfrac{63}{4})(-\sfrac{5}{2})}\\
+								&=	\frac{\Gamma(-\sfrac{1}{2})}{(-\sfrac{315}{8})(-\sfrac{3}{2})}\\
+								&=	\frac{\Gamma(\sfrac{1}{2})}{(\sfrac{945}{16})(-\sfrac{1}{2})}\\
+								&=	\frac{\Gamma(\sfrac{1}{2})}{(-\sfrac{945}{32})}
+		\end{split}
+\end{equation}
+\begin{equation}
+	\therefore\Gamma(-\sfrac{9}{2})=-\frac{32}{945}\Gamma(\sfrac{1}{2})=-\frac{32}{945}\sqrt{\pi}
+\end{equation}
+
+%======================================================================================================================
+%======================================================================================================================
+%======================================================================================================================
+
+\pagebreak
+\subsection{Relationship to Factorial Notation}
+Using a proof by induction, gamma functions can be shown to be related to the factorial notation.
+\begin{proof}
+	Let us prove \autoref{eq:gammafunction:factorial}, that is, that:\\[-18pt]
+	\begin{equation}
+		\Gamma(n) = \int^\infty_0 x^{n-1}e^{-x}\diff{x} = (n-1)!\text{ for }n\in\mathbb{N}
+	\end{equation}\\[-30pt]
+	For $n=1$:\\[-18pt]
+	\begin{equation}
+		\begin{split}
+			\Gamma(1)	&=	\int^\infty_0 x^{1-1}e^{-x}\diff{x}\\
+						&=	\int^\infty_0 e^{-x}\diff{x}\\
+						&=	1\\
+						&=	(1-1)!\\
+						&=	0!
+		\end{split}
+	\end{equation}\\[-24pt]
+	Assume that the equation holds for $n=k$ such that:\\[-18pt]
+	\begin{equation}
+		\Gamma(k) = (k-1)!
+	\end{equation}\\[-30pt]
+	Then, let us prove that the equation is valid for $n=k+1$ using integration by parts:\\[-12pt]
+	\begin{empheq}[box=\widefbox]{align*}
+		u=x^{k};					&&	\diff{v}=e^{-x}\diff{x}\\
+		\diff{u}=kx^{k-1}\diff{x};	&&	v=-e^{-x}
+	\end{empheq}
+	\begin{equation}
+		\begin{split}
+			\Gamma(k+1)	&=	\int^\infty_0 x^{(k+1)-1}e^{-x}\diff{x}\\
+						&=	\left[-x^k e^{-x}\right]^\infty_0 + k\int^\infty_0 x^{k-1}e^{-x}\diff{x}\\
+						&=	0 +k\Gamma(k)\\
+						&=	k(k-1)!\\
+						&=	((k+1)-1)!\\
+						&=	k!
+		\end{split}
+	\end{equation}
+	Therefore, \autoref{eq:gammafunction:factorial} is proven by mathematical induction.
+\end{proof}
+
+%======================================================================================================================
+%======================================================================================================================
+%======================================================================================================================
+
+\pagebreak
+\subsection{Plotting the Gamma Function}
+Using everything that was computed previously, the graph of $\Gamma(\alpha)$ may be plotted. It includes both positive,
+negative and fractional values of $\alpha$. Notice how the asymptotes of the graph are found at every negative integer
+value; the function, as was mentioned previously, is not defined for negative integers.
+\figurecenter{1}{gamma_function.png}{Plot of the function $\Gamma(\alpha)$ in red and the asymptotes of the function in dotted blue lines.}{fig:graph:gammafunction}
+
+%======================================================================================================================
+%======================================================================================================================
+%======================================================================================================================
+
+\pagebreak
+\section{Special Cases of the Gamma Distribution}
+The gamma distribution has many common parameterizations. Hence, in order to make working with them easier, they were
+each given a specific name such as the chi-square distribution, the exponential distribution and more. In this section,
+we will present some of these special cases and prove their relationship.
+
+\subsection{The Exponential Distribution}\label{subsec:specialcases:exponential}
+The gamma distribution can model the elapsed time between random and independent events. However, what should one do
+when one wants to strictly model the time to wait before a single new event?
+
+If a unique event is modelled, it follows that the shape parameter is limited to $\alpha = 1$. In such a case, the gamma
+distribution is said to follow an exponential distribution: more specifically, if $X\sim\G\text{amma}(1, \lambda)$, then
+it can also be said that $X\sim\E\text{xp}(\lambda)$. The continuous random variable $X$ thus follows an exponential
+distribution with rate parameter $\lambda$, where the rate parameter represents how quickly events occur. More
+concretely:
+\begin{equation}
+	X\sim\G\text{amma}(1, \lambda)\equiv\E\text{xp}(\lambda)
+\end{equation}
+Indeed, using a simple substitution of the variables, one gets that:
+\begin{equation}\label{eq:relation:exp}
+	\begin{split}
+		f(x)	&=	\frac{\lambda^\alpha x^{\alpha-1}}{\Gamma(\alpha)}e^{-\lambda x}\\
+				&=	\frac{\lambda^1 x^{0}}{\Gamma(1)}e^{-\lambda x}\\
+				&=	\lambda e^{-\lambda x}
+	\end{split}
+\end{equation}
+\begin{equation}
+	\therefore X\sim\G\text{amma}(1, \lambda)\equiv X\sim\E\text{xp}(\lambda)
+\end{equation}
+Accordingly, it can be demonstrated that the sum of exponential random variables is a gamma random variable. That is, if
+$X_1, X_2, \ldots, X_n$ are i.i.d random variables following $\E\text{xp}(\lambda)$, then:
+\begin{equation}
+	Y=\sum^k_{i=1}\left[X_i\right]\sim\G\text{amma}(k, \lambda)
+\end{equation}
+
+\subsubsection{Discovery of the Gamma Probability Density Function}
+Here, we propose that the PDF of the gamma distribution was found by adding multiple i.i.d random variables following an
+exponential distribution $\E\text{xp}(\lambda)$. Here is a proof by induction demonstrating this supposition
+\cite{ayiendaGammaRelatedDistributions2013}:
+\begin{proof}
+	First, let us find the sum of two exponential random variables, which we will denote $S_2$:
+	\begin{equation}
+		\begin{split}
+			f_{S_2}	&=	f_{X_1 + X_2} (t)\\
+					&=	\int^t_0 \lambda e^{-\lambda(t-s)}\lambda e^{-\lambda s}\diff{s}\\
+					&=	\lambda^2 e^{-\lambda t}\int^t_0 1\diff{s}\\
+					&=	\lambda^2 te^{-\lambda t}\\
+					&=	\frac{\lambda^2 t^{2-1} e^{-\lambda t}}{(2-1)!}
+		\end{split}
+	\end{equation}
+	With this result, we can now determine the probability distribution function of the sum of three, as well as four
+	exponential random variables. Let's start with the sum of three variables:
+	\begin{equation}
+		\begin{split}
+			f_{X_1 + X_2 + X_3}(t)	&=	f_{S_2 + X_3}(t)\\
+			 						&=	\int^\infty_{-\infty} f_{S_2}(t-s)f_{X_3}(s)\diff{s}\\
+			 						&=	\int^\infty_{-\infty} f_{X_3}(t-s)f_{S_2}(s)\diff{s}\\
+			 						&=	\int^t_0 \lambda e^{-\lambda(t-s)}\lambda^2 s e^{-\lambda s}\diff{s}\\
+									&=	\lambda^3 e^{-\lambda t} \int^t_0 s\diff{s}\\
+									&=	\frac{\lambda^3 t^2 e^{-\lambda t}}{2!}\\
+									&=	\frac{\lambda^3 t^{3-1} e^{-\lambda t}}{(3-1)!}
+		\end{split}
+	\end{equation}
+	Then, let's sum four variables:
+	\begin{equation}
+		\begin{split}
+			f_{X_1+X_2+X_3+X_4}(t)	&=	f_{S_3+X_4}(t)\\
+									&=	\int^\infty_{-\infty} f_{S_3}(t-s)f_{X_4}(s)\diff{s}\\
+									&=	\int^\infty_{-\infty} f_{X_4}(t-s)f_{S_3}(s)\diff{s}\\
+									&=	\int^t_0 \lambda e^{-\lambda(t-s)}\frac{\lambda^3 s^2 e^{-\lambda s}}{2!}\diff{s}\\
+									&=	\frac{\lambda^4 e^{-\lambda t}}{2!}\int^t_0 s^2\diff{s}\\
+									&=	\frac{\lambda^4 t^3 e^{-\lambda t}}{3!}\\
+									&=	\frac{\lambda^4 t^{4-1} e^{-\lambda t}}{(4-1)!}\\
+		\end{split}
+	\end{equation}
+	A pattern can clearly be seen emerging from those results. Hence, we make the claim that:
+	\begin{equation}
+		\begin{split}
+			f_{S_n}(t) = f_{\sum^n_{i=1}X_i}(t) = \frac{\lambda^n t^{n-1} e^{-\lambda t}}{(n-1)!}\\
+		\end{split}
+	\end{equation}
+	To prove this claim, let us assume that:
+	\begin{equation}
+		\begin{split}
+			f_{S_{n-1}}(t)	&=	f_{\sum^{n-1}_{i=1}X_i} (t)\\
+							&=	\frac{\lambda^{n-1} t^{n-2} e^{-\lambda t}}{(n-2)!}
+		\end{split}
+	\end{equation}
+	By convolution, the probability distribution function of an infinite sum of exponential random variables can now be
+	found:
+	\begin{equation}
+		\begin{split}
+			f_{S_n}(t)	&=	f_{\sum^n_{i=1}X_i}(t)\\
+						&=	f_{\sum^{n-1}_{i=1}[X_i] + X_n }(t)\\
+						&=	f_{S_{n-1} + X_n }(t)\\
+						&=	\int^\infty_{-\infty} f_{S_{n-1}}(t-s)f_{X_n}(s)\diff{s}\\
+						&=	\int^\infty_{-\infty} f_{X_n}(t-s)f_{S_{n-1}}(s)\diff{s}\\
+						&=	\int^t_0 \lambda e^{-\lambda(t-s)}\frac{\lambda^{n-1} s^{n-2} e^{-\lambda s}}{(n-2)!}\diff{s}\\
+						&=	\frac{\lambda^n e^{-\lambda t}}{(n-2)!} \int^t_0 s^{n-2}\diff{s}\\
+						&=	\frac{\lambda^n t^{n-1} e^{-\lambda t}}{(n-1)!}\\
+						&=	\frac{\lambda^n t^{n-1} e^{-\lambda t}}{\Gamma(n)}\\
+		\end{split}
+	\end{equation}
+	This corresponds, obviously, to the probability distribution function of a gamma distribution. Therefore:
+	\begin{equation}
+		S_n \sim Gamma(n, \lambda)
+	\end{equation}
+	Hence, we get a density function whose parameter $n$ can correspond to all real values instead of being limited to
+	natural numbers.
+\end{proof}
+
+%======================================================================================================================
+%======================================================================================================================
+%======================================================================================================================
+
+\pagebreak
+\subsubsection{Sum of Exponential Random Variables}
+It is interesting to know that the gamma distribution is infinitely divisible. That is, any random variable following a
+gamma distribution $\G\text{amma}(\alpha, \lambda)$ may be expressed as a sum of $n$ other random variables following a
+gamma distribution as long as their shape parameters add up to $\alpha$ and their rate parameter is $\lambda$.
+\paragraph{Using Convolution}
+Using the notion of convolution, then:
+\begin{equation}
+	\begin{split}
+		f(z)	&=	\int_{0}^{z} f_1 (z-y) f_2 (y) \diff{y}\\
+				&=	\int_{0}^{z}\frac{\lambda^{\alpha_1} e^{-\lambda(z-y)} (z-y)^{\alpha_1 -1}}{\Gamma(\alpha_1)} \cdot \frac{\lambda^{\alpha_2} e^{-\lambda y}y^{\alpha_2 -1}}{\Gamma(\alpha_2)}\diff{y}\\
+				&=	\frac{\lambda^{\alpha_1+\alpha_2}}{\Gamma(\alpha_1) \Gamma(\alpha_2)}\int_{0}^{z}e^{-\lambda z}(z-y)^{\alpha_1 -1}y^{\alpha_2 -1}\diff{y}\\
+	\end{split}
+\end{equation}
+
+\begin{empheq}[box=\widefbox]{align*}
+	y = zt;	&&	\diff{y} = z\diff{t};	&&	t = \frac{y}{z}
+\end{empheq}
+Therefore:
+\begin{equation}
+	\begin{split}
+		 f(z)	&=	\frac{\lambda^{\alpha_1+\alpha_2}}{\Gamma(\alpha_1)\Gamma(\alpha_2)}\int_{0}^{1}e^{-\lambda z}(z-zt)^{\alpha_1 -1}(zt)^{\alpha_2 -1}z\diff{t}\\
+				&=	\frac{\lambda^{\alpha_1+\alpha_2}}{\Gamma(\alpha_1) \Gamma(\alpha_2)}\int_{0}^{1}z^{\alpha_1 + \alpha_2 -1}e^{-\lambda z}(1-t)^{\alpha_1 -1} t^{\alpha_2 -1}\diff{t}\\
+				&=	\frac{\lambda^{\alpha_1+\alpha_2}}{\Gamma(\alpha_1) \Gamma(\alpha_2)} z^{\alpha_1 + \alpha_2 -1}e^{-\lambda z} \int_{0}^{1}(1-t)^{\alpha_1 -1} t^{\alpha_2 -1}\diff{t}\\
+				&=	\frac{\lambda^{\alpha_1+\alpha_2}}{\Gamma(\alpha_1) \Gamma(\alpha_2)} z^{\alpha_1 + \alpha_2 -1}e^{-\lambda z} B(\alpha_2,\alpha_1)\\
+	\end{split}
+\end{equation}
+Here, let us now use an alternative definition of the beta distribution to obtain our final result:
+\begin{equation}
+	\begin{split}
+	f(z)	&=	\frac{\lambda^{\alpha_1+\alpha_2} }{\Gamma(\alpha_1) \Gamma(\alpha_2)} z^{\alpha_1 + \alpha_2 -1}e^{-\lambda z} \cdot \frac{\Gamma(\alpha_1) \Gamma(\alpha_2)}{\Gamma(\alpha_1+\alpha_2)}\\
+			&=	\frac{\lambda^{\alpha_1+\alpha_2}}{\Gamma(\alpha_1+\alpha_2)} z^{\alpha_1 + \alpha_2 -1}e^{-\lambda z} \text{ for } z>0, \alpha_1 + \alpha_2 -1 >0\\
+	\end{split}
+\end{equation}
+Since f(z) is in fact a probability density function, then:
+\begin{equation}
+	\begin{split}
+		1	&=	\int_{0}^{\infty} \frac{\lambda^{\alpha_1+\alpha_2}}{\Gamma(\alpha_1) \Gamma(\alpha_2)} z^{\alpha_1 + \alpha_2 -1}e^{-\lambda z} B(\alpha_2,\alpha_1)\diff{z}\\
+			&=	\frac{\lambda^{\alpha_1+\alpha_2}}{\Gamma(\alpha_1) \Gamma(\alpha_2)} B(\alpha_2,\alpha_1) \int_{0}^{\infty}e^{-\lambda z}z^{\alpha_1 + \alpha_2 -1}\diff{z}\\
+	\end{split}
+\end{equation}
+Finally, using the definition of the gamma distribution, we arrive to:
+\begin{equation}
+	\begin{split}
+		1	&=	\frac{\lambda^{\alpha_1+\alpha_2}}{\Gamma(\alpha_1) \Gamma(\alpha_2)} B(\alpha_2,\alpha_1) \frac{\Gamma({\alpha_1+\alpha_2})}{\lambda^{\alpha_1+\alpha_2}}\\
+			&=	\frac{B(\alpha_2,\alpha_1) \Gamma({\alpha_1+\alpha_2}) }{\Gamma(\alpha_1) \Gamma(\alpha_2)}\\
+	\end{split}
+\end{equation}
+Thus, as a by-product, we have found that:
+\begin{equation}\label{eq:specialcases:beta:beta}
+	\begin{split}
+		B(\alpha_2,\alpha_1) = \frac{\Gamma(\alpha_1) \Gamma(\alpha_2)}{\Gamma({\alpha_1+\alpha_2})}
+	\end{split}
+\end{equation}
+thereby confirming our initial assumption about the alternative definition of the beta distribution.
+
+%======================================================================================================================
+%======================================================================================================================
+%======================================================================================================================
+
+\pagebreak
+\paragraph{Using a Change of Variables}
+We will now prove this same result using a change of variables technique. First, let $Z = X + Y$. We will now find the
+distribution function of $Z$:
+\begin{equation}
+	\begin{split}
+		F_{X+Y}(z)	&=	P(Z \leq z)\\
+					&=	P(X+Y \leq z)\text{ for } x, y\in(0, \infty)\\
+					&=	P(X \leq z - y)\\
+					&=	\int_{0}^{\infty} \int_{0}^{z-y} f_X (x) f_Y (y)\diff{x}\diff{y}\\
+					&=	\int_{0}^{\infty} F_x (z-y) f_Y (y)\diff{y}\\
+	\end{split}
+\end{equation}
+The associated probability density function can now be found:
+\begin{equation}
+	\begin{split}
+		f_{x+y}(z)	&=	\int_{0}^{\infty} f_X(z-y)f_Y (y)\diff{y} \text{ for } z\in(0, \infty)\\
+					&=	\int_{0}^{\infty} \int_{0}^{z-y} f_x(x)f_y(y)\diff{x}\diff{y}\\
+					&=	\int_{0}^{\infty} \frac{\lambda^{\alpha_1}}{\Gamma(\alpha_1)} (z-y)^{\alpha_1 - 1} e^{-\lambda(z-y)} \frac{\lambda^{\alpha_2}}{\Gamma(\alpha_2)} y^{\alpha_2 - 1} e^{-\lambda y}\diff{y}\\
+					&=	\frac{\lambda^{\alpha_1} \lambda^{\alpha_2}}{\Gamma(\alpha_1) \Gamma(\alpha_2)} \int_{0}^{\infty} (z-y)^{\alpha_1 - 1} e^{-\lambda(z-y)} y^{\alpha_2 - 1} e^{-\lambda y}\diff{y}\\
+					&=	\frac{\lambda^{\alpha_1} \lambda^{\alpha_2}}{\Gamma(\alpha_1) \Gamma(\alpha_2)} \int_{0}^{\infty} (z-y)^{\alpha_1 - 1} e^{\lambda(-z+y-y)} y^{\alpha_2 - 1}\diff{y}\\
+	\end{split}
+\end{equation}
+
+\begin{empheq}[box=\widefbox]{align*}
+	y = zu;	&&	\diff{y} = z\diff{u}
+\end{empheq}
+Let us now make a simple substitution so that the final answer can be revealed:
+\begin{equation}
+	\begin{split}
+		f_{X+Y}(z)	&=	\frac{\lambda^{\alpha_1 + \alpha_2}}{\Gamma(\alpha_1) \Gamma(\alpha_2)} e^{-\lambda z} \int_{0}^{\infty} (z-zu)^{\alpha_1 - 1} (zu)^{\alpha_2 - 1}z \diff{u}\\
+					&=	\frac{\lambda^{\alpha_1 + \alpha_2}}{\Gamma(\alpha_1) \Gamma(\alpha_2)} e^{-\lambda z} \int_{0}^{\infty} z^{\alpha_1 + \alpha_2} (1-u)^{\alpha_1 - 1} u^{\alpha_2 - 1}\diff{u}\\
+					&=	\frac{ \lambda^{\alpha_1 + \alpha_2}}{\Gamma(\alpha_1) \Gamma(\alpha_2)} e^{-\lambda z} z^{\alpha_1 + \alpha_2 - 1} \int_{0}^{\infty} u^{\alpha_2 - 1} (1-u)^{\alpha_1 - 1}\diff{u}\\
+	\end{split}
+\end{equation}
+We will note here that the integral part of this equation corresponds to the Beta distribution function. Hence, we get:\vspace*{-18pt}
+\begin{equation}
+		f_{X+Y} (z) = \frac{\lambda^{\alpha_1 + \alpha_2}}{\Gamma(\alpha_1) \Gamma(\alpha_2)} e^{-\lambda z} z^{\alpha_1 + \alpha_2 - 1} B(\alpha_1, \alpha_2)
+\end{equation}\\[-30pt]
+Using an alternative definition of the beta distribution, which was proven in the last demonstration, we arrive to our final answer:\vspace*{-18pt}
+\begin{equation}
+		f_{X+Y}(z) = \frac{\lambda^{\alpha_1 + \alpha_2}}{\Gamma(\alpha_1 + \alpha_2)} e^{-\lambda z} z^{(\alpha_1 + \alpha_2) - 1}
+\end{equation}\\[-30pt]
+This corresponds, most clearly, to the probability density function of a gamma distribution:\vspace*{-18pt}
+\begin{equation}
+	Z \sim \G\text{amma}({\alpha_1 + \alpha_2, \lambda})
+\end{equation}\\[-30pt]
+Here is a graph showing this result:
+\figurecenter{1}{Simulation_sum.png}{Comparison of the histogram of a sum of gamma random variables with the probability density function of a gamma distribution.}{fig:simulation:sum}
+
+
+%======================================================================================================================
+%======================================================================================================================
+%======================================================================================================================
+
+\pagebreak
+\subsection{The Beta Distribution}\label{subsec:specialcases:beta}
+A random variable $X$ is said to follow a beta distribution $\text{Beta}(\alpha, \alpha)$ with two parameters $\alpha$
+and $\beta$ if its probability distribution function is defined by:
+\begin{equation}\label{eq:specialcases:beta:pdf}
+	f(x) = \frac{x^{\alpha-1} (1-x)^{\beta-1}}{B(\alpha, \beta)}\text{ for } 0\leq x\leq 1\text{ and }\alpha, \beta > 0
+\end{equation}
+where, from \autoref{eq:specialcases:beta:beta}:
+\begin{equation}
+	B(\alpha, \beta) = \frac{\Gamma(\alpha)\Gamma(\beta)}{\Gamma(\alpha+\beta)}
+\end{equation}
+ Here is a graph of the probability density function:
+\figurecenter{1}{Beta_PDF.png}{Plot of the probability distribution function of a beta distribution for various parameterizations.}{fig:specialcases:beta:pdf}
+
+%======================================================================================================================
+%======================================================================================================================
+%======================================================================================================================
+
+\pagebreak
+When looking at the numerator of the beta distribution function, similarities with the distribution function of the
+binomial distribution for independently distributed random events are evident:
+\begin{equation}
+	p(x) = P(X=x) =\binom{n}{x}p^x(1-p)^{n-x}\text{ for }x\in\mathbb{N}\cup\{0\}
+\end{equation}
+Indeed, the two distribution functions are analogous to a certain extent, for while the binomial distribution models the
+number of successes, the beta distribution models the probability of success. Since $\alpha-1$ represents the number
+of successes and $\beta-1$ represents the number of failures, modifying those parameters changes the shape of the
+probability distribution to model varying probabilities. As $\alpha$ increases (more successful events), the bulk of the
+probability distribution will shift towards the right, whereas an increase in $\beta$ moves the distribution towards the
+left (more failures). Finally, the distribution will narrow if both $\alpha$ and $\beta$ increase, for this increases the
+certainty regarding possible outcomes \cite{kimBetaDistributionIntuition2020, disorboBetaGamma}.
+
+%======================================================================================================================
+%======================================================================================================================
+%======================================================================================================================
+
+\pagebreak
+\subsubsection{Quotient of Gamma Random Variables}\label{subsubsec:specialcases:beta:quotient}
+Let's show how this distribution is related to the gamma distribution. Indeed, for $X\sim\G\text{amma}(\alpha, \lambda)$
+and $Y\sim\G\text{amma}(\beta, \lambda)$, then
+$\frac{X}{X+Y}\sim\G\text{amma}(\alpha+\beta, \lambda)\equiv\text{Beta}(\alpha, \beta)$. Let's prove it using two
+different techniques \cite{ayiendaGammaRelatedDistributions2013}:
+
+\paragraph{Using a Jacobian}
+\begin{proof}
+	First, let:
+	\begin{empheq}[box=\widefbox]{align*}
+		Y_1 = X_1 + X_2;	&&	Y_2 = \frac{X_1}{X_1+X_2}
+	\end{empheq}
+	Therefore:
+	\begin{empheq}[box=\widefbox]{align*}
+		x_1 = y_1y_2;	&&	x_2 = y_1(1-y_2)
+	\end{empheq}
+	\begin{equation}
+		\J = \det\begin{bmatrix}
+			\pderiv{x_1}{y_1}	&	\pderiv{x_1}{y_1}\\[6pt]
+			\pderiv{x_2}{y_2}	&	\pderiv{x_2}{y_2}
+			\end{bmatrix} = \det\begin{bmatrix}
+				y_2		&	y_1\\
+				1-y_2	&	-y_1
+			\end{bmatrix} = -y_1
+	\end{equation}
+	\begin{equation}
+		\begin{split}
+			f(y_1, y_2)	&=	f(x_1, x_2)\cdot\J\\
+						&=	\frac{\lambda^{\alpha_1+\alpha_2}}{\Gamma(\alpha_1)\Gamma(\alpha_2)}x_1^{\alpha_1-1}x_2^{\alpha_2-1}e^{-\lambda(x_1+x_2)}\text{ for }x_1, x_2>0\\
+						&=	\frac{\lambda^{\alpha_1+\alpha_2}}{\Gamma(\alpha_1)\Gamma(\alpha_2)}(y_1y_2)^{\alpha_1-1}(y_1(1-y_2))^{\alpha_2-1}e^{-\lambda y_1}y_1\\
+						&=	\frac{\lambda^{\alpha_1+\alpha_2}}{\Gamma(\alpha_1)\Gamma(\alpha_2)}y_1^{\alpha_1+\alpha_2-1}y_2^{\alpha_2-1}(1-y_2)^{\alpha_2-1}e^{-\lambda y_1}
+		\end{split}
+	\end{equation}
+	Hence:
+	\begin{equation}
+		\begin{split}
+			f(y_2)	&=	\int^\infty_0 f(y_1, y_2)\diff{y_1}\\
+					&=	\int^\infty_0 \frac{\lambda^{\alpha_1+\alpha_2}}{\Gamma(\alpha_1)\Gamma(\alpha_2)}y_1^{\alpha_1+\alpha_2-1}y_2^{\alpha_2-1}(1-y_2)^{\alpha_2-1}e^{-\lambda y_1}\diff{y_1}
+		\end{split}
+	\end{equation}
+	\pagebreak
+
+	\noindent The beta distribution may now be obtained through the following calculations:
+	\begin{empheq}[box=\widefbox]{align*}
+		y = \lambda y_1 \Rightarrow y_1 = \frac{y}{\lambda}
+	\end{empheq}
+	\begin{equation}
+		\begin{split}
+			\frac{1}{\lambda}\diff{y}	&=	\diff{y_1}\\
+										&=	\frac{\lambda^{\alpha_1+\alpha_2}y_2^{\alpha_2-1}(1-y_2)^{\alpha_2-1}}{\Gamma(\alpha_1)\Gamma(\alpha_2)} \int^\infty_0 \frac{e^{-y}}{\lambda}\left(\frac{y}{\lambda}\right)^{\alpha_1+\alpha_2-1}\diff{y}\\
+										&=	\frac{\lambda^{\alpha_1+\alpha_2}y_2^{\alpha_2-1}(1-y_2)^{\alpha_2-1}}{\lambda^{\alpha_1+\alpha_2}\Gamma(\alpha_1)\Gamma(\alpha_2)} \int^\infty_0 e^{-y}y^{\alpha_1+\alpha_2-1}\diff{y}\\
+										&=	\frac{y_2^{\alpha_2-1}(1-y_2)^{\alpha_2-1}\Gamma(\alpha_1+\alpha_2)}{\Gamma(\alpha_1)\Gamma(\alpha_2)}\\
+										&=	\frac{y_2^{\alpha_2-1}(1-y_2)^{\alpha_2-1}}{B(\alpha_1, \alpha_2)}\text{ for }0\leq y\leq 1\text{ and }\alpha_1, \alpha_2 > 0
+		\end{split}
+	\end{equation}
+	This last result is exactly the equation of the beta distribution presented in \autoref{eq:specialcases:beta:pdf}, but with
+	different variables.
+\end{proof}
+%======================================================================================================================
+%======================================================================================================================
+%======================================================================================================================
+
+\pagebreak
+\paragraph{Using a Change of Variables}
+\begin{proof}
+	Alternatively, using a change of variables, consider the following random variable:\vspace*{-12pt}
+	\begin{equation}
+		Z = \frac{X_1}{X_1+X_2}\\
+	\end{equation}\\[-38pt]
+	Then:\vspace*{-12pt}
+	\begin{equation}
+		\begin{split}
+			P(Z\le z)	&=	P(\frac{X_1}{X_1+X_2}\le z)\\
+						&=	P(X_1\le z (x_1+ x_2))\\
+						&=	P((1-z)X_1\le zx_2)\\
+						&=	P(X_1\le {\frac{zx_2}{1-z}}) \text{ for } X_2 \in (0,\infty)\\
+						&=	\int_{0}^{\infty}\int_{0}^{\frac{zx_2}{1-z}} f(x_1)\diff{x_1} f(x_2)\diff{x_2}\\
+						&=	\int_{0}^{\infty}F_{X_1}(\frac{z x_2}{1-z})f(x_2)\diff{x_2}\\
+			h(z)		&=	\int_{0}^{\infty}\frac{x_2}{(1-z)^2}f_{x_1}(\frac{zx_2}{1-z})f(x_2)\diff{x_2}\\
+						&=	\frac{\lambda^{\alpha_1+\alpha_2} z^{\alpha_1 - 1}}{\Gamma (\alpha _1) \Gamma (\alpha _2) (1-z)^{\alpha_1 -+1}} \int_{0}^{\infty} x_2^{\alpha_1 + \alpha_2 - 1} e^{-\lambda \frac{x_2}{(1-z)}}\diff{x_2}\\
+						&=	\frac{\lambda^{\alpha_1+\alpha_2} z^{\alpha_1 - 1}}{\Gamma (\alpha _1) \Gamma (\alpha _2) (1-z)^{\alpha_1 +1}} \int_{0}^{\infty} x_2^{\alpha_1 + \alpha_2 - 1} e^{-\lambda \frac{x_2}{(1-z)}}\diff{x_2}\\
+		\end{split}
+	\end{equation}
+	\begin{empheq}[box=\widefbox]{align*}
+		u = \frac{\lambda x_2}{1-z};	&&	x_2 = \frac{u(1-z)}{\lambda};	&&	\diff{x_2} = \frac{(1-z)}{\lambda}\diff{u}
+	\end{empheq}
+	\begin{equation}
+		\begin{split}
+			h(z)	&=	\frac{\lambda^{\alpha_1+\alpha_2} z^{\alpha_1 - 1}}{\Gamma (\alpha _1) \Gamma (\alpha _2) (1-z)^{\alpha_1 +1}} \int_{0}^{\infty} (\frac{u (1-z)}{\lambda})^{\alpha_1 + \alpha_2 -1} e^{-u} (\frac{1-z}{\lambda})\diff{u}\\
+					&=	\frac{\lambda^{\alpha_1+\alpha_2} (1-z)^{\alpha_1 + \alpha_1}}{\lambda^{\alpha_1+\alpha_2} \Gamma (\alpha _1) \Gamma (\alpha _2) (1-z)^{\alpha_1 +1}} \int_{0}^{\infty} u^{\alpha_1 + \alpha_2 -1} e^{-u}\diff{u}\\
+					&=	\frac{z^{\alpha_1 -1} (1-z)^{\alpha_2 -1}}{\Gamma (\alpha _1) \Gamma (\alpha _2)} \int_{0}^{\infty} u^{\alpha_1 + \alpha_2 -1} e^{-u}\diff{u}\\
+					&=	\frac{z^{\alpha_1 -1} (1-z)^{\alpha_2 -1}}{\Gamma (\alpha _1) \Gamma (\alpha _2)} \Gamma(\alpha_1 + \alpha_2)\\
+					&=	\frac{z^{\alpha_1 -1} (1-z)^{\alpha_2 -1}}{B(\alpha_1 +\alpha_2)} ;\alpha _1,\alpha _2>0, \text{ for } 0<z<1\\
+		\end{split}
+	\end{equation}
+	This last result is clearly the beta distribution found in \autoref{eq:specialcases:beta:pdf}.
+\end{proof}
+
+It follows from the previous results that the beta distribution is, in fact, a proportion of two gamma distributions!
+
+Here is a comparison of the histogram of the random variable $Z=\dfrac{X}{X+Y}$, where $X\sim\G\text{amma}(2, 1)$ and
+$Y\sim\G\text{amma}(5, 1)$, with the plot of the probability density function of the beta distribution with parameters
+$\B\text{eta}(2,5)$:
+\figurecenter{1}{Simulation_quotient.png}{Comparison of the histogram of a quotient of gamma random variables with the probability density function of a beta distribution.}{fig:simulation:quotient}
+
+%======================================================================================================================
+%======================================================================================================================
+%======================================================================================================================
+
+\pagebreak
+\subsection{The Chi-Squared Distribution}\label{subsec:specialcases:chi2}
+Then, a gamma distribution with parameters $\alpha=\sfrac{n}{2}$ and $\lambda=\sfrac{1}{2}$ is called the
+chi-squared distribution with $n$ degrees of freedom such that:
+\begin{equation}
+	X\sim\G\text{ammma}(\sfrac{n}{2}, \sfrac{1}{2})\equiv\chi^2_n
+\end{equation}
+\begin{proof}
+	First, to show that $\G\text{ammma}(\sfrac{n}{2},\sfrac{1}{2})\equiv\chi^2_n$, let's prove that
+	$\G\text{ammma}(\sfrac{1}{2},\sfrac{1}{2})\equiv\chi^2_1$, a chi-squared distribution with one (1) degree of
+	freedom, using a change of variables $Y=Z^2$ with $Z\sim\N(0, 1)$:
+	\begin{equation}\label{eq:relation:chisquared:1}
+		\begin{split}
+			G(y)	&=	P(Y\leq y)\\
+					&=	P(Z^2\leq y)\\
+					&=	P(-\sqrt{y}\leq z \leq \sqrt{y})\\
+					&=	\Phi(\sqrt{y})-\Phi(-\sqrt{y})\\[12pt]
+			g(y)	&=	\frac{f(\sqrt{y})}{2\sqrt{y}}+\frac{f(-\sqrt{y})}{2\sqrt{y}}\\
+					&=	\frac{e^{-\sfrac{y}{2}}}{2\sqrt{2\pi y}} + \frac{e^{-\sfrac{y}{2}}}{2\sqrt{2\pi y}}\\
+					&=	\frac{\cancel{2}e^{-\sfrac{y}{2}}}{\cancel{2}\sqrt{2\pi y}}\\
+					&=	\frac{1}{\sqrt{2}\Gamma(\frac{1}{2})}y^{-\sfrac{1}{2}}e^{-y\sfrac{1}{2}}\\
+					&=	\frac{(\frac{1}{2})^{\sfrac{1}{2}}}{\Gamma(\frac{1}{2})}y^{\sfrac{1}{2}-1}e^{-(\sfrac{1}{2})y}
+			\end{split}
+	\end{equation}
+	\begin{equation}
+		\therefore Y\sim\G\text{ammma}(\sfrac{1}{2}, \sfrac{1}{2})\equiv\chi^2_1
+	\end{equation}
+	One may generalize this result by using $Z_1, Z_2, \ldots, Z_n$ as i.i.d. random variables following $\N(0, 1)$ to
+	find the distribution of:
+	\begin{equation}
+		Y = \sum^n_{i=1}Z^2_i
+	\end{equation}
+	Hence, using the moment generating function:
+	\begin{equation}\label{eq:relation:chisquared:n}
+		\begin{split}
+			M_{\sum^n_{i=1}Z^2_i}(t)	&=	\prod^n_{i=1}M_{Z^2_i}(t)\\
+										&=	M(t)^n\\
+										&=	\left(\frac{\sfrac{1}{2}}{\sfrac{1}{2}-t}\right)^{\displaystyle\sfrac{n}{2}}
+		\end{split}
+	\end{equation}
+	This last line is equal to the moment generating function of a random variable following the distribution
+	$\G\text{amma}(\sfrac{n}{2}, \sfrac{1}{2})$. Hence:
+	\begin{equation}
+		\therefore Y\sim\G\text{amma}(\sfrac{n}{2}, \sfrac{1}{2})\equiv \chi^2_n
+	\end{equation}
+\end{proof}
+
+Using the previously proven result, the density function of the chi-squared distribution may be determined by
+substituting the parameters $\alpha = \sfrac{n}{2}$ and $\lambda = \sfrac{1}{2}$ into the density function of the gamma
+distribution:
+\begin{equation}\label{eq:chisquared-density}
+	\begin{split}
+		f(x)	&=	\frac{\lambda^\alpha}{\Gamma(\alpha)}x^{\alpha-1}e^{-\lambda x}\\
+				&=	\frac{(\frac{1}{2})^{\sfrac{n}{2}}}{\Gamma(\frac{n}{2})}x^{\frac{n}{2}-1}e^{-\frac{1}{2}x}\\
+				&=	\frac{1}{2^{\sfrac{n}{2}}\Gamma(\frac{n}{2})}x^{\frac{n}{2}-1}e^{-\sfrac{x}{2}}
+	\end{split}
+\end{equation}
+\figurecenter{1}{Chi2_PDF.png}{Plot of the probability distribution function of a $\chi^2_n$ distribution for various values of $n$.}{fig:specialcases:chi2:pdf}
+
+The chi-square distribution is often used to describe the distribution of a sum of squared random variables, to test the
+fit of a distribution of data, or to determine whether data series are independent or dependent.
+
+%======================================================================================================================
+%======================================================================================================================
+%======================================================================================================================
+
+\pagebreak
+\subsection{The Normal Distribution}\label{subsec:specialcases:normal}
+As was shown previously in \autoref{subsec:specialcases:chi2}, the normal distribution is related to the gamma
+distribution as it may be used to prove that the latter is related to the chi-squared distribution. That is:
+\begin{equation}
+	Z\sim\N\text{ormal}(0, 1)\Rightarrow Z^2\sim\G\text{amma}(\sfrac{1}{2}, \sfrac{1}{2})\equiv\chi^2_1
+\end{equation}
+
+Furthermore, since the gamma distribution $\G\text{amma}(\alpha, \lambda)$ may be viewed as a sum of $\alpha$ exponential
+distributions, then by the central limit theorem, the density function of the gamma distribution will be extremely similar
+to that of a normal distribution when $\alpha$ approaches $\infty$:
+\begin{equation}
+	\G\text{amma}(\alpha, \lambda) \approxequiv \N(\sfrac{\alpha}{\lambda}, \sfrac{\alpha}{\lambda^2})\text{ for }\alpha\to\infty
+\end{equation}
+The central limit theorem will not be proven as it is quite intuitive; the more data samples one has, the more
+centred around the expected value the probability density function graph will be. That being said, here is a graph
+representing this concept by comparing the probability density function graph of a $\G\text{amma}(60, 1)$ to that of a
+$\N(60, 60)$. Because $\G\text{amma}(\alpha, \lambda)$ is in essence a sum of $\alpha$ i.i.d. random variables following
+a distribution $\E\text{xp}(\lambda)$, then it makes sense that having a distribution $\G\text{amma}(60, 1)$ is like
+having $60$ data samples following a $\E\text{xp}(1)$ distribution, which fits the central limit theorem.
+\figurecenter{1}{Central_limit_theorem.png}{Graph showcasing the central limit theorem by comparing the probability density function plot of a $\G\text{amma}(60, 1)$ distribution to that of $\N(60, 60)$ distribution.}{fig:graph:clt}
+
+%======================================================================================================================
+%======================================================================================================================
+%======================================================================================================================
+
+\pagebreak
+\subsection{The Erlang Distribution}\label{subsec:specialcases:erlang}
+In real-world applications, it is often useful to limit the number of occurrences to a positive integer (it may not be
+pertinent to determine, for example, the waiting time until 2.665 events take place). In this context, the special name
+“erlang distribution” has been attributed to the specific gamma distribution in which the shape parameter $\alpha$ only
+takes positive integer values and where the rate parameter $\lambda$ is a positive real number:
+\begin{equation}
+	f_{X_\alpha}(x)	= 	\begin{cases}
+							\dfrac{\lambda^\alpha}{\Gamma(\alpha)}x^{\alpha-1}e^{-\lambda x} & \alpha\in\mathbb{N}; x\geq0\\
+							0 & x<0
+						\end{cases}
+\end{equation}
+
+This distribution takes its name from A. K. Erlang, the man who initially popularized its use in order to examine the
+number of telephone calls which can be made at the same time to the operators of the switching stations, in the field of
+phone traffic engineering. Indeed, the Erlang distribution's original purpose was to measure the time between incoming
+calls, a statistic which can be used along with the expected duration of incoming calls to analyze phone traffic loads.
+His work has since been expanded to consider queuing systems in general, as well as the load on web servers,
+inter-purchase times and cancer incidence (see \autoref{sec:generalApplications})\cite{zachWhatErlangDistribution2020}.
+
+%======================================================================================================================
+%======================================================================================================================
+%======================================================================================================================
+
+\pagebreak
+\subsection{The Wishart Distribution}
+The Wishart distribution, named in honour of the Scottish mathematician John Wishart who first formulated it in 1928, is
+a generalization to multiple dimensions of the gamma distribution: it is a family of distributions defined over symmetric
+positive matrices. Namely, if $X_1, ..., X_n$ are independent and form a $p\times n$ matrix $X = (X_1, ..., X_n)$, then
+the distribution of a $p\times n$ random matrix $M = XX^\prime = \sum^n_{i=1}X_iX^\prime_i$ is said to have a Wishart
+distribution with $n$ degrees of freedom.
+
+If $n\geq p$, such a matrix is denoted $\matr{M}\sim W_p(n, \Sigma)$ and has the following probability density function,
+where $\Gamma_p(\alpha)$ is the multivariate gamma function and where $\Sigma$ is a fixed symmetric positive matrix of
+size $p \times p$:
+\begin{equation}
+	f(\matr{M}) = \frac{1}{2^{\sfrac{np}{2}}\Gamma_p(\alpha)\left|\Sigma\right|^{\sfrac{n}{2}}}\left|\matr{M}\right|^{\sfrac{n-p-1}{2}}e^{-\frac{\text{trace}(\Sigma^{-1}\matr{M})}{2}}
+\end{equation}
+
+Interesting similarities with the probability density function of the gamma distribution can clearly be noticed in the
+form of this equation. While this generalization of the gamma distribution to matrices is a rather intriguing topic that
+was important to mention, this paper will not explore the Wishart distribution in greater depth
+\cite{wikipediaWishartDistribution2022}.
+
+%======================================================================================================================
+%======================================================================================================================
+%======================================================================================================================
+
+\pagebreak
+\section{Advanced Properties}
+\subsection{Skewness}
+In statistics, the skewness of a distribution is defined as the degree of asymmetry of the shape of the probability
+distribution with respect to the normal distribution. Distributions can exhibit right (positive) or left (negative)
+skewness; the normal distribution is qualified as exhibiting zero skewness. In the case of the gamma distribution, the
+skewness is only dependent upon the shape parameter $\alpha$ and corresponds to\cite{chenLearnSkewness2021,
+wikipediaGammaDistribution2022}:
+\begin{equation}
+	\text{Skewness} = \frac{2}{\sqrt{\alpha}}
+\end{equation}
+
+\subsection{Information Entropy}
+The entropy of a random variable is defined as the average level of uncertainty associated with the possible outcomes
+of its probability distribution. In the case of continuous probability distributions such as the gamma
+distribution, one usually refers to differential entropy (also called continuous entropy), defined
+as\cite{wikipediaDifferentialEntropy2022, wikipediaGammaDistribution2022}:
+\begin{equation}
+	h(X) = E[-\log(f(X))]
+\end{equation}
+More specifically, the entropy of the gamma distribution corresponds to:
+\begin{equation}
+	H(X) = \alpha + \ln(\lambda) + \ln(\Gamma(\alpha)) + (1-\alpha)\psi(\alpha)
+\end{equation}
+
+\pagebreak
+\noindent Following is the proof of this preceding equation:
+\begin{proof}
+	\begin{equation}
+		\begin{split}
+			H(X)	&=	E[-\ln(p(X))]\\
+					&=	E[-\alpha\ln(\lambda) + \ln(\Gamma(\alpha)) - (\alpha-1)\ln(X) + \lambda X]\\
+					&=	\alpha + \ln(\lambda) + \ln(\Gamma(\alpha)) + (1-\alpha)\psi(\alpha)
+		\end{split}
+	\end{equation}
+\end{proof}
+
+\subsection{Characteristic Function}\label{subec:advancedproperties:cf}
+In statistics, any random variable associated with a probability density function is said to have a characteristic
+function, which corresponds to the Fourier transformation of its probability density function. The characteristic
+function thus simply corresponds to an alternative way of describing a random variable: it fully determines the behaviour
+and properties of a given probability distribution to the same extent as the distribution function, but can provide
+different insights to the features of the random variable. In the case of the gamma distribution, the characteristic
+function is defined as\cite{wikipediaCharacteristicFunctionProbability2022}:
+\begin{equation}
+	\text{CF} = \left(1-\frac{it}{\lambda}\right)^{-\alpha}
+\end{equation}
+
+\subsection{Methods of Moments}
+The "methods of moments" of a probability distribution are methods used to estimate population parameters, that is, to
+describe various aspects of a given group or population. The methods of moments of the gamma distribution are defined
+as\cite{wikipediaMethodMomentsStatistics2021, limWhatPopulationParameter2019}:
+\begin{equation}
+	\begin{split}
+		\alpha	&=	\frac{E(X)^2}{\text{Var}(X)}\\
+		\lambda	&=	\frac{E(X)}{\text{Var}(X)}
+	\end{split}
+\end{equation}
+
+\subsubsection{Higher Moments}
+To describe or estimate further shape parameters of a probability distribution, the higher-order moments of a function
+can be used. Moments beyond 4th order are often increasingly hard to estimate, and larger sample sizes are often
+required to obtain better quality of estimation\cite{wikipediaMomentMathematics2022}.
+
+The $n$th raw moment is given by:
+\begin{equation}
+	E[X^n] = \frac{\Gamma(n+\alpha)}{\lambda^n\Gamma(\alpha)}
+\end{equation}
+
+\subsection{Excess kurtosis}
+Kurtosis, the fourth standardized moment, is a characteristic used to describe the shape, or the “tailedness” of a
+probability distribution. The normal distribution is used as the standard, displaying an excess kurtosis of zero with
+which one can compare the excess kurtosis of other distributions\cite{wikipediaKurtosis2022}.
+
+The exponential distribution, as a special case of the gamma distribution, has a positive excess kurtosis and is hence
+called leptokurtic. This, in short, indicates that it exhibits fatter tails than the normal distribution. Following is
+the equation characterizing the excess kurtosis of the gamma distribution\cite{wikipediaKurtosis2022}:
+\begin{equation}
+	\text{Kurtosis} = \frac{6}{\alpha}
+\end{equation}
+
+%======================================================================================================================
+%======================================================================================================================
+%======================================================================================================================
+
+\pagebreak
+\section{General Applications}\label{sec:generalApplications}
+Finally, the gamma distribution is used in many fields, since it is directly related to the Erlang, normal and
+exponential distributions whose contributions extend to several disciplines. Here, we will present some of those
+applications.
+
+\subsection{Insurance Companies}
+First, the gamma distribution is of great use in the field of insurance services, given its direct relation to the
+exponential distribution. For example, an analyst could use this distribution to specify the amount of time a product
+lasts if one uses it at a constant average rate, thus modelling how reliable it is (and how much insurance should be
+charged for it). Then, the size of loan defaults and the cost of insurance claims are also often modelled according to a
+gamma distribution \cite{tiwariModelingInsuranceClaim2020}.
+
+\subsection{Natural Events Prediction}
+Then, the gamma distribution can also be used to model the amount of rainfall accumulated in a given reservoir. Indeed,
+this distribution fits positive data, represents rainfall distribution well and its two parameters
+give it sufficient flexibility to fit various climates\cite{husakUseGammaDistribution2007}.
+
+%======================================================================================================================
+%======================================================================================================================
+%======================================================================================================================
+
+\pagebreak
+\subsection{Customer Satisfaction}
+\subsubsection{Service Time}
+Service time can also be modelled using the gamma distribution. For example, if one is the sole person in line waiting for a meal, the
+waiting time until one receives the long-awaited food can be modelled using an exponential distribution. Using the same
+principle, the Erlang distribution can allow one to determine the total length of a process, that is, the duration of a
+sequence of independent events. For instance, if a large number of people are waiting in line to be served, the
+distribution of each of their individual waiting times (the sum of several independent exponentially distributed
+variables) will correspond to the time it takes for the employee to serve everyone in it. Therefore, the gamma
+distribution lies at the heart of what is called queuing theory: the mathematical study of the congestion of waiting
+lines. Since waiting lines are found in countless places such as banks, restaurants and hospitals, as well as on web
+servers or multistep manufacturing and distribution processes, the gamma distribution provides very useful applications
+in everyday life.
+
+\subsubsection{Call Centers}
+One of the most famous of those applications concerns phone queuing, on which A. K. Erlang famously worked. The Erlang
+distribution has indeed been developed in the objective to model the time between incoming calls at a call centre, along
+with the expected number of calls, thus allowing call centres to know what their staffing capacity should be depending
+on the time of day.
+
+\subsubsection{Retail}
+Beyond waiting lines, the Erlang distribution is often used by retailers to model the frequency of inter-purchase times
+by consumers, which gives them an idea of how often a given consumer is expected to purchase a product from them and
+helps them control inventory and staffing.
+
+%======================================================================================================================
+%======================================================================================================================
+%======================================================================================================================
+
+\pagebreak
+\subsection{Oncology}
+Finally, in the field of oncology, the age distribution of cancer incidence also follows a gamma distribution. Although
+the factors underlying cancer development are not yet fully understood, it has been hypothesized that cancers arise
+after several successive “driver events”, that is, after some number of mutations occurs in a cell. Analyses of cancer
+statistics suggest that the incidence of the most prevalent cancer types with respect to the patients' age closely
+follows the gamma probability distribution or, more specifically, the Erlang distribution. This may be due to the fact
+that, more broadly, the Erlang distribution can be used to model the cell cycle time
+distribution\cite{belikovNumberKeyCarcinogenic2017}. The age distribution of cancer can be modelled using the following equation:
+
+\begin{equation}
+	Y = A\cdot x^{\alpha-1}\frac{e^{\frac{-x}{\beta}}}{\beta^\alpha}\cdot\Gamma(k)
+\end{equation}
+
+In this case, the shape parameter $\alpha$ predicts the number of carcinogenic driver events, whereas the scale
+parameter $\beta$ predicts the average time between those events for each cancer type. Using an additional amplitude
+parameter A, the maximal population susceptibility to a given type of cancer can even be
+predicted\cite{belikovNumberKeyCarcinogenic2017}. Given that experimental research on cancer development is crucial for
+the lives of many people, numerical references such as that provided by the gamma distribution are of paramount
+importance in our society. The gamma distribution can save lives, if it is used wisely!
+
+\figurecenter{1}{Cancer_probability}{"The Erlang distribution approximates cancer incidence by age for 20 most prevalentcancer types. Dots indicate actual data for 5-year age intervals, curves indicate the PDF of the Erlang distribution fitted to the data [...]. The middle age of each age group is plotted. Cancer types are arranged in the order of decreasing incidence"\cite{belikovNumberKeyCarcinogenic2017}.}{fig:cancerProbability}
+
+%======================================================================================================================
+% END OF DOCUMENT =====================================================================================================
+%======================================================================================================================
+\pagebreak
+
+\begin{appendix}
+\section{Graphs - Python Code}
+\subsection{Probability Density Function}
+Here is the code used to generate the probability density function graph of the gamma distribution in
+\autoref{subsec:gamma:pdf}:
+\lstinputlisting[language=Python, caption={}, label=code:gamma:pdf]{_assets/Gamma_pdf.py}
+
+\pagebreak
+\subsection{Cumulative Distribution Function}
+Here is the code used to generate the cumulative distribution function graph of the gamma distribution in
+\autoref{subsec:gamma:cdf}:
+\lstinputlisting[language=Python, caption={}, label=code:gamma:cdf]{_assets/Gamma_cdf.py}
+
+\pagebreak
+\subsection{Central Limit Theorem}
+Here is the code used to generate the central limit theorem graph in \autoref{subsec:specialcases:normal}:
+\lstinputlisting[language=Python, caption={}, label=code:gamma:clt]{_assets/Central_limit_theorem.py}
+
+\pagebreak
+\section{Simulations - Python Code}
+\subsection{Simulation 1: $X+Y$}
+Comparison of the graph of $\G\text{amma}(\alpha+\beta, \lambda)$ and the histogram of $X+Y$ with
+$X\sim\G\text{amma}(\alpha, \lambda)$ and $Y\sim\G\text{amma}(\beta, \lambda)$. Featured in
+\autoref{fig:simulation:sum}.
+\lstinputlisting[language=Python, caption={}, label=code:simulation:sum]{_assets/Simulation_sum.py}
+
+\pagebreak
+\subsection{Simulation 2: $\frac{X}{X+Y}$}
+Comparison of the graph of $\B\text{eta}(\alpha, \beta)$ and the histogram of $\frac{X}{X+Y}$ with
+$X\sim\G\text{amma}(\alpha, \lambda)$ and $Y\sim\G\text{amma}(\beta, \lambda)$. Featured in
+\autoref{fig:simulation:quotient}.
+\lstinputlisting[language=Python, caption={}, label=code:simulation:quotient]{_assets/Simulation_quotient.py}
+
+\pagebreak
+\phantomsection\listoffigures
+\end{appendix}
+
+\pagebreak\phantomsection\printbibliography[heading=bibintoc, title={References}]
+\end{document}
+
+\begin{tabular}
