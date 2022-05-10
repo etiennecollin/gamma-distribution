@@ -1,12 +1,20 @@
+exclude:
+  - node_modules
+  - script
+
+sass:
+  style: :compressed
+
+theme: jekyll-theme-primer
+
+github:
+  private: false
+  license:
+    name: CC-BY-4.0
+  source:
+    branch: "master"
+    path: "/"
+  repository_url: "https://github.com/etiennecollin/gamma-distribution"
+
 title: The Gamma Distribution
 description: This is a paper outlining the various properties and applications of the gamma distribution.
-baseurl: "/gamma-distribution" # the subpath of your site, e.g. /blog
-url: "https://etiennecollin.com" # the base hostname & protocol for your site, e.g. http://example.com
-
-# Set a path/url to a logo that will be displayed instead of the title
-# logo: "assets/just-the-docs.png"
-
-footer_content: "Copyright &copy; 2022 Etienne Collin. Distributed under CC-BY-4.0 license."
-
-# Footer "Edit this page on GitHub" link text
-gh_edit_link: false # show or hide edit this page link
