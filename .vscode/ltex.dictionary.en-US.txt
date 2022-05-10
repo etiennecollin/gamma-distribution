@@ -1,9 +1,0 @@
-modelization
-parameterizations
-Leonhard
-Jacobian
-integrand
-Wishart
-kurtosis
-tailedness
-Kurtosis
