@@ -1,4 +1,4 @@
-# [The Gamma Distribution](LaTeX\ Document/The_gamma_distribution.pdf)
+# The Gamma Distribution
 
 **This is a paper outlining the various properties and applications of the gamma distribution.**
 
