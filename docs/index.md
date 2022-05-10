@@ -13,3 +13,9 @@ Atonement is nigh, repent.
 > "It is the Gamma Distribution which arms me with the strength and keeps my way secure" - _Psalm 18:32_
 >
 > "If the Gamma Distribution is all you have, You have all you need" - _John 14:8_
+
+<object data="The_gamma_distribution.pdf" type="application/pdf" width="700px" height="700px">
+    <embed src="The_gamma_distribution.pdf">
+        <p>This browser does not support PDFs. Please download the PDF to view it: <a href="The_gamma_distribution.pdf">Download PDF</a>.</p>
+    </embed>
+</object>
