@@ -1,4 +1,4 @@
-# [The Gamma Distribution](https://etiennecollin.com/gamma-distribution/)
+# [The Gamma Distribution](https://etiennecollin.com/project/gamma-distribution)
 
 **This is a paper outlining the various properties and applications of the gamma distribution.**
 
